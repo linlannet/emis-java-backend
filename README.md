@@ -24,7 +24,7 @@
 
 ## 版本历史
 
-![CHANGELOG](CHANGELOG.md)
+[CHANGELOG](./CHANGELOG.md)
 
 ## 应用效果
 
@@ -35,6 +35,7 @@
 ```
 Springboot + Framework + Security + Mybatis
 ```
+
 ### 安装教程
 1. mvn clean install
 2. mvn clean deploy
@@ -78,3 +79,7 @@ git tag -d 1.0.0
 
 ```
 6. 其他
+
+## 版权
+
+[Apache 2.0 © emis-vue-frontend 2023](./LICENSE)

@@ -6,3 +6,4 @@
 2. 增加根目录的README、Q&A、CHANGELOG
 3. 增加THIRD_PARTY.md
 4. 采用maven方式进行打包，新增初始化pom文件
+5. 修改README.en文件信息
