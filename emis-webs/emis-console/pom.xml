@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    emis-console - console控制台
+    Copyright © 2020-2025 Linlan (open@linlan.net)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.linlan.emis</groupId>
+        <artifactId>emis-webs</artifactId>
+        <version>1.1.0</version>
+    </parent>
+    <artifactId>emis-console</artifactId>
+    <version>1.1.0</version>
+    <packaging>jar</packaging>
+    <name>emis-console</name>
+    <description>
+        console控制台
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.version>3.1.0</maven.version>
+        <maven.compile.version>3.7.0</maven.compile.version>
+
+    </properties>
+    <url>https://gitee.com/linlannet/emis-java-backend.git</url>
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://gitee.com/linlannet/emis-java-backend/tree/master/emis-console</url>
+        <connection>scm:git:git://gitee.com/linlannet/emis-java-backend.git</connection>
+    </scm>
+    <developers>
+        <developer>
+            <id>linlan</id>
+            <name>linlan info</name>
+            <email>linlannet@163.com</email>
+            <organization>Linlan Corporation</organization>
+            <roles>
+                <role>Member</role>
+            </roles>
+            <timezone>Asia/Beijing</timezone>
+        </developer>
+    </developers>
+    <dependencies>
+
+        <!-- spring-boot-devtools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.jayway.jsonpath</groupId>
+                    <artifactId>json-path</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin.external.google</groupId>
+                    <artifactId>android-json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.bytebuddy</groupId>
+                    <artifactId>byte-buddy</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.bytebuddy</groupId>
+                    <artifactId>byte-buddy-agent</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mockito</groupId>
+                    <artifactId>mockito-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.skyscreamer</groupId>
+                    <artifactId>jsonassert</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jul-to-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.assertj</groupId>
+                    <artifactId>assertj-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-library</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.xmlunit</groupId>
+                    <artifactId>xmlunit-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- SpringSecurity的依赖配置-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                    <artifactId>jackson-datatype-jdk8</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                    <artifactId>jackson-datatype-jsr310</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-parameter-names</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+        <!-- 配置文件加密 -->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt-spring31</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
+        <!-- 核心模块-->
+        <dependency>
+            <groupId>net.linlan.commons</groupId>
+            <artifactId>commons-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.eframe</groupId>
+            <artifactId>eframe-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.eframe</groupId>
+            <artifactId>eframe-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.eframe</groupId>
+            <artifactId>eframe-view</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.eframe</groupId>
+            <artifactId>eframe-api</artifactId>
+        </dependency>
+        <!-- 定时任务 -->
+        <dependency>
+            <groupId>net.linlan.eframe</groupId>
+            <artifactId>module-quartz</artifactId>
+        </dependency>
+        <!-- 代码生成 -->
+        <dependency>
+            <groupId>net.linlan.eframe</groupId>
+            <artifactId>module-generator</artifactId>
+        </dependency>
+
+        <!-- EMIS相关模块 -->
+
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/application*.yml</include>
+                    <include>**/application*.yaml</include>
+                    <include>**/application*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/application*.yml</exclude>
+                    <exclude>**/application*.yaml</exclude>
+                    <exclude>**/application*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compile.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.version}</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.version}</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>lib/</directory>
+                            <targetPath>WEB-INF/lib</targetPath>
+                            <includes>
+                                <include>**/*.jar</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <!-- 由于如下启用造成deploy上传文件较大，暂时注释。生成独立运行jar包，放开如下的注释即可 -->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>${spring.boot.version}</version>-->
+<!--                <configuration>-->
+<!--                    <includeSystemScope>true</includeSystemScope> -->
+<!--                    <mainClass>net.linlan.FrameApplication</mainClass>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+            <!-- 为自动生成接口文档进行扩展 -->
+<!--            <plugin>-->
+<!--                <groupId>net.linlan.plugin</groupId>-->
+<!--                <artifactId>java-plugin-doc-generate</artifactId>-->
+<!--                <version>${linlan.plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;指定生成文档的使用的配置文件,配置文件放在自己的项目中&ndash;&gt;-->
+<!--                    <configFile>./src/main/resources/smart-doc.json</configFile>-->
+<!--                    &lt;!&ndash;指定项目名称&ndash;&gt;-->
+<!--                    <projectName>api-doc</projectName>-->
+<!--                    &lt;!&ndash;smart-doc实现自动分析依赖树加载第三方依赖的源码，如果一些框架依赖库加载不到导致报错，这时请使用excludes排除掉&ndash;&gt;-->
+<!--                    <excludes>-->
+<!--                        &lt;!&ndash;格式为：groupId:artifactId;参考如下&ndash;&gt;-->
+<!--                        <exclude>com.alibaba:fastjson2</exclude>-->
+<!--                        <exclude>org.springframework.boot:*</exclude>-->
+<!--                    </excludes>-->
+<!--                    &lt;!&ndash;自1.0.8版本开始，插件提供includes支持,配置了includes后插件会按照用户配置加载而不是自动加载，因此使用时需要注意&ndash;&gt;-->
+<!--                    &lt;!&ndash;smart-doc能自动分析依赖树加载所有依赖源码，原则上会影响文档构建效率，因此你可以使用includes来让插件加载你配置的组件&ndash;&gt;-->
+<!--                    <includes>-->
+<!--                        &lt;!&ndash;格式为：groupId:artifactId;参考如下&ndash;&gt;-->
+<!--                        <include>net.linlan.commons:commons-core</include>-->
+<!--                        <include>net.linlan.eframe:eframe-support</include>-->
+<!--                        <include>net.linlan.eframe:eframe-model</include>-->
+<!--                        <include>net.linlan.eframe:eframe-core</include>-->
+<!--                        <include>net.linlan.eframe:eframe-view</include>-->
+<!--                        <include>net.linlan.eframe:eframe-api</include>-->
+<!--                    </includes>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        &lt;!&ndash;如果不需要在执行编译时启动smart-doc，则将phase注释掉&ndash;&gt;-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash;smart-doc提供了html、openapi、markdown等goal，可按需配置&ndash;&gt;-->
+<!--                            <goal>html</goal>-->
+<!--                            <goal>markdown</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+        </plugins>
+
+
+    </build>
+
+</project>

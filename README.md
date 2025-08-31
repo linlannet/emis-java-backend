@@ -30,6 +30,19 @@
 
 **多身份管理系统使用指南及效果：** <a target="_blank">https://gitee.com/linlannet/emis-docs
 
+## 子包简介
+1. emis-support: support支撑模块，各类工具类、数据工具包.
+2. emis-core: core核心模块，通用的业务逻辑核心工具.
+3. emis-module-provider: provider身份提供商，对身份提供商进行管理，包括提供商配置，认证等代码.
+4. emis-module-user: user账户模块，对组织、人员账户信息进行统一管理，配置用户分组信息.
+5. emis-module-audit: audit安全审计，对平台相关的各类操作、日志进行管理和审计.
+6. emis-module-app: app应用管理，应用信息及配置管理，应用分组，应用单点登录信息维护.
+7. emis-module-idsource: idsource身份源，对钉钉、飞书、微信、支付宝等身份源进行管理、配置和授权.
+8. emis-module-protocol: protocol协议配置，对OIDC、JWT、FORM、SAML2、OAuth2等协议方法进行封装.
+9. emis-webs: web应用服务，包括openapi、synchronizer、portal和console服务应用.
+10. scripts: 数据库脚本、API接口文档、服务器端运行的sh脚本等.
+
+
 ## 技术路径
 ### 软件架构
 ```
