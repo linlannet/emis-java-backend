@@ -25,10 +25,10 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-java-backend</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
     </parent>
     <artifactId>emis-module-user</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
     <name>emis-module-user</name>
     <description>
@@ -65,17 +65,17 @@
         <dependency>
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-support</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-core</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-module-provider</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 
