@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.support.validation;
 
-// import java.io.Serial;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -39,7 +38,6 @@ import org.springframework.util.CollectionUtils;
  */
 public class ValidationUtils implements Serializable {
 
-    //@Serial
     private static final long serialVersionUID = -8631010419770301120L;
 
     private ValidationUtils() {
@@ -121,7 +119,6 @@ public class ValidationUtils implements Serializable {
      */
     public static class ValidationResult<T> implements Serializable {
 
-        //@Serial
         private static final long           serialVersionUID = -8631010419770301121L;
         /**
          * 是否有异常

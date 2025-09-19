@@ -34,7 +34,6 @@ import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
 /**
- * <p>
  * A Scope implementation that allows for beans to be refreshed dynamically at runtime
  * (see {@link #refresh(String)} and {@link #refreshAll()}). If a bean is refreshed then
  * the next time the bean is accessed (i.e. a method is executed) a new instance is
@@ -44,14 +43,10 @@ import org.springframework.jmx.export.annotation.ManagedResource;
  * created. A new bean instance is created from the original bean definition, so any
  * externalized content (property placeholders or expressions in string literals) is
  * re-evaluated when it is created.
- * </p>
  *
- * <p>
  * Note that all beans in this scope are <em>only</em> initialized when first accessed, so
  * the scope forces lazy initialization semantics.
- * </p>
  *
- * <p>
  * The scoped proxy approach adopted here has a side benefit that bean instances are
  * automatically {@link Serializable}, and can be sent across the wire as long as the
  * receiver has an identical application context on the other side. To ensure that the two
@@ -60,7 +55,6 @@ import org.springframework.jmx.export.annotation.ManagedResource;
  * with the same bean names are by default able to exchange beans by name. If you need to
  * override the default ID, then provide an explicit {@link #setId(String) id} when the
  * Scope is declared.
- * </p>
  *
  * @author Dave Syer
  * @since 3.1

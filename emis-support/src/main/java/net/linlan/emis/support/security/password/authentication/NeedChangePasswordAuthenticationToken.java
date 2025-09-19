@@ -19,7 +19,6 @@ package net.linlan.emis.support.security.password.authentication;
 
 import java.util.Collections;
 
-// import java.io.Serial;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.util.Assert;
@@ -30,7 +29,6 @@ import org.springframework.util.Assert;
 public class NeedChangePasswordAuthenticationToken extends AbstractAuthenticationToken
                                                    implements java.io.Serializable {
 
-    //@Serial
     private static final long    serialVersionUID = -8631010419770301115L;
 
     private final Authentication clientPrincipal;

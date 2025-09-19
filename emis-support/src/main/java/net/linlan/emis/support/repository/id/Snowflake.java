@@ -69,7 +69,7 @@ public class Snowflake {
 
     /**
      * Create Snowflake with a nodeId
-     * @param nodeId
+     * @param nodeId    节点ID
      */
     public Snowflake(long nodeId) {
         this(nodeId, DEFAULT_CUSTOM_EPOCH);
@@ -109,7 +109,7 @@ public class Snowflake {
 
     /**
      * Get current timestamp in milliseconds, adjust for the custom epoch.
-     * @return
+     * @return  时间戳
      */
     private long timestamp() {
         return Instant.now().toEpochMilli() - customEpoch;
@@ -117,8 +117,8 @@ public class Snowflake {
 
     /**
      * Block and wait till next millisecond
-     * @param currentTimestamp
-     * @return
+     * @param currentTimestamp  当前时间
+     * @return  等待时长
      */
     private long waitNextMillis(long currentTimestamp) {
         while (currentTimestamp == lastTimestamp) {

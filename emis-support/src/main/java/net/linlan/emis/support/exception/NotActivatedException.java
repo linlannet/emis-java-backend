@@ -17,14 +17,11 @@
  */
 package net.linlan.emis.support.exception;
 
-//import java.io.Serial;
-
 /**
  * 平台未启用
  * @author Linlan
  */
 public class NotActivatedException extends SupportException {
-    //@Serial
     private static final long serialVersionUID = -8631010419770301102L;
 
     /**

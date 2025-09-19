@@ -37,6 +37,7 @@ import lombok.Setter;
 import net.linlan.emis.support.constant.EmisConstants;
 import net.linlan.emis.support.userdetails.geo.GeoLocation;
 import net.linlan.emis.support.userdetails.useragent.UserAgent;
+import net.linlan.frame.comm.constant.AdminType;
 
 /**
  * 用户详情
@@ -47,7 +48,6 @@ import net.linlan.emis.support.userdetails.useragent.UserAgent;
 @Getter
 public class UserDetails extends User
                          implements org.springframework.security.core.userdetails.UserDetails {
-    //@Serial
     private static final long  serialVersionUID = -8631010419770301116L;
 
     /**
@@ -284,7 +284,7 @@ public class UserDetails extends User
         super(username, Objects.isNull(password) ? "" : password, true, true, true, true, null);
         this.id = id;
         this.username = username;
-        this.userType = UserType.USER.getType();
+        this.userType = AdminType.USER.getType();
         this.organizations = null;
         this.groups = null;
         this.applications = null;

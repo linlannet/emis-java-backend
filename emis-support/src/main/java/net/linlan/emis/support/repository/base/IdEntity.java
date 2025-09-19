@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.support.repository.base;
 
-// import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.Getter;
@@ -33,7 +32,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class IdEntity<PK extends String> implements Serializable {
-    //@Serial
     private static final long serialVersionUID = -8631010419770301110L;
     /**
      * ID

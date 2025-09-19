@@ -39,7 +39,7 @@ import io.swagger.v3.oas.annotations.Operation;
 public @interface RouterOperation {
     /**
      * The path mapping URIs (e.g. {@code "/profile"}).
-     * Path mapping URIs may contain placeholders (e.g. <code>"/${profile_path}"</code>).
+     * Path mapping URIs may contain placeholders (e.g. "/${profile_path}"core.encrypt.EncryptContextHelper).
      * @return the string
      */
     String path() default "";

@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.support.repository.domain;
 
-// import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -33,7 +32,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Data
 public class Page<T> implements Serializable {
-    //@Serial
     private static final long serialVersionUID = -8631010419770301111L;
     /**
      * list
@@ -52,7 +50,6 @@ public class Page<T> implements Serializable {
     @Data
     @Builder
     public static class Pagination implements Serializable {
-        //@Serial
         private static final long serialVersionUID = -8631010419770301112L;
         @Schema(description = "总条数")
         private Long              total;

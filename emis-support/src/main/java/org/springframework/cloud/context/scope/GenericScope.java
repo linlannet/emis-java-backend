@@ -62,9 +62,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>
  * A generic Scope implementation.
- * </p>
  *
  * @author Dave Syer
  * @since 3.1

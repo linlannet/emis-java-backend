@@ -1,6 +1,5 @@
 package net.linlan.emis.support.manage.node;
 
-// import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import com.google.common.collect.Lists;
  * @author Linlan
  */
 public class NodeUtils implements Serializable {
-    //@Serial
     private static final long serialVersionUID = -8631010419770301106L;
 
     /**

@@ -1,6 +1,5 @@
 package net.linlan.emis.support.manage.node;
 
-// import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import lombok.Data;
  */
 @Data
 public class BaseNode implements Serializable {
-    //@Serial
     private static final long        serialVersionUID = -8631010419770301105L;
     /**
      * ID

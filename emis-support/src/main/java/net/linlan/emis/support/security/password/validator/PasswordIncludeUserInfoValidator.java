@@ -34,7 +34,6 @@ import net.linlan.emis.support.utils.Pinyin4jUtils;
 
 /**
  * 密码包含用户信息验证器
- * <p>
  * 开启后，密码中将不能包含用户名、手机号、邮箱前缀和姓名拼音
  *
  * @author Linlan

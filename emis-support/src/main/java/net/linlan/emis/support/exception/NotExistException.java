@@ -17,14 +17,11 @@
  */
 package net.linlan.emis.support.exception;
 
-//import java.io.Serial;
-
 /**
  * 平台不存在
  * @author Linlan
  */
 public class NotExistException extends SupportException {
-    //@Serial
     private static final long serialVersionUID = -8631010419770301103L;
 
     /**

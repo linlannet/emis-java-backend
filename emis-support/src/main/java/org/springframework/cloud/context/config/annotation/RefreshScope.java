@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 
 /**
- * Convenience annotation to put a <code>@Bean</code> definition in
+ * Convenience annotation to put a @Beancore.encrypt.EncryptContextHelper definition in
  * {@link org.springframework.cloud.context.scope.refresh.RefreshScope refresh scope}.
  * Beans annotated this way can be refreshed at runtime and any components that are using
  * them will get a new instance on the next method call, fully initialized and injected

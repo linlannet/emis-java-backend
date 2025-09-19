@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.support.userdetails.geo;
 
-// import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +35,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GeoLocation implements Serializable {
 
-    //@Serial
     private static final long serialVersionUID = -8631010419770301104L;
 
     /**

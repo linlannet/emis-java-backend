@@ -15,4 +15,31 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.linlan.emis.support.security.password.weak;
+package net.linlan.emis.support.event;
+
+import org.redisson.api.RTopic;
+import org.redisson.api.RedissonClient;
+import org.springframework.stereotype.Component;
+
+import net.linlan.utils.SpringContextUtils;
+
+/**
+ * 获取Spring上下文对象
+ *
+ * @author Linlan
+ */
+@Component
+public final class ConfigRefreshUtils {
+
+    /**
+     * refresh
+     * @param beanName {@link  String}
+     * 利用redis订阅分发，完成集群参数刷新加载
+     */
+    public static void refresh(String beanName) {
+        RedissonClient redisson = SpringContextUtils.getBean(RedissonClient.class);
+        RTopic topic = redisson.getTopic(ConfigRefreshListenerRunner.CONFIG_REFRESH);
+        topic.publish(beanName);
+    }
+
+}

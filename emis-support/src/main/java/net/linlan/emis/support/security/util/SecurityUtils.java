@@ -22,7 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import net.linlan.emis.support.userdetails.UserDetails;
-import net.linlan.emis.support.userdetails.UserType;
+import net.linlan.frame.comm.constant.AdminType;
 
 /**
  * Spring Security的实用程序类
@@ -100,7 +100,7 @@ public final class SecurityUtils {
     public static String getCurrentUserType() {
         return null != getAuthentication()
             ? ((UserDetails) getAuthentication().getPrincipal()).getUserType()
-            : UserType.USER.getType();
+            : AdminType.USER.getType();
     }
 
     /**

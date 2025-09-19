@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.support.repository.base;
 
-// import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -47,7 +46,6 @@ public abstract class BaseEntity<PK extends Serializable> extends IdEntity<Strin
     public static final String LAST_MODIFIED_BY   = "updatorId";
     public static final String LAST_MODIFIED_TIME = "updateTime";
     public static final String IS_DELETED_COLUMN  = "isDeleted";
-    //@Serial
     private static final long  serialVersionUID   = -8631010419770301107L;
     /**
      * 创建者
