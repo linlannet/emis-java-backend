@@ -23,7 +23,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.linlan.emis</groupId>
     <artifactId>emis-java-backend</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <packaging>pom</packaging>
     <name>emis-java-backend</name>
     <description>基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
@@ -31,11 +31,10 @@
 
     <properties>
 
-        <linlan.eframe.version>1.1.4</linlan.eframe.version>
+        <linlan.eframe.version>1.1.5</linlan.eframe.version>
         <linlan.plugin.version>2.3.12</linlan.plugin.version>
         <linlan.tools.version>2.6.7</linlan.tools.version>
-
-        <linlan.emis.version>1.1.0</linlan.emis.version>
+        <linlan.emis.version>1.2.2</linlan.emis.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -100,6 +99,8 @@
         <commons.text.version>1.10.0</commons.text.version>
         <webjars.locator.core.version>0.50</webjars.locator.core.version>
         <easyexcel.version>3.2.0</easyexcel.version>
+        <opensaml.version>3.4.5</opensaml.version>
+        <failsafe.version>3.3.0</failsafe.version>
 
 
 
@@ -133,13 +134,18 @@
     <modules>
         <module>emis-support</module>
         <module>emis-core</module>
-        <module>emis-module-provider</module>
-        <module>emis-module-user</module>
-        <module>emis-module-audit</module>
-        <module>emis-module-app</module>
-        <module>emis-module-idsource</module>
-        <module>emis-module-protocol</module>
-        <module>emis-webs</module>
+<!--        <module>emis-module-user</module>-->
+<!--        <module>emis-module-provider</module>-->
+<!--        <module>emis-module-audit</module>-->
+<!--        <module>emis-module-app</module>-->
+<!--        <module>emis-webs/emis-openapi</module>-->
+<!--        <module>emis-module-authn</module>-->
+<!--        <module>emis-webs/emis-portal</module>-->
+<!--        <module>emis-module-idsource</module>-->
+<!--        <module>emis-webs/emis-synchronizer</module>-->
+<!--        <module>emis-module-protocol</module>-->
+<!--        <module>emis-module-link</module>-->
+<!--        <module>emis-webs/emis-console</module>-->
     </modules>
 
     <!-- 依赖声明 -->
@@ -215,6 +221,12 @@
                 <artifactId>spring-boot-starter-data-redis</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-freemarker</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
@@ -403,11 +415,7 @@
                 <artifactId>commons-codec</artifactId>
                 <version>${commons.codec.version}</version>
             </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>${commons.codec.version}</version>
-            </dependency>
+ 
             <!--   browscap     -->
             <dependency>
                 <groupId>com.blueconic</groupId>
@@ -420,12 +428,17 @@
                 <artifactId>geoip2</artifactId>
                 <version>${geoip2.version}</version>
             </dependency>
-            <!--security-->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>${spring.boot.version}</version>
+                <groupId>org.lionsoul</groupId>
+                <artifactId>ip2region</artifactId>
+                <version>2.7.0</version>
             </dependency>
+            <dependency>
+                <groupId>dev.failsafe</groupId>
+                <artifactId>failsafe</artifactId>
+                <version>${failsafe.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-crypto</artifactId>
@@ -544,6 +557,48 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel-core</artifactId>
                 <version>${easyexcel.version}</version>
+            </dependency>
+            <!-- saml-->
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-core</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-saml-api</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-saml-impl</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-messaging-api</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-messaging-impl</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-soap-api</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml-soap-impl</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+			
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>1.6.2</version>
             </dependency>
 
 
