@@ -25,17 +25,30 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-java-backend</artifactId>
-        <version>1.2.1</version>
+        <version>1.2.2</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>emis-core</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <packaging>jar</packaging>
     <name>emis-core</name>
     <description>
         core核心模块
     </description>
     <properties>
-
+        <qiniu-java-sdk.version>7.12.1</qiniu-java-sdk.version>
+        <tencentcloud-sdk-java.version>3.1.681</tencentcloud-sdk-java.version>
+        <dingtalk-sdk.version>1.5.30</dingtalk-sdk.version>
+        <alibaba-dingtalk-service-sdk.version>2.0.0</alibaba-dingtalk-service-sdk.version>
+        <tea-openapi.version>0.3.6</tea-openapi.version>
+        <aliyun-sdk.version>2.0.23</aliyun-sdk.version>
+        <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
+        <passay.version>1.6.2</passay.version>
+        <liquibase.version>4.9.1</liquibase.version>
+        <aliyun-sdk-oss.version>3.16.0</aliyun-sdk-oss.version>
+        <aliyun-sdk-oss.version>3.16.0</aliyun-sdk-oss.version>
+        <tencent-cos-java-sdk.version>5.6.129</tencent-cos-java-sdk.version>
+        <minio-java-sdk.version>8.5.1</minio-java-sdk.version>
     </properties>
     <url>https://gitee.com/linlannet/emis-java-backend.git</url>
     <licenses>
@@ -62,12 +75,85 @@
     </developers>
 
     <dependencies>
+        <!--spring session-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.shapesecurity</groupId>
+            <artifactId>salvation2</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.failsafe</groupId>
+            <artifactId>failsafe</artifactId>
+            <version>${failsafe.version}</version>
+        </dependency>
+        <!-- aliyun-oss-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun-sdk-oss.version}</version>
+        </dependency>
+        <!-- tencent-oss-->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>${tencent-cos-java-sdk.version}</version>
+        </dependency>
+        <!--腾讯云-->
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
+            <version>${tencentcloud-sdk-java.version}</version>
+        </dependency>
+        <!-- minio-oss-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio-java-sdk.version}</version>
+        </dependency>
+        <!--七牛SDK-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>${qiniu-java-sdk.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sdk-core</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>auth</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>regions</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+
         <!-- EMIS工程相关包 -->
         <dependency>
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-support</artifactId>
-            <version>${linlan.emis.version}</version>
         </dependency>
+
     </dependencies>
 
 
