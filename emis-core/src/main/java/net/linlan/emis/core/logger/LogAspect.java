@@ -45,6 +45,7 @@ import com.beust.jcommander.internal.Maps;
 
 import lombok.Data;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.userdetails.useragent.UserAgent;
 import net.linlan.utils.ip.IPUtils;
 
@@ -182,7 +183,7 @@ public class LogAspect implements Ordered {
         public String toString() {
             //@formatter:off
             return "\n" +
-                    "┣ " + SEPARATE + "\n" +
+                    "┣ " + StringUtils.SLASH + "\n" +
                     "┣ 用户代理:  " + JSONObject.toJSONString(this.getUserAgent()) + "\n" +
                     "┣ 请求路径:  " + this.getRequestUrl() + "\n" +
                     "┣ 请求类型:  " + this.getHttpType() + "\n" +

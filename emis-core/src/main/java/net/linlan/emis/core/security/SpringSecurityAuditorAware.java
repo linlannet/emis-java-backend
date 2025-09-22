@@ -30,7 +30,7 @@ import net.linlan.emis.support.userdetails.UserDetails;
  *
  * @author Linlan
  */
-public final class SpringSecurityAuditorAware implements AuditorAware<String> {
+public final class SpringSecurityAuditorAware implements AuditorAware<Long> {
     /**
      * getCurrentAuditor
      *
@@ -38,7 +38,7 @@ public final class SpringSecurityAuditorAware implements AuditorAware<String> {
      */
     @Override
     @NonNull
-    public Optional<String> getCurrentAuditor() {
+    public Optional<Long> getCurrentAuditor() {
         return Optional.ofNullable(SecurityUtils.getCurrentUserId());
     }
 }

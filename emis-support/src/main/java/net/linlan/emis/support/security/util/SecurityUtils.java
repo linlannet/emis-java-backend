@@ -83,9 +83,9 @@ public final class SecurityUtils {
      * id 当前用户ID
      * @return 当前用户ID
      * */
-    public static String getCurrentUserId() {
+    public static Long getCurrentUserId() {
         return null != getAuthentication()
-            ? ((UserDetails) getAuthentication().getPrincipal()).getId()
+            ? ((UserDetails) getAuthentication().getPrincipal()).getAdminId()
             : null;
     }
 

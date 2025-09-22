@@ -53,7 +53,12 @@ public class UserDetails extends User
     /**
      * 用户ID
      */
-    private String             id;
+    private Long               adminId;
+
+    /**
+     * 用户UUID
+     */
+    private String             userId;
 
     /**
      * 用户名
@@ -134,7 +139,7 @@ public class UserDetails extends User
      */
     @LastModifiedDate
     @JsonFormat
-    private LocalDateTime      updateTime;
+    private LocalDateTime      lastTime;
 
     /**
      * 外部ID
@@ -194,7 +199,7 @@ public class UserDetails extends User
     private String             userType;
 
     /**
-     * @param id                    用户ID
+     * @param adminId                    用户ID
      * @param username              用户名
      * @param userType              用户类型
      * @param enabled               是否失效
@@ -206,14 +211,14 @@ public class UserDetails extends User
      * @param groups                用户组Ids
      * @param applications          授权应用Ids
      */
-    public UserDetails(String id, String username, String userType, boolean enabled,
+    public UserDetails(Long adminId, String username, String userType, boolean enabled,
                        boolean accountNonExpired, boolean credentialsNonExpired,
                        boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
                        List<Organization> organizations, List<Group> groups,
                        List<Application> applications) {
         super(username, "", enabled, accountNonExpired, credentialsNonExpired, accountNonLocked,
             authorities);
-        this.id = id;
+        this.adminId = adminId;
         this.username = username;
         this.userType = userType;
         this.organizations = organizations;
@@ -222,7 +227,7 @@ public class UserDetails extends User
     }
 
     /**
-     * @param id                    用户ID
+     * @param adminId                    用户ID
      * @param username              用户名
      * @param password              密码
      * @param userType              用户类型
@@ -235,14 +240,14 @@ public class UserDetails extends User
      * @param groups                用户组Ids
      * @param applications          授权应用Ids
      */
-    public UserDetails(String id, String username, String password, String userType,
+    public UserDetails(Long adminId, String username, String password, String userType,
                        boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
                        boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
                        List<Organization> organizations, List<Group> groups,
                        List<Application> applications) {
         super(username, Objects.isNull(password) ? "" : password, enabled, accountNonExpired,
             credentialsNonExpired, accountNonLocked, authorities);
-        this.id = id;
+        this.adminId = adminId;
         this.username = username;
         this.userType = userType;
         this.organizations = organizations;
@@ -251,7 +256,7 @@ public class UserDetails extends User
     }
 
     /**
-     * @param id                    用户ID
+     * @param adminId                    用户ID
      * @param username              用户名
      * @param password              密码
      * @param userType              用户类型
@@ -261,13 +266,13 @@ public class UserDetails extends User
      * @param accountNonLocked      帐户是否锁定
      * @param authorities           权限
      */
-    public UserDetails(String id, String username, String password, String userType,
+    public UserDetails(Long adminId, String username, String password, String userType,
                        boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
                        boolean accountNonLocked,
                        Collection<? extends GrantedAuthority> authorities) {
         super(username, Objects.isNull(password) ? "" : password, enabled, accountNonExpired,
             credentialsNonExpired, accountNonLocked, authorities);
-        this.id = id;
+        this.adminId = adminId;
         this.username = username;
         this.userType = userType;
         this.organizations = null;
@@ -276,13 +281,13 @@ public class UserDetails extends User
     }
 
     /**
-     * @param id                    用户ID
+     * @param adminId                    用户ID
      * @param username              用户名
      * @param password              密码
      */
-    public UserDetails(String id, String username, String password) {
+    public UserDetails(Long adminId, String username, String password) {
         super(username, Objects.isNull(password) ? "" : password, true, true, true, true, null);
-        this.id = id;
+        this.adminId = adminId;
         this.username = username;
         this.userType = AdminType.USER.getType();
         this.organizations = null;

@@ -86,6 +86,10 @@
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-audit</artifactId>
+        </dependency>
     </dependencies>
 
 

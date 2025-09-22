@@ -46,9 +46,9 @@ public class LocalSession implements Serializable {
     private String            sessionId;
 
     /**
-     * 用户ID
+     * 用户LID
      */
-    private final String      id;
+    private final Long        adminId;
 
     /**
      * 用户名

@@ -125,7 +125,7 @@ public class ClusterSessionRegistryImpl<T extends org.springframework.session.Se
         //        WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
         CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication
             .getDetails();
-        LocalSession localSession = new LocalSession(userDetails.getId(),
+        LocalSession localSession = new LocalSession(userDetails.getAdminId(),
             userDetails.getUsername());
         //last request
         Instant instant = session.getLastAccessedTime();

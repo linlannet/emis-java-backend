@@ -31,7 +31,7 @@
 
     <properties>
 
-        <linlan.eframe.version>1.1.5</linlan.eframe.version>
+        <linlan.eframe.version>1.1.6</linlan.eframe.version>
         <linlan.plugin.version>2.3.12</linlan.plugin.version>
         <linlan.tools.version>2.6.7</linlan.tools.version>
         <linlan.emis.version>1.2.2</linlan.emis.version>
@@ -134,18 +134,18 @@
     <modules>
         <module>emis-support</module>
         <module>emis-core</module>
-<!--        <module>emis-module-user</module>-->
-<!--        <module>emis-module-provider</module>-->
-<!--        <module>emis-module-audit</module>-->
-<!--        <module>emis-module-app</module>-->
-<!--        <module>emis-webs/emis-openapi</module>-->
-<!--        <module>emis-module-authn</module>-->
-<!--        <module>emis-webs/emis-portal</module>-->
-<!--        <module>emis-module-idsource</module>-->
-<!--        <module>emis-webs/emis-synchronizer</module>-->
-<!--        <module>emis-module-protocol</module>-->
-<!--        <module>emis-module-link</module>-->
-<!--        <module>emis-webs/emis-console</module>-->
+        <module>emis-module-audit</module>
+        <module>emis-module-user</module>
+        <module>emis-module-provider</module>
+        <module>emis-module-app</module>
+        <module>emis-webs/emis-openapi</module>
+        <module>emis-module-authn</module>
+        <module>emis-webs/emis-portal</module>
+        <module>emis-module-idsource</module>
+        <module>emis-webs/emis-synchronizer</module>
+        <module>emis-module-protocol</module>
+        <module>emis-module-link</module>
+        <module>emis-webs/emis-console</module>
     </modules>
 
     <!-- 依赖声明 -->
