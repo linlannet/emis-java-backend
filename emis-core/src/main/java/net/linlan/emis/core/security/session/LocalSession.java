@@ -38,7 +38,7 @@ import net.linlan.emis.support.userdetails.useragent.UserAgent;
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public class LocalSession implements Serializable {
 
-    private static final long serialVersionUID = 8850489178248613501L;
+    private static final long serialVersionUID = -8631010419770301768L;
 
     /**
      * 会话ID
@@ -48,7 +48,7 @@ public class LocalSession implements Serializable {
     /**
      * 用户LID
      */
-    private final Long        adminId;
+    private final String      userId;
 
     /**
      * 用户名

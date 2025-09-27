@@ -53,7 +53,7 @@ public class UserDetailsDeserializer extends JsonDeserializer<UserDetails> {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         JsonNode jsonNode = mapper.readTree(jp);
         //ID
-        Long id = readJsonNode(jsonNode, "adminId").asLong();
+        String id = readJsonNode(jsonNode, "adminId").asText();
         //用户名
         String username = readJsonNode(jsonNode, "username").asText();
         //密码

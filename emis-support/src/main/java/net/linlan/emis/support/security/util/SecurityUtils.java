@@ -83,9 +83,19 @@ public final class SecurityUtils {
      * id 当前用户ID
      * @return 当前用户ID
      * */
-    public static Long getCurrentUserId() {
+    public static String getCurrentAdminId() {
         return null != getAuthentication()
             ? ((UserDetails) getAuthentication().getPrincipal()).getAdminId()
+            : null;
+    }
+
+    /**
+     * id 当前用户UUID
+     * @return 当前用户UUID
+     * */
+    public static String getCurrentUserId() {
+        return null != getAuthentication()
+            ? ((UserDetails) getAuthentication().getPrincipal()).getUserId()
             : null;
     }
 
@@ -119,7 +129,6 @@ public final class SecurityUtils {
      * @return boolean 是否登录
      */
     public static boolean isAuthenticated() {
-        // if security session eq s-id is not null to index
         Authentication authentication = getAuthentication();
         return (authentication != null) ? authentication.isAuthenticated() : false;
     }

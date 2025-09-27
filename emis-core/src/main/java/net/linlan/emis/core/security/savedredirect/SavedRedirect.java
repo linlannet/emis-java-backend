@@ -35,7 +35,7 @@ import lombok.Data;
 @Data
 public class SavedRedirect implements Serializable {
 
-    private static final long serialVersionUID = 6530884551410354148L;
+    private static final long serialVersionUID = -8631010419770301773L;
 
     /**
      * Action
@@ -56,7 +56,7 @@ public class SavedRedirect implements Serializable {
     @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
     public static class Parameter implements Serializable {
 
-        private static final long serialVersionUID = -2873886962316261616L;
+        private static final long serialVersionUID = -8631010419770301774L;
         /**
          * key
          */

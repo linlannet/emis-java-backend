@@ -25,10 +25,10 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-webs</artifactId>
-        <version>1.2.3</version>
+        <version>1.2.4</version>
     </parent>
     <artifactId>emis-synchronizer</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <packaging>jar</packaging>
     <name>emis-synchronizer</name>
     <description>
@@ -255,8 +255,14 @@
         </dependency>
 
         <!-- EMIS相关模块 -->
-
-
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-idsource</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

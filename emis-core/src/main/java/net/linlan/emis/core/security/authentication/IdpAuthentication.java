@@ -34,9 +34,7 @@ import lombok.Setter;
  */
 public class IdpAuthentication extends AbstractAuthenticationToken implements java.io.Serializable {
 
-    // ~ Instance fields
-
-    private static final long serialVersionUID = -1506897701981698420L;
+    private static final long serialVersionUID = -8631010419770301769L;
 
     private final Object      principal;
     /**

@@ -32,7 +32,7 @@ import net.linlan.emis.core.security.captcha.CaptchaProviderConfig;
 @EqualsAndHashCode(callSuper = true)
 public class GeeTestCaptchaProviderConfig extends CaptchaProviderConfig {
 
-    private static final long serialVersionUID = 3279601494863893521L;
+    private static final long serialVersionUID = -8631010419770301772L;
     /**
      * 验证码ID
      */

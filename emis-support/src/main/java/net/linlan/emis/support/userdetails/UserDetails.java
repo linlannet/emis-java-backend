@@ -20,6 +20,7 @@ package net.linlan.emis.support.userdetails;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,7 +54,7 @@ public class UserDetails extends User
     /**
      * 用户ID
      */
-    private Long               adminId;
+    private String             adminId;
 
     /**
      * 用户UUID
@@ -139,7 +140,7 @@ public class UserDetails extends User
      */
     @LastModifiedDate
     @JsonFormat
-    private LocalDateTime      lastTime;
+    private Date               lastTime;
 
     /**
      * 外部ID
@@ -211,7 +212,7 @@ public class UserDetails extends User
      * @param groups                用户组Ids
      * @param applications          授权应用Ids
      */
-    public UserDetails(Long adminId, String username, String userType, boolean enabled,
+    public UserDetails(String adminId, String username, String userType, boolean enabled,
                        boolean accountNonExpired, boolean credentialsNonExpired,
                        boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
                        List<Organization> organizations, List<Group> groups,
@@ -240,7 +241,7 @@ public class UserDetails extends User
      * @param groups                用户组Ids
      * @param applications          授权应用Ids
      */
-    public UserDetails(Long adminId, String username, String password, String userType,
+    public UserDetails(String adminId, String username, String password, String userType,
                        boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
                        boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
                        List<Organization> organizations, List<Group> groups,
@@ -256,7 +257,7 @@ public class UserDetails extends User
     }
 
     /**
-     * @param adminId                    用户ID
+     * @param userId                    用户ID
      * @param username              用户名
      * @param password              密码
      * @param userType              用户类型
@@ -266,13 +267,13 @@ public class UserDetails extends User
      * @param accountNonLocked      帐户是否锁定
      * @param authorities           权限
      */
-    public UserDetails(Long adminId, String username, String password, String userType,
+    public UserDetails(String userId, String username, String password, String userType,
                        boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
                        boolean accountNonLocked,
                        Collection<? extends GrantedAuthority> authorities) {
         super(username, Objects.isNull(password) ? "" : password, enabled, accountNonExpired,
             credentialsNonExpired, accountNonLocked, authorities);
-        this.adminId = adminId;
+        this.userId = userId;
         this.username = username;
         this.userType = userType;
         this.organizations = null;
@@ -285,7 +286,7 @@ public class UserDetails extends User
      * @param username              用户名
      * @param password              密码
      */
-    public UserDetails(Long adminId, String username, String password) {
+    public UserDetails(String adminId, String username, String password) {
         super(username, Objects.isNull(password) ? "" : password, true, true, true, true, null);
         this.adminId = adminId;
         this.username = username;

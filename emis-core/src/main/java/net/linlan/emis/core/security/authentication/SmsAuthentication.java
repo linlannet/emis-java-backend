@@ -33,7 +33,7 @@ public class SmsAuthentication extends AbstractAuthenticationToken implements ja
 
     // ~ Instance fields
 
-    private static final long serialVersionUID = -1506897701981698420L;
+    private static final long serialVersionUID = -8631010419770301771L;
     /**
      * principal
      */

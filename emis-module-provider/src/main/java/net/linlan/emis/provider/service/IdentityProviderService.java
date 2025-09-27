@@ -29,6 +29,7 @@ import com.github.pagehelper.PageHelper;
 
 import net.linlan.commons.core.ObjectUtils;
 import net.linlan.commons.core.StringUtils;
+import net.linlan.commons.script.json.StringMap;
 import net.linlan.emis.provider.dao.IdentityProviderDao;
 import net.linlan.emis.provider.dto.IdentityProviderDto;
 import net.linlan.emis.provider.entity.IdentityProvider;
@@ -154,4 +155,80 @@ public class IdentityProviderService {
         return dao.getDtoById(id);
     }
 
+    /**
+     * 平台是否启用
+     *
+     * @param id {@link String}
+     * @return {@link Boolean}
+     */
+    public Boolean identityProviderIsEnable(String id) {
+        if (StringUtils.isBlank(id)) {
+            return false;
+        }
+        IdentityProvider entity = findById(id);
+        if (ObjectUtils.isEmpty(entity)) {
+            return false;
+        }
+        return entity.getIsEnabled();
+    }
+
+    /**
+     * 通过平台类型获取
+     *
+     * @param providerType {@link String}
+     * @return {@link IdentityProvider}
+     */
+    public List<IdentityProvider> findListByType(String providerType) {
+        return getList(new StringMap().put("type", providerType).map());
+    }
+
+    /**
+     * 更改认证源状态
+     *
+     * @param id      {@link String}
+     * @param enabled {@link Boolean}
+     * @return {@link Boolean}
+     */
+    public Boolean updateIdentityProviderStatus(String id, Boolean enabled) {
+        if (StringUtils.isBlank(id)) {
+            return false;
+        }
+        IdentityProvider entity = findById(id);
+        if (ObjectUtils.isEmpty(entity)) {
+            return false;
+        }
+        entity.setIsEnabled(enabled);
+        update(entity);
+        return true;
+    }
+
+    /**
+     * 根据ID查找，并且为启用
+     *
+     * @param id {@link String}
+     * @return {@link IdentityProvider}
+     */
+    public IdentityProvider findByIdAndEnabledIsTrue(String id) {
+        List<IdentityProvider> list = getList(
+            new StringMap().put("id", id).put("isEnabled", true).map());
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+
+    /**
+     * 根据code查找，并且为启用
+     *
+     * @param code {@link String}
+     * @return {@link IdentityProvider}
+     */
+    public IdentityProvider findByCodeAndEnabledIsTrue(String code) {
+        List<IdentityProvider> list = getList(
+            new StringMap().put("code", code).put("isEnabled", true).map());
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
 }

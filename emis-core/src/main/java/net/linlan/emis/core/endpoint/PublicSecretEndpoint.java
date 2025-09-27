@@ -70,7 +70,7 @@ public class PublicSecretEndpoint {
     @Builder
     public static class PublicSecretResult implements Serializable {
 
-        private static final long serialVersionUID = 1868620270063512851L;
+        private static final long serialVersionUID = -8631010419770301770L;
 
         /**
          * 秘钥

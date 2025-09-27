@@ -25,11 +25,11 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-java-backend</artifactId>
-        <version>1.2.3</version>
+        <version>1.2.4</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>emis-support</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <packaging>jar</packaging>
     <name>emis-support</name>
     <description>
