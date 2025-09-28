@@ -26,6 +26,7 @@ import net.linlan.emis.core.storage.StorageProviderException;
  * 本地存储配置
  *
  * @author Linlan
+ *
   */
 public class NoneStorage implements Storage {
 

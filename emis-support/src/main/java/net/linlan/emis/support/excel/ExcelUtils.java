@@ -94,7 +94,7 @@ public class ExcelUtils {
      * 验证数据
      * @param data {@link Object}
      * @param context  {@link AnalysisContext}
-     * @return {@link List}
+     * @return    结果列表
      */
     public static List<DataImportFailReason> validation(Object data, AnalysisContext context) {
         //错误信息 key：行号，value ：消息

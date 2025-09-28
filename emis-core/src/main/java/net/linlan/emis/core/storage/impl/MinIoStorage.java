@@ -50,6 +50,7 @@ import net.linlan.emis.core.storage.UploadException;
  * minio
  *
  * @author Linlan
+ *
   */
 @Slf4j
 public class MinIoStorage extends AbstractStorage {

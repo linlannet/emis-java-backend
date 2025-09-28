@@ -83,7 +83,7 @@ public class HttpSessionRedirectCache implements RedirectCache {
      *  getParameters
      *
      * @param map {@link Map}
-     * @return {@link List}
+     * @return    结果列表
      */
     public static List<SavedRedirect.Parameter> getParameters(Map<String, String> map) {
         List<SavedRedirect.Parameter> parameters = new ArrayList<>();

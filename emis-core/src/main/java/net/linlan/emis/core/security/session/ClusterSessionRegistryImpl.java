@@ -66,7 +66,7 @@ public class ClusterSessionRegistryImpl<T extends org.springframework.session.Se
     /**
      * get all principals
      *
-     * @return {@link List}
+     * @return    结果列表
      */
     @Override
     public List<Object> getAllPrincipals() {
@@ -90,7 +90,7 @@ public class ClusterSessionRegistryImpl<T extends org.springframework.session.Se
      * 根据sessionId 获取session详情
      *
      * @param sessionIds {@link List}
-     * @return {@link List}
+     * @return    结果列表
      */
     @NonNull
     public List<LocalSession> getSessionList(List<String> sessionIds) {
@@ -153,7 +153,7 @@ public class ClusterSessionRegistryImpl<T extends org.springframework.session.Se
      * 根据用户名获取session列表
      *
      * @param username 用户名
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<Object> getSessionList(String username) {
         Assert.notNull(username, "用户名不能为空");

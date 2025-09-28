@@ -69,7 +69,7 @@ public enum Language implements BaseEnumString {
     /**
      * 获取类型
      *
-     * @param code {@link String}
+     * @param code 代码编码
      * @return {@link Language}
      */
     @EnumConvert

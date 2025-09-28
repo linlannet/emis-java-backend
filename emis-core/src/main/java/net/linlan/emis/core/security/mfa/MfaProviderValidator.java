@@ -25,7 +25,7 @@ package net.linlan.emis.core.security.mfa;
 public interface MfaProviderValidator {
     /**
      * 验证
-     * @param code {@link String}
+     * @param code 代码编码
      * @return {@link Boolean}
      */
     boolean validate(String code);

@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
      * GeoLocationResponse
      *
      * @author Linlan
+ *
      */
 @Builder
 @Data

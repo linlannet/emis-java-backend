@@ -38,7 +38,7 @@ public @interface Lock {
 
     /**
      * 等待时间
-     * @return {@link Long}
+     * @return    结果
      */
     long time() default 1800;
 

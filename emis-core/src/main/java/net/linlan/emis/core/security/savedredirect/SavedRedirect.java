@@ -31,6 +31,7 @@ import lombok.Data;
      * 跨站重定向参数
      *
      * @author Linlan
+ *
      */
 @Data
 public class SavedRedirect implements Serializable {

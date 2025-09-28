@@ -29,6 +29,7 @@ import org.springframework.scheduling.config.CronTask;
  * CronTaskRegistrar
  *
  * @author Linlan
+ *
  **/
 public class SpringSchedulerRegister implements DisposableBean {
 
