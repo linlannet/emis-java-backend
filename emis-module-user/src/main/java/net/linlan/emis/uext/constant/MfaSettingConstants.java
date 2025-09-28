@@ -26,7 +26,6 @@ import java.util.Map;
  * 多因素认证设置
  *
  * @author Linlan
- * Created on  2021/10/30 23:06
  */
 public final class MfaSettingConstants {
     /**

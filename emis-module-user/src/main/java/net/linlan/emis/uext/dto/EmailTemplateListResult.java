@@ -28,7 +28,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * 邮件模板类型返回值
  *
  * @author Linlan
- * Created on  2020/8/19 22:09
  */
 @Schema(description = "邮件模板类列表返回值")
 @Data

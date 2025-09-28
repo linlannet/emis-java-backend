@@ -26,7 +26,6 @@ import net.linlan.utils.enums.BaseEnumString;
  * 用户性别
  *
  * @author Linlan
- * Created on  2021/7/17 19:28
  */
 public enum UserGender implements BaseEnumString {
                                                   /**

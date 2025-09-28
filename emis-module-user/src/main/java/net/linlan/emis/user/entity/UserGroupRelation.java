@@ -25,11 +25,9 @@ import net.linlan.utils.entity.BaseEntity;
 /**
  *
  * UserGroupRelation数据域:用户分组成员实体类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:46:35<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:46:35
  *
  */
 @Data

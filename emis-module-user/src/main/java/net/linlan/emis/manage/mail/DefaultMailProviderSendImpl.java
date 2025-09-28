@@ -39,6 +39,7 @@ import static org.apache.commons.lang3.BooleanUtils.TRUE;
  * 默认邮件发送实现类
  *
  * @author Linlan
+ *
  **/
 public class DefaultMailProviderSendImpl implements MailProviderSend {
 

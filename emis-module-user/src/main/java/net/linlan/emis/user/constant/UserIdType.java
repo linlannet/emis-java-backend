@@ -27,7 +27,6 @@ import net.linlan.utils.enums.BaseEnumString;
 /**
  *
  * @author Linlan
- * Created on  2022/10/6 22:11
  */
 public enum UserIdType implements BaseEnumString {
                                                   /**

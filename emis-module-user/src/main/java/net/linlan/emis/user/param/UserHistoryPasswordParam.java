@@ -26,11 +26,9 @@ import net.linlan.utils.param.BaseParam;
 /**
  *
  * UserHistoryPassword数据域:用户历史密码查询参数实体类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:46:35<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:46:35
  *
  */
 @Data

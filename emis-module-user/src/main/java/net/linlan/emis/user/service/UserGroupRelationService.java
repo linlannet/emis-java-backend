@@ -39,11 +39,9 @@ import net.linlan.emis.user.param.UserGroupRelationParam;
 /**
  *
  * UserGroupRelation数据域:用户分组成员服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:46:35<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:46:35
  *
  */
 @Service
@@ -159,9 +157,9 @@ public class UserGroupRelationService {
     /**
      * 根据用户id所有用户组关联信息
      *
-     * @param userId {@link String}
+     * @param userId 用户ID
      *
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserGroupRelation> findByUserId(@Param("userId") String userId) {
         return dao.findByUserId(userId);
@@ -170,9 +168,9 @@ public class UserGroupRelationService {
     /**
      * 根据用户组id查询所有用户组关联信息
      *
-     * @param groupId {@link String}
+     * @param groupId 组编号ID
      *
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserGroupRelation> findByGroupId(String groupId) {
         return dao.findByGroupId(groupId);
@@ -182,7 +180,7 @@ public class UserGroupRelationService {
     /**
      * 根据用户ID 删除关联关系
      *
-     * @param userId {@link String}
+     * @param userId 用户ID
      */
     @Transactional(rollbackFor = Exception.class)
     public void deleteByUserId(@Param("userId") String userId) {
@@ -192,7 +190,7 @@ public class UserGroupRelationService {
     /**
      * 根据用户组ID 删除关联关系
      *
-     * @param groupId {@link String}
+     * @param groupId 组编号ID
      */
     @Transactional(rollbackFor = Exception.class)
     public void deleteByGroupId(@Param("groupId") String groupId) {
@@ -212,7 +210,7 @@ public class UserGroupRelationService {
     /**
      * 根据用户组ID和用户ID删除
      *
-     * @param groupId {@link String}
+     * @param groupId 组编号ID
      * @param userId  {@link String}
      */
     @Transactional(rollbackFor = Exception.class)

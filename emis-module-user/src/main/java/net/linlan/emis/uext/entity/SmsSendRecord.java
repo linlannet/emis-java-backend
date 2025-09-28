@@ -27,11 +27,9 @@ import net.linlan.utils.entity.BaseEntity;
 /**
  *
  * SmsSendRecord数据域:短信发送记录实体类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-07 18:33:53<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ * 
+ * CreateTime 2025-09-07 18:33:53
  *
  */
 @Data

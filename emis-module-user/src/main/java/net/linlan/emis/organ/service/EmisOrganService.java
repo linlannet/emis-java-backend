@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.organ.service;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -48,11 +47,9 @@ import net.linlan.frame.admin.service.AdminDeptService;
 /**
  *
  * UserOrganRelation数据域:用户机构关系服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-22 00:29:01<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-22 00:29:01
  *
  */
 @Service
@@ -63,11 +60,33 @@ public class EmisOrganService {
     @Resource
     private AdminDeptService adminDeptService;
 
+
+    /**
+     * findById
+     *
+     * @param id {@link Long}
+     * @return {@link Optional}
+     */
+    public EmisOrganVo getVoById(Long id) {
+        AdminDeptDto dto = adminDeptService.getDtoById(id);
+        return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
+    }
+    /**
+     * save
+     *
+     * @param entity must not be {@literal null}.
+     * @param entity    {@link EmisOrganVo}
+     * @return 机构Vo对象
+     */
+    public EmisOrganVo saveByVo(EmisOrganVo entity) {
+        return null;
+    }
+
     /**
      * 根据名称查询数量
      *
      * @param name {@link String}
-     * @return {@link Long}
+     * @return    结果
      */
     public int countByName(String name) {
         return adminDeptService.getCount(new StringMap().put("name", name).map());
@@ -77,7 +96,7 @@ public class EmisOrganService {
      * 根据名称查询组织机构
      *
      * @param name {@link String}
-     * @return {@link EmisOrganVo}
+     * @return 机构Vo对象
      */
     public EmisOrganVo getByName(String name) {
         AdminDeptDto dto = adminDeptService.getByName(name);
@@ -90,9 +109,9 @@ public class EmisOrganService {
      * 查询子组织
      *
      * @param parentId {@link String}
-     * @return {@link EmisOrganVo}
+     * @return 机构Vo对象
      */
-    public List<AdminDeptDto> findByParentId(Long parentId) {
+    public List<AdminDeptDto> getByParentId(Long parentId) {
         AdminDeptParam param = new AdminDeptParam();
         param.setParentId(parentId);
         List<AdminDeptDto> list = adminDeptService.getListByParam(param);
@@ -106,9 +125,9 @@ public class EmisOrganService {
      * 查询子组织根据sort排序
      *
      * @param parentId {@link String}
-     * @return {@link EmisOrganVo}
+     * @return 机构Vo对象
      */
-    public List<EmisOrganVo> findByParentIdOrderByPriorityAsc(Long parentId) {
+    public List<EmisOrganVo> getVosByParentId(Long parentId) {
         AdminDeptParam param = new AdminDeptParam();
         param.setParentId(parentId);
         param.setOrderBy(5);
@@ -120,16 +139,6 @@ public class EmisOrganService {
         return null;
     }
 
-    /**
-     * findById
-     *
-     * @param id {@link Long}
-     * @return {@link Optional}
-     */
-    public EmisOrganVo findById(Long id) {
-        AdminDeptDto dto = adminDeptService.getDtoById(id);
-        return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
-    }
 
     /**
      * deleteById
@@ -173,7 +182,7 @@ public class EmisOrganService {
             }
             adminDeptService.save(entity);
             // 判断旧的父节点下是否还存在子节点，不存在更改此节点为叶子节点
-            List<AdminDeptDto> oldChildList = findByParentId(oldParentId);
+            List<AdminDeptDto> oldChildList = getByParentId(oldParentId);
             if (CollectionUtils.isEmpty(oldChildList)) {
                 AdminDept oldParentOrganization = adminDeptService.findById(oldParentId);
                 if (ObjectUtils.isNotEmpty(oldParentOrganization)) {
@@ -197,7 +206,7 @@ public class EmisOrganService {
     private void recursiveUpdateChildNodePathAndDisplayPath(Long id) {
         AdminDept parent = adminDeptService.findById(id);
         if (ObjectUtils.isNotEmpty(parent)) {
-            List<AdminDeptDto> childList = findByParentId(id);
+            List<AdminDeptDto> childList = getByParentId(id);
             for (AdminDeptDto child : childList) {
                 child.setSearchCode(parent.getSearchCode() + StringUtils.SLASH + child.getId());
                 child.setName(parent.getName() + StringUtils.SLASH + child.getName());
@@ -214,11 +223,11 @@ public class EmisOrganService {
     /**
      * 更新叶子接点
      *
-     * @param id     {@link String}
+     * @param id     主键ID
      * @param isLeaf {@link Boolean}
      */
     @Transactional(rollbackFor = Exception.class)
-    void updateIsLeaf(@Param(value = "id") Long id, @Param(value = "isLeaf") Boolean isLeaf) {
+    public void updateIsLeaf(@Param(value = "id") Long id, @Param(value = "isLeaf") Boolean isLeaf) {
         AdminDept dept = adminDeptService.findById(id);
         if (ObjectUtils.isNotEmpty(dept)) {
             dept.setIsLeaf(isLeaf);
@@ -229,11 +238,11 @@ public class EmisOrganService {
     /**
      * 更新启用/禁用
      *
-     * @param id     {@link Serializable}
+     * @param id   主键ID
      * @param status {@link Boolean}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
-    Integer updateStatus(@Param(value = "id") Long id, @Param(value = "status") Boolean status) {
+    public Integer updateStatus(@Param(value = "id") Long id, @Param(value = "status") Boolean status) {
         AdminDept dept = adminDeptService.findById(id);
         if (ObjectUtils.isNotEmpty(dept)) {
             dept.setIsDisabled(!status);
@@ -246,20 +255,19 @@ public class EmisOrganService {
      * 根据名称或编码查询组织机构
      *
      * @param keyWord {@link String}
-     * @return {@link EmisOrganVo}
+     * @return 机构Vo对象
      */
-    //    @Query(value = "FROM EmisOrganVo WHERE name LIKE :keyWord OR code LIKE :keyWord")
-    List<EmisOrganVo> findByNameLikeOrCodeLike(@Param(value = "keyWord") String keyWord) {
+    public List<EmisOrganVo> getByNameCode(@Param(value = "keyWord") String keyWord) {
         return null;
     }
 
     /**
      * 查询指定id返回组织机构
      *
-     * @param id {@link Collection}
-     * @return {@link EmisOrganVo}
+     * @param ids {@link Collection}
+     * @return 机构Vo对象
      */
-    List<EmisOrganVo> findByIdInOrderByCreateTimeDesc(Collection<String> id) {
+    public List<EmisOrganVo> getVosByIds(String ids) {
         return null;
     }
 
@@ -267,11 +275,11 @@ public class EmisOrganService {
      * 根据外部用id查询组织
      *
      * @param identitySourceId         {@link String}
-     * @param deptIdList         {@link List}
-     * @return {@link EmisOrganVo}
+     * @param deptIds         {@link List}
+     * @return 机构Vo对象
      */
-    List<EmisOrganVo> findByIdentitySourceIdAndForeignIdIn(String identitySourceId,
-                                                           List<String> deptIdList) {
+    public List<EmisOrganVo> getVosByDeptIds(String identitySourceId,
+                                                                  String[] deptIds) {
         return null;
     }
 
@@ -279,43 +287,43 @@ public class EmisOrganService {
      * 根据外部用id查询组织
      *
      * @param identitySourceId         {@link String}
-     * @param organIdList         {@link List}
-     * @return {@link EmisOrganVo}
+     * @param organIds         {@link List}
+     * @return 机构Vo对象
      */
-    List<EmisOrganVo> findByIdentitySourceIdAndIdIn(String identitySourceId,
-                                                    List<String> organIdList) {
+    public List<EmisOrganVo> getVosByOrganIds(String identitySourceId,
+                                                           String[] organIds) {
         return null;
     }
 
     /**
      * 根据外部用id查询组织
      *
-     * @param deptId         {@link String}
-     * @return {@link EmisOrganVo}
+     * @param deptId         部门ID
+     * @return 机构Vo对象
      */
-    EmisOrganVo findByForeignId(String deptId) {
+    public EmisOrganVo findByForeignId(String deptId) {
         return null;
     }
 
     /**
      * 根据外部用id查询组织
      *
-     * @param foreignId       {@link String}
-     * @param identitySourceId {@link String}
-     * @return {@link EmisOrganVo}
+     * @param foreignId       外键ID
+     * @param identitySourceId 身份源ID
+     * @return 机构Vo对象
      */
-    EmisOrganVo findByForeignIdAndIdentitySourceId(String foreignId, String identitySourceId) {
+    public EmisOrganVo getVoByParams(String foreignId, String identitySourceId) {
         return null;
     }
 
     /**
      * 根据外部用id查询组织
      *
-     * @param foreignId       {@link String}
-     * @param identitySourceId {@link String}
-     * @return {@link List}
+     * @param foreignIds       外键IDs
+     * @param identitySourceId 身份源ID
+     * @return    结果列表
      */
-    List<EmisOrganVo> findByForeignIdInAndIdentitySourceId(List<String> foreignId,
+    public List<EmisOrganVo> getVosByForeignIds(List<String> foreignIds,
                                                            String identitySourceId) {
         return null;
     }
@@ -323,13 +331,14 @@ public class EmisOrganService {
     /**
      * 查询子组织
      *
-     * @param parentId         {@link String}
-     * @param dataOrigin       {@link String}
-     * @param identitySourceId {@link String}
-     * @return {@link EmisOrganVo}
+     * @param parentId         父节点ID
+     * @param foreignId       外键ID
+     * @param dataOrigin       数据来源
+     * @param identitySourceId 身份源ID
+     * @return 机构Vo对象
      */
-    List<EmisOrganVo> findByParentIdAndDataOriginAndIdentitySourceId(String parentId,
-                                                                     String dataOrigin,
+    public List<EmisOrganVo> getVosByParams(String parentId, 
+                                            String dataOrigin,
                                                                      String identitySourceId) {
         return null;
     }
@@ -337,31 +346,20 @@ public class EmisOrganService {
     /**
      * 根据身份源ID获取所有数据
      *
-     * @param identitySourceId {@link String}
-     * @return  {@link List}
+     * @param identitySourceId 身份源ID
+     * @return  结果列表
      */
-    List<EmisOrganVo> findByIdentitySourceId(String identitySourceId) {
+    public List<EmisOrganVo> getVosByIdentitySourceId(String identitySourceId) {
         return null;
     }
 
     /**
      *  通过parentId查询
      *
-     * @param parentIds {@link List}
-     * @return {@link List}
+     * @param parentIds 父节点IDs
+     * @return    结果列表
      */
-    List<EmisOrganVo> findByIdInOrderByPriorityAsc(Collection<String> parentIds) {
-        return null;
-    }
-
-    /**
-     * save
-     *
-     * @param entity must not be {@literal null}.
-     * @param entity    {@link EmisOrganVo}
-     * @return {@link EmisOrganVo}
-     */
-    public EmisOrganVo save(EmisOrganVo entity) {
+    public List<EmisOrganVo> getVosByParentIds(String[] parentIds) {
         return null;
     }
 
@@ -377,15 +375,14 @@ public class EmisOrganService {
     /**
      * 查询组织成员数量或id
      *
-     * @param organId {@link  String}
-     * @return {@link  List}
+     * @param organId 机构ID
+     * @return 机构用户IDs
      */
-    //    @Query(value = "SELECT user.id FROM UserInfo user INNER JOIN UserOrganRelation om ON user.id = om.userId INNER JOIN EmisOrganVo organization ON organization.id = om.organId WHERE organization.id = :organId OR LOCATE(:organId, organization.path) > 0 ")
-    public List<String> getOrgMemberList(@Param("organId") String organId) {
+    public List<String> getOrganUserIds(@Param("organId") String organId) {
         return null;
     }
 
-    public List<OrganDeptDto> getListByUserId(String id) {
+    public List<OrganDeptDto> getOrganDeptByUserId(String id) {
         return null;
     }
 }

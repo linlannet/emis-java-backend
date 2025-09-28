@@ -24,11 +24,9 @@ import net.linlan.emis.user.entity.UserInfo;
 /**
  *
  * UserInfo数据域:用户信息Dto对象
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:46:35<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:46:35
  *
  */
 @Data

@@ -28,7 +28,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * 邮件模板配置结果
  *
  * @author Linlan
- * Created on  2020/8/17 23:05
  */
 @Data
 @Schema(description = "获取邮件模板")

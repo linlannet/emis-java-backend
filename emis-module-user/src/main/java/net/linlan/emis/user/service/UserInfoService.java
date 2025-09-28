@@ -42,11 +42,9 @@ import net.linlan.emis.user.param.UserInfoParam;
 /**
  *
  * UserInfo数据域:用户信息服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:46:35<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:46:35
  *
  */
 @Service
@@ -214,7 +212,7 @@ public class UserInfoService {
      *
      * @param id                     {@link  String}
      * @param password               {@link  String}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
     @Transactional(rollbackFor = Exception.class)
     public Integer updatePassword(String id, String password) {
@@ -226,7 +224,7 @@ public class UserInfoService {
      *
      * @param id    {@link  String}
      * @param email {@link  String}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
     @Transactional(rollbackFor = Exception.class)
     public Integer updateEmail(String id, String email) {
@@ -243,7 +241,7 @@ public class UserInfoService {
      *
      * @param id    {@link  String}
      * @param mobile {@link  String}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
     @Transactional(rollbackFor = Exception.class)
     public Integer updateByIdAndMobile(String id, String mobile) {
@@ -260,7 +258,7 @@ public class UserInfoService {
      *
      * @param id     {@link  String}
      * @param status {@link  UserStatus}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
     @Transactional(rollbackFor = Exception.class)
     public Integer updateUserStatus(String id, UserStatus status) {
@@ -286,7 +284,7 @@ public class UserInfoService {
      * 根据用户名查询全部
      *
      * @param usernames {@link String}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserInfo> findAllByUsernameIn(String[] usernames) {
         return dao.findAllByUsernamesIn(usernames);
@@ -296,7 +294,7 @@ public class UserInfoService {
      * 根据手机号查询全部
      *
      * @param mobiles {@link String}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserInfo> findAllByMobileIn(String[] mobiles) {
         return dao.findAllByMobilesIn(mobiles);
@@ -306,7 +304,7 @@ public class UserInfoService {
      * 根据email模糊查询
      *
      * @param emails {@link String}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserInfo> findAllByEmailIn(String[] emails) {
         return dao.findAllByEmailsIn(emails);
@@ -316,7 +314,7 @@ public class UserInfoService {
      * 根据status模糊查询
      *
      * @param status {@link UserStatus}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserInfo> findAllByStatusIn(UserStatus[] status) {
         return dao.findAllByStatusIn(status);
@@ -326,7 +324,7 @@ public class UserInfoService {
      * 根据status查询
      *
      * @param status {@link UserStatus}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserInfo> findAllByStatus(UserStatus status) {
         return getList((new StringMap().put("status", status).map()));
@@ -337,7 +335,7 @@ public class UserInfoService {
      *
      * @param ids {@link Collection}
      * @param dataOrigin {@link String}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserInfo> findAllByIdNotInAndDataOrigin(String[] ids, String dataOrigin) {
         return getList((new StringMap().put("ids", ids).put("dataOrigin", dataOrigin).map()));
@@ -346,8 +344,8 @@ public class UserInfoService {
     /**
      * 根据身份源ID查询用户列表
      *
-     * @param identitySourceId {@link String}
-     * @return {@link List}
+     * @param identitySourceId 身份源ID
+     * @return    结果列表
      */
     public List<UserInfo> findAllByIdentitySourceId(String identitySourceId) {
         return getList(new StringMap().put("identitySourceId", identitySourceId).map());
@@ -368,7 +366,7 @@ public class UserInfoService {
      * 根据状态擦护心用户数
      *
      * @param status {@link UserStatus}
-     * @return {@link Long}
+     * @return    结果
      */
     public int countByStatus(UserStatus status) {
         return getCount(new StringMap().put("status", status.getKey()).map());

@@ -23,7 +23,6 @@ import net.linlan.emis.support.constant.EmisConstants;
  * 管理员配置
  *
  * @author Linlan
- * Created on  2022/4/3 23:37
  */
 public final class AdminConstants {
     /**

@@ -33,6 +33,7 @@ import net.linlan.frame.admin.entity.AdminDept;
  *
  * BaseOrgan和CoreOrgan混合数据域:系统机构实体类
  * @author Linlan
+ *
  * CreateTime 2018-03-02 17:19:48
  *
  */

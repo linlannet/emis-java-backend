@@ -28,7 +28,6 @@ import net.linlan.emis.support.security.password.enums.PasswordComplexityRule;
  * 密码策略常量
  *
  * @author Linlan
- * Created on  2021/10/30 23:06
  */
 public final class PasswordPolicySettingConstants {
     /**

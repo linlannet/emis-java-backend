@@ -27,7 +27,6 @@ import net.linlan.utils.enums.BaseEnumString;
  * MFA方式
  *
  * @author Linlan
- * Created on  2022/7/19 23:12
  */
 public enum MfaFactor implements BaseEnumString {
                                                  /**

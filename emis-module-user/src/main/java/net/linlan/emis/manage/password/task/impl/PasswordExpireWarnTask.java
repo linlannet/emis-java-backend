@@ -105,7 +105,7 @@ public class PasswordExpireWarnTask implements PasswordExpireTask {
     /**
      * 获取密码过期前警告日
      *
-     * @return {@link  Integer}
+     * @return 过期天数
      */
     private Integer getWarnExpireDays() {
         EmisSettingVo beforeExpireDaysSetting = SettingsContextHelper.getEmisSettingService()
@@ -120,7 +120,7 @@ public class PasswordExpireWarnTask implements PasswordExpireTask {
     /**
      * 获取密码过期日
      *
-     * @return {@link  Integer}
+     * @return 过期天数
      */
     private Integer getExpireDays() {
         EmisSettingVo expireDaysSetting = SettingsContextHelper.getEmisSettingService()

@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.linlan.emis.support.userdetails.OrganizationType;
 
 /**
- * 组织 PO
+ * 组织部门Dto对象
  *
  * @author Linlan
  */

@@ -26,9 +26,8 @@ import net.linlan.emis.organ.entity.UserOrganRelation;
  * UserOrganRelation数据域:用户机构关系Dto对象
  * 
  * @author Linlan
+ *
  * CreateTime 2025-09-28 18:01:50
- * @version 1.0
- * @since 1.0
  *
  */
 @Data

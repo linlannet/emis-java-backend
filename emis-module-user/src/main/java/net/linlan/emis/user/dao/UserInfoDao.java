@@ -33,11 +33,8 @@ import net.linlan.emis.user.param.UserInfoParam;
 /**
 *
 * UserInfo数据域:用户信息持久层Dao
-* <br>
 * @author Linlan
-* CreateTime 2025-09-06 15:46:35<br>
-* @version 1.0<br>
-* @since 1.0<br>
+* CreateTime 2025-09-06 15:46:35
 *
 */
 @Mapper

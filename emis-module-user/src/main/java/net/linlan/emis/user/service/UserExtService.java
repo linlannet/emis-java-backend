@@ -37,11 +37,9 @@ import net.linlan.emis.user.param.UserExtParam;
 /**
  *
  * UserExt数据域:用户详情服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:46:35<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:46:35
  *
  */
 @Service
@@ -158,7 +156,7 @@ public class UserExtService {
      * 根据用户ID查询用户详情
      *
      * @param userIds  {@link List}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<UserExt> findAllByUserIdsIn(String[] userIds) {
         return dao.findAllByUserIdsIn(userIds);

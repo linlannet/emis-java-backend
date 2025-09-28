@@ -23,7 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 组织 PO
+ * 组织用户Dto对象
  *
  * @author Linlan
  */

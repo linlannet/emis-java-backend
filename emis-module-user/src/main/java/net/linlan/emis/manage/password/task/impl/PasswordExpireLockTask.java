@@ -77,7 +77,7 @@ public class PasswordExpireLockTask implements PasswordExpireTask {
     /**
      * 获取密码过期日
      *
-     * @return {@link  Integer}
+     * @return 过期天数
      */
     private Integer getExpireDays() {
         EmisSettingVo expireDaysSetting = SettingsContextHelper.getEmisSettingService()

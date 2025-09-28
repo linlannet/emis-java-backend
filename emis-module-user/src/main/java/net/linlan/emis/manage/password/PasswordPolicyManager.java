@@ -23,7 +23,6 @@ import net.linlan.emis.user.entity.UserInfo;
 /**
  *
  * @author Linlan
- * Created on  2022/7/25 23:50
  */
 public interface PasswordPolicyManager<U extends UserInfo> {
 

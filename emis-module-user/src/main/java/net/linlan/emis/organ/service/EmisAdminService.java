@@ -34,11 +34,9 @@ import net.linlan.frame.admin.service.AdminUserService;
 /**
  *
  * UserOrganRelation数据域:用户机构关系服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-22 00:29:01<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-22 00:29:01
  *
  */
 @Service
@@ -140,7 +138,7 @@ public class EmisAdminService {
     /**
      * 更新管理员状态
      *
-     * @param id     {@link String}
+     * @param id     主键ID
      * @param status {@link String}
      */
     @Transactional(rollbackFor = Exception.class)
@@ -153,7 +151,7 @@ public class EmisAdminService {
      *
      * @param adminId                {@link  String}
      * @param password               {@link  String}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
     public Integer updateUserPassword(String adminId, String password) {
         return adminUserService.updateUserPwd(Long.valueOf(adminId), password);
@@ -164,7 +162,7 @@ public class EmisAdminService {
      *
      * @param username                     {@link  String}
      * @param password               {@link  String}
-     * @return {@link  Integer}
+     * @return 操作结果
      */
     public Integer resetUserPassword(String username, String password) {
         return adminUserService.resetUserPwd(username, password);

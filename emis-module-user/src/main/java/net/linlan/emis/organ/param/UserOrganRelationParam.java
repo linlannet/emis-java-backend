@@ -26,9 +26,8 @@ import net.linlan.utils.param.BaseParam;
  * UserOrganRelation数据域:用户机构关系查询参数实体类
  * 
  * @author Linlan
+ *
  * CreateTime 2025-09-28 18:01:50
- * @version 1.0
- * @since 1.0
  *
  */
 @Data

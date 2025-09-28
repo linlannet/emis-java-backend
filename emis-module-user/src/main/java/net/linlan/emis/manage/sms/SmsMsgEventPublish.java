@@ -63,7 +63,7 @@ public class SmsMsgEventPublish {
      *
      * @param mobile      {@link MessageCategory} 手机号
      * @param type     {@link SmsType} 消息类型
-     * @param code {@link String} 验证码
+     * @param code 验证码
      */
     public void publishVerifyCode(String mobile, SmsType type, String code) {
         // publish event
