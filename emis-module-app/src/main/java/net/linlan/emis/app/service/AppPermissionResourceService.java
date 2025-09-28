@@ -162,7 +162,7 @@ public class AppPermissionResourceService {
      */
     @Transactional(rollbackFor = Exception.class)
     public Integer updateStatus(@Param(value = "id") String id,
-                         @Param(value = "enabled") Boolean enabled) {
+                                @Param(value = "enabled") Boolean enabled) {
         AppPermissionResource accessPolicy = findById(id);
         if (ObjectUtils.isNotEmpty(accessPolicy)) {
             accessPolicy.setIsEnabled(enabled);

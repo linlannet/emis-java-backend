@@ -60,7 +60,6 @@ public class EmisOrganService {
     @Resource
     private AdminDeptService adminDeptService;
 
-
     /**
      * findById
      *
@@ -71,6 +70,7 @@ public class EmisOrganService {
         AdminDeptDto dto = adminDeptService.getDtoById(id);
         return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
     }
+
     /**
      * save
      *
@@ -138,7 +138,6 @@ public class EmisOrganService {
         }
         return null;
     }
-
 
     /**
      * deleteById
@@ -227,7 +226,8 @@ public class EmisOrganService {
      * @param isLeaf {@link Boolean}
      */
     @Transactional(rollbackFor = Exception.class)
-    public void updateIsLeaf(@Param(value = "id") Long id, @Param(value = "isLeaf") Boolean isLeaf) {
+    public void updateIsLeaf(@Param(value = "id") Long id,
+                             @Param(value = "isLeaf") Boolean isLeaf) {
         AdminDept dept = adminDeptService.findById(id);
         if (ObjectUtils.isNotEmpty(dept)) {
             dept.setIsLeaf(isLeaf);
@@ -242,7 +242,8 @@ public class EmisOrganService {
      * @param status {@link Boolean}
      * @return 操作结果
      */
-    public Integer updateStatus(@Param(value = "id") Long id, @Param(value = "status") Boolean status) {
+    public Integer updateStatus(@Param(value = "id") Long id,
+                                @Param(value = "status") Boolean status) {
         AdminDept dept = adminDeptService.findById(id);
         if (ObjectUtils.isNotEmpty(dept)) {
             dept.setIsDisabled(!status);
@@ -278,8 +279,7 @@ public class EmisOrganService {
      * @param deptIds         {@link List}
      * @return 机构Vo对象
      */
-    public List<EmisOrganVo> getVosByDeptIds(String identitySourceId,
-                                                                  String[] deptIds) {
+    public List<EmisOrganVo> getVosByDeptIds(String identitySourceId, String[] deptIds) {
         return null;
     }
 
@@ -290,8 +290,7 @@ public class EmisOrganService {
      * @param organIds         {@link List}
      * @return 机构Vo对象
      */
-    public List<EmisOrganVo> getVosByOrganIds(String identitySourceId,
-                                                           String[] organIds) {
+    public List<EmisOrganVo> getVosByOrganIds(String identitySourceId, String[] organIds) {
         return null;
     }
 
@@ -323,8 +322,7 @@ public class EmisOrganService {
      * @param identitySourceId 身份源ID
      * @return    结果列表
      */
-    public List<EmisOrganVo> getVosByForeignIds(List<String> foreignIds,
-                                                           String identitySourceId) {
+    public List<EmisOrganVo> getVosByForeignIds(List<String> foreignIds, String identitySourceId) {
         return null;
     }
 
@@ -332,14 +330,12 @@ public class EmisOrganService {
      * 查询子组织
      *
      * @param parentId         父节点ID
-     * @param foreignId       外键ID
      * @param dataOrigin       数据来源
      * @param identitySourceId 身份源ID
      * @return 机构Vo对象
      */
-    public List<EmisOrganVo> getVosByParams(String parentId, 
-                                            String dataOrigin,
-                                                                     String identitySourceId) {
+    public List<EmisOrganVo> getVosByParams(String parentId, String dataOrigin,
+                                            String identitySourceId) {
         return null;
     }
 

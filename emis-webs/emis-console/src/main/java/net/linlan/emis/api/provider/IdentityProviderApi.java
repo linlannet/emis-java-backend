@@ -44,9 +44,7 @@ import net.linlan.frame.api.BaseController;
 *
 * IdentityProvider控制域:身份提供商读写控制类
 * @author Linlan
-* CreateTime 2025-08-31 23:33:33<br>
-* @version 1.0<br>
-* @since 1.0<br>
+* CreateTime 2025-08-31 23:33:33
 *
 */
 @RestController
