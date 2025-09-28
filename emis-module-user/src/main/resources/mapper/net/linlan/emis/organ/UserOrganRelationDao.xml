@@ -26,8 +26,9 @@
     <resultMap type="net.linlan.emis.organ.entity.UserOrganRelation" id="userOrganRelationMap">
         <id property="id" column="RECORD_ID"/>
         <result property="foreignId" column="FOREIGN_ID"/>
-        <result property="organId" column="ORGAN_ID"/>
         <result property="userId" column="USER_ID"/>
+        <result property="organId" column="ORGAN_ID"/>
+        <result property="deptId" column="DEPT_ID"/>
         <result property="creatorId" column="CREATOR_ID"/>
         <result property="createTime" column="CREATE_TIME"/>
         <result property="lastTime" column="LAST_TIME"/>
@@ -40,7 +41,7 @@
     <!-- find by id，通过主键获取对象 -->
     <select id="findById" resultMap="userOrganRelationMap">
         SELECT
-RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+RECORD_ID, FOREIGN_ID, USER_ID, ORGAN_ID, DEPT_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
         FROM emis_user_organ_relation B
         WHERE B.RECORD_ID = #{value}
     </select>
@@ -48,7 +49,7 @@ RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DE
     <!-- get list，通过输入的条件，获取返回的list列表对象，采用相应的分页规则进行分页处理 -->
     <select id="getList" resultMap="userOrganRelationMap">
         SELECT
-B.RECORD_ID, B.FOREIGN_ID, B.ORGAN_ID, B.USER_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+B.RECORD_ID, B.FOREIGN_ID, B.USER_ID, B.ORGAN_ID, B.DEPT_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
         FROM emis_user_organ_relation B
         WHERE 1=1
         <include refid="commonList"></include>
@@ -95,6 +96,9 @@ B.RECORD_ID, B.FOREIGN_ID, B.ORGAN_ID, B.USER_ID, B.CREATOR_ID, B.CREATE_TIME, B
         <if test="organId != null and organId != ''">
             and B.ORGAN_ID = #{organId}
         </if>
+        <if test="deptId != null and deptId != ''">
+            and B.DEPT_ID = #{deptId}
+        </if>
         <if test="creatorId != null and creatorId != ''">
             and B.CREATOR_ID = #{creatorId}
         </if>
@@ -135,11 +139,11 @@ B.RECORD_ID, B.FOREIGN_ID, B.ORGAN_ID, B.USER_ID, B.CREATOR_ID, B.CREATE_TIME, B
     <insert id="save" parameterType="net.linlan.emis.organ.entity.UserOrganRelation">
         INSERT INTO emis_user_organ_relation
         (
-RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+RECORD_ID, FOREIGN_ID, USER_ID, ORGAN_ID, DEPT_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
         )
         VALUES
         (
-#{id}, #{foreignId}, #{organId}, #{userId}, #{creatorId}, #{createTime}, #{lastTime}, #{delFlag}, #{description}, #{spare1}, #{spare2}
+#{id}, #{foreignId}, #{userId}, #{organId}, #{deptId}, #{creatorId}, #{createTime}, #{lastTime}, #{delFlag}, #{description}, #{spare1}, #{spare2}
         )
     </insert>
 
@@ -148,12 +152,12 @@ RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DE
             <when test='_databaseId == "mysql"'>
                 INSERT INTO emis_user_organ_relation
                 (
-RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+RECORD_ID, FOREIGN_ID, USER_ID, ORGAN_ID, DEPT_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
                 )
                 VALUES
                 <foreach collection="list" index="index" item="item" separator=",">
                     (
-#{item.id}, #{item.foreignId}, #{item.organId}, #{item.userId}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+#{item.id}, #{item.foreignId}, #{item.userId}, #{item.organId}, #{item.deptId}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
                     )
                 </foreach>
             </when>
@@ -161,11 +165,11 @@ RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DE
                 <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
                     INSERT INTO emis_user_organ_relation
                     (
-RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+RECORD_ID, FOREIGN_ID, USER_ID, ORGAN_ID, DEPT_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
                     )
                     VALUES
                     (
-#{item.id}, #{item.foreignId}, #{item.organId}, #{item.userId}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+#{item.id}, #{item.foreignId}, #{item.userId}, #{item.organId}, #{item.deptId}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
                     )
                 </foreach>
             </otherwise>
@@ -177,8 +181,9 @@ RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DE
         UPDATE emis_user_organ_relation
         <set>
             <if test="foreignId != null">FOREIGN_ID = #{foreignId}, </if>
-            <if test="organId != null">ORGAN_ID = #{organId}, </if>
             <if test="userId != null">USER_ID = #{userId}, </if>
+            <if test="organId != null">ORGAN_ID = #{organId}, </if>
+            <if test="deptId != null">DEPT_ID = #{deptId}, </if>
             <if test="creatorId != null">CREATOR_ID = #{creatorId}, </if>
             <if test="createTime != null">CREATE_TIME = #{createTime}, </if>
             <if test="lastTime != null">LAST_TIME = #{lastTime}, </if>
@@ -221,7 +226,7 @@ RECORD_ID, FOREIGN_ID, ORGAN_ID, USER_ID, CREATOR_ID, CREATE_TIME, LAST_TIME, DE
     <!-- get page with param input dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
     <select id="getPageDto" resultMap="userOrganRelationDtoMap">
         SELECT
-B.RECORD_ID, B.FOREIGN_ID, B.ORGAN_ID, B.USER_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+B.RECORD_ID, B.FOREIGN_ID, B.USER_ID, B.ORGAN_ID, B.DEPT_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
         FROM emis_user_organ_relation B
         WHERE 1=1
         <include refid="commonList"></include>
@@ -232,7 +237,7 @@ B.RECORD_ID, B.FOREIGN_ID, B.ORGAN_ID, B.USER_ID, B.CREATOR_ID, B.CREATE_TIME, B
     <!-- get dto with input id，通过ID，查询dto对象 -->
     <select id="getDtoById" resultMap="userOrganRelationDtoMap">
         SELECT
-B.RECORD_ID, B.FOREIGN_ID, B.ORGAN_ID, B.USER_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+B.RECORD_ID, B.FOREIGN_ID, B.USER_ID, B.ORGAN_ID, B.DEPT_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
         FROM emis_user_organ_relation B
         WHERE RECORD_ID = #{value}
     </select>

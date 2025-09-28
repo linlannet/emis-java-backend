@@ -24,11 +24,11 @@ import net.linlan.emis.organ.entity.UserOrganRelation;
 /**
  *
  * UserOrganRelation数据域:用户机构关系Dto对象
- * <br>
+ * 
  * @author Linlan
- * CreateTime 2025-09-22 00:29:01<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ * CreateTime 2025-09-28 18:01:50
+ * @version 1.0
+ * @since 1.0
  *
  */
 @Data

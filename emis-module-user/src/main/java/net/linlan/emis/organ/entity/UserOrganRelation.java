@@ -25,11 +25,11 @@ import net.linlan.utils.entity.BaseEntity;
 /**
  *
  * UserOrganRelation数据域:用户机构关系实体类
- * <br>
+ * 
  * @author Linlan
- * CreateTime 2025-09-22 00:29:01<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ * CreateTime 2025-09-28 18:01:50
+ * @version 1.0
+ * @since 1.0
  *
  */
 @Data
@@ -46,14 +46,19 @@ public class UserOrganRelation extends BaseEntity {
     private String  foreignId;
 
     /**
+     * 用户ID
+     */
+    private String  userId;
+
+    /**
      * 机构ID
      */
     private String  organId;
 
     /**
-     * 用户ID
+     * 单位ID
      */
-    private String  userId;
+    private Long    deptId;
 
     /**
      * 删除标记，0未删除1已删除

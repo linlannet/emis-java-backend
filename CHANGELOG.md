@@ -5,7 +5,7 @@
 2. user引用provider包
 3. bind和third用户单独放到ubind包中，字段更新
 4. 重新生成UserThirdParty资源
-5. 增加app包资源
+5. 增加数据库脚本，更新UserOrganRelation表结构，增加DEPT_ID
 
 ### 版本号：1.2.4
 - 更新日期：2025-09-27

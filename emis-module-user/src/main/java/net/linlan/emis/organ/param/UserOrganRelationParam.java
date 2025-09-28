@@ -24,11 +24,11 @@ import net.linlan.utils.param.BaseParam;
 /**
  *
  * UserOrganRelation数据域:用户机构关系查询参数实体类
- * <br>
+ * 
  * @author Linlan
- * CreateTime 2025-09-22 00:29:01<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ * CreateTime 2025-09-28 18:01:50
+ * @version 1.0
+ * @since 1.0
  *
  */
 @Data
@@ -46,6 +46,10 @@ public class UserOrganRelationParam extends BaseParam {
      * 机构ID
      */
     private String  organId;
+    /**
+     * 单位ID
+     */
+    private Long    deptId;
     /**
      * 创建人ID
      */
