@@ -29,11 +29,8 @@ import net.linlan.emis.provider.param.IdentityProviderParam;
 /**
 *
 * IdentityProvider数据域:身份提供商持久层Dao
-* <br>
 * @author Linlan
-* CreateTime 2025-08-31 23:33:33<br>
-* @version 1.0<br>
-* @since 1.0<br>
+* CreateTime 2025-08-31 23:33:33
 *
 */
 @Mapper

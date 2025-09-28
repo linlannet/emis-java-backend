@@ -29,7 +29,6 @@ import net.linlan.emis.provider.constant.IdentityProviderType;
 /**
  *
  * @author Linlan
- * Created on  2023/7/14 21:45
  */
 public class AuthenticationJacksonModule extends Module {
 

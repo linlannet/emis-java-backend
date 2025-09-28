@@ -38,11 +38,9 @@ import net.linlan.emis.provider.param.IdentityProviderParam;
 /**
  *
  * IdentityProvider数据域:身份提供商服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-08-31 23:33:33<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-08-31 23:33:33
  *
  */
 @Service
@@ -186,7 +184,7 @@ public class IdentityProviderService {
      * 更改认证源状态
      *
      * @param id      {@link String}
-     * @param enabled {@link Boolean}
+     * @param enabled 状态
      * @return {@link Boolean}
      */
     public Boolean updateIdentityProviderStatus(String id, Boolean enabled) {
@@ -220,7 +218,7 @@ public class IdentityProviderService {
     /**
      * 根据code查找，并且为启用
      *
-     * @param code {@link String}
+     * @param code 代码编码
      * @return {@link IdentityProvider}
      */
     public IdentityProvider findByCodeAndEnabledIsTrue(String code) {

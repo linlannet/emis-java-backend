@@ -29,7 +29,7 @@ public interface RegisteredIdentityProviderClientRepository {
     /**
      * 根据code查询身份提供商配置
      *
-     * @param code {@link String}
+     * @param code 代码编码
      * @param <T>   泛型
      * @return {@link RegisteredIdentityProviderClient}
      */

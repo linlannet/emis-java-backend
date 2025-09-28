@@ -24,7 +24,6 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 /**
  *
  * @author Linlan
- * Created on  2023/8/7 21:47
  */
 public class IdentityProviderNotBindAuthentication extends AbstractAuthenticationToken
                                                    implements java.io.Serializable {

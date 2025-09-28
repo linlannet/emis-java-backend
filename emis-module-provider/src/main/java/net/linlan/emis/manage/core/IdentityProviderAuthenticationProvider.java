@@ -52,7 +52,6 @@ import net.linlan.utils.http.HttpContextUtils;
 /**
  *
  * @author Linlan
- * Created on  2023/8/6 23:45
  */
 public class IdentityProviderAuthenticationProvider implements AuthenticationProvider {
 

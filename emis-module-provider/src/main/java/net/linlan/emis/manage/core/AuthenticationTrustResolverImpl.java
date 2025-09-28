@@ -25,7 +25,6 @@ import net.linlan.emis.support.security.password.authentication.NeedChangePasswo
 /**
  *
  * @author Linlan
- * Created on  2023/3/22 21:02
  */
 public class AuthenticationTrustResolverImpl implements AuthenticationTrustResolver {
     private final AuthenticationTrustResolver delegate = new org.springframework.security.authentication.AuthenticationTrustResolverImpl();
