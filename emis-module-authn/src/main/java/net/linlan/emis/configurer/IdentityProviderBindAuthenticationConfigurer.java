@@ -37,7 +37,6 @@ import static net.linlan.emis.support.security.util.HttpSecurityFilterOrderRegis
 /**
  *
  * @author Linlan
- * Created on  2023/8/6 23:43
  */
 public class IdentityProviderBindAuthenticationConfigurer extends
                                                           AbstractAuthenticationFilterConfigurer<HttpSecurity, IdentityProviderBindAuthenticationConfigurer, IdentityProviderBindUserAuthenticationFilter> {

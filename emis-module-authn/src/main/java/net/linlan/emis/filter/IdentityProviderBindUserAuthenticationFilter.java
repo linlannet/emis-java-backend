@@ -47,7 +47,6 @@ import static net.linlan.emis.support.security.constant.SecurityConstants.LOGIN_
 /**
  *
  * @author Linlan
- * Created on  2023/8/6 23:43
  */
 @Slf4j
 public class IdentityProviderBindUserAuthenticationFilter extends

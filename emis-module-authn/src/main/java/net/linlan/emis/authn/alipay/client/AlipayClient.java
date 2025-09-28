@@ -37,7 +37,7 @@ public class AlipayClient {
     /**
      * 获取token
      *
-     * @param code {@link String}
+     * @param code 代码编码
      * @return {@link AlipaySystemOauthTokenResponse}
      * @throws Exception Exception
      */
