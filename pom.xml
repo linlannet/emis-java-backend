@@ -138,12 +138,12 @@
         <module>emis-module-provider</module>
         <module>emis-module-user</module>
         <module>emis-module-app</module>
-<!--        <module>emis-webs/emis-openapi</module>-->
         <module>emis-module-authn</module>
+<!--        <module>emis-webs/emis-openapi</module>-->
 <!--        <module>emis-webs/emis-portal</module>-->
-        <module>emis-module-idsource</module>
+<!--        <module>emis-module-idsource</module>-->
 <!--        <module>emis-webs/emis-synchronizer</module>-->
-        <module>emis-module-link</module>
+<!--        <module>emis-module-link</module>-->
 <!--        <module>emis-module-protocol</module>-->
 <!--        <module>emis-webs/emis-console</module>-->
     </modules>
@@ -749,7 +749,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 生成Java文档包
+            <!-- 生成Java文档包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -762,7 +762,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <!-- GPG 签名插件 -->
             <plugin>
