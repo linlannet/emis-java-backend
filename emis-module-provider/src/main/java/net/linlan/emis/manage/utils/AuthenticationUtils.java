@@ -25,11 +25,11 @@ import net.linlan.emis.core.security.authentication.SmsAuthentication;
 import net.linlan.emis.core.security.mfa.MfaAuthentication;
 import net.linlan.emis.manage.core.IdentityProviderAuthentication;
 import net.linlan.emis.manage.core.OtpAuthentication;
+import net.linlan.emis.provider.constant.IdentityProviderType;
 import net.linlan.emis.support.security.authentication.CustomAuthenticationProvider;
-import net.linlan.emis.user.constant.IdentityProviderType;
+import static net.linlan.emis.provider.constant.IdentityProviderType.IPT_USERNAME_PASSWORD;
+import static net.linlan.emis.provider.constant.IdentityProviderType.SMS;
 import static net.linlan.emis.support.security.authentication.CustomAuthenticationProvider.USERNAME_PASSWORD;
-import static net.linlan.emis.user.constant.IdentityProviderType.IPT_USERNAME_PASSWORD;
-import static net.linlan.emis.user.constant.IdentityProviderType.SMS;
 
 public class AuthenticationUtils {
 

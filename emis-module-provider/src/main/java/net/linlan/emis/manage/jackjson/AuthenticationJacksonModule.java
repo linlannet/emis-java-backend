@@ -24,7 +24,7 @@ import net.linlan.emis.manage.core.IdentityProviderAuthentication;
 import net.linlan.emis.manage.core.IdentityProviderNotBindAuthentication;
 import net.linlan.emis.manage.core.IdentityProviderUserDetails;
 import net.linlan.emis.manage.core.OtpAuthentication;
-import net.linlan.emis.user.constant.IdentityProviderType;
+import net.linlan.emis.provider.constant.IdentityProviderType;
 
 /**
  *

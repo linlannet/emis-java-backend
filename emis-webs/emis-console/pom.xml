@@ -25,10 +25,10 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-webs</artifactId>
-        <version>1.2.4</version>
+        <version>1.2.5</version>
     </parent>
     <artifactId>emis-console</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
     <packaging>jar</packaging>
     <name>emis-console</name>
     <description>

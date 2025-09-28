@@ -24,7 +24,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Getter;
 
-import net.linlan.emis.user.constant.IdentityProviderType;
+import net.linlan.emis.provider.constant.IdentityProviderType;
 
 /**
  * Idp Authentication

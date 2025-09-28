@@ -25,10 +25,10 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-java-backend</artifactId>
-        <version>1.2.4</version>
+        <version>1.2.5</version>
     </parent>
     <artifactId>emis-module-user</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
     <packaging>jar</packaging>
     <name>emis-module-user</name>
     <description>
@@ -63,14 +63,11 @@
     </developers>
 
     <dependencies>
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
         </dependency>
-            <dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
-            </dependency>
         <!-- 阿里云短信 -->
         <dependency>
             <groupId>com.aliyun</groupId>
@@ -84,12 +81,9 @@
         </dependency>
         <dependency>
             <groupId>net.linlan.emis</groupId>
-            <artifactId>emis-core</artifactId>
+            <artifactId>emis-module-provider</artifactId>
         </dependency>
-        <dependency>
-            <groupId>net.linlan.emis</groupId>
-            <artifactId>emis-module-audit</artifactId>
-        </dependency>
+
     </dependencies>
 
 

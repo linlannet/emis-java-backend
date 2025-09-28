@@ -1,3 +1,12 @@
+### 版本号：1.2.5
+- 更新日期：2025-09-27
+- 更新内容：
+1. provider包为底层包，将authn资源放入authn包
+2. user引用provider包
+3. bind和third用户单独放到ubind包中，字段更新
+4. 重新生成UserThirdParty资源
+5. 增加app包资源
+
 ### 版本号：1.2.4
 - 更新日期：2025-09-27
 - 更新内容：

@@ -22,7 +22,6 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.linlan.emis.support.manage.enums.EnumConvert;
-import net.linlan.emis.user.constant.IdentityProviderType;
 import net.linlan.utils.enums.BaseEnumString;
 
 /**

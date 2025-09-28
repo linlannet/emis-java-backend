@@ -23,7 +23,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.*;
 
-import net.linlan.emis.user.constant.IdentityProviderType;
+import net.linlan.emis.provider.constant.IdentityProviderType;
 
 /**
  * @author Linlan
