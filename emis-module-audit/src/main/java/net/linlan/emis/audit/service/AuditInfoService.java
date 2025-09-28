@@ -43,11 +43,9 @@ import net.linlan.frame.comm.constant.AdminType;
 /**
  *
  * AuditInfo数据域:行为审计服务类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:55:04<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:55:04
  *
  */
 @Service
@@ -168,7 +166,7 @@ public class AuditInfoService {
      * 获取字典类型
      *
      * @param userType {@link String}
-     * @return {@link List}
+     * @return    结果列表
      */
     public List<DictResult> getAuditDict(String userType) {
         List<EventType> types = Arrays.asList(EventType.values());

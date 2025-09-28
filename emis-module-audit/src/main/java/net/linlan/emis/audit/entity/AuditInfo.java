@@ -30,11 +30,9 @@ import net.linlan.utils.entity.BaseEntity;
 /**
  *
  * AuditInfo数据域:行为审计实体类
- * <br>
  * @author Linlan
- * CreateTime 2025-09-06 15:55:04<br>
- * @version 1.0<br>
- * @since 1.0<br>
+ *
+ * CreateTime 2025-09-06 15:55:04
  *
  */
 @Data

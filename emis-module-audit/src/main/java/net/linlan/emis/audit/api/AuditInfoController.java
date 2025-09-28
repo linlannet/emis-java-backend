@@ -44,9 +44,7 @@ import net.linlan.frame.api.BaseController;
 *
 * AuditInfo控制域:行为审计读写控制类
 * @author Linlan
-* CreateTime 2025-09-06 15:55:04<br>
-* @version 1.0<br>
-* @since 1.0<br>
+* CreateTime 2025-09-06 15:55:04
 *
 */
 @RestController

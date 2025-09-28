@@ -565,7 +565,7 @@ public enum EventType {
     /**
      * 获取审计类型
      *
-     * @param code {@link String}
+     * @param code 代码编码
      * @return {@link EventType}
      */
     @EnumConvert
