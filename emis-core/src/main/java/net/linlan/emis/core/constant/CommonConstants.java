@@ -26,15 +26,11 @@ public final class CommonConstants {
     /**
      * 类型
      */
-    public static final String TYPE           = "@type";
+    public static final String TYPE         = "@type";
 
     /**
      * 回调地址名称
      */
-    public static final String CALLBACK_URL   = "callbackUrl";
-    /**
-     * 路径分隔符
-     */
-    public static final String PATH_SEPARATOR = "/";
+    public static final String CALLBACK_URL = "callbackUrl";
 
 }

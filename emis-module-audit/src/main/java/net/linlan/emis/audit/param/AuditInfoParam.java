@@ -28,10 +28,10 @@ import lombok.Data;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import net.linlan.commons.core.DateUtils;
 import net.linlan.emis.audit.constant.EventStatus;
 import net.linlan.emis.audit.event.type.EventType;
 import net.linlan.utils.param.BaseParam;
-import static net.linlan.emis.support.constant.EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN;
 
 /**
  *
@@ -73,14 +73,14 @@ public class AuditInfoParam extends BaseParam {
      * 事件开始时间
      */
     @Parameter(description = "事件开始时间")
-    @DateTimeFormat(pattern = DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @DateTimeFormat(pattern = DateUtils.yyyyMMddHHmmss)
     private LocalDateTime   startEventTime;
 
     /**
      * 事件结束时间
      */
     @Parameter(description = "事件结束时间")
-    @DateTimeFormat(pattern = DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @DateTimeFormat(pattern = DateUtils.yyyyMMddHHmmss)
     private LocalDateTime   endEventTime;
 
 }

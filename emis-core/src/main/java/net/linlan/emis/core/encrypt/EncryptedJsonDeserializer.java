@@ -19,11 +19,11 @@ package net.linlan.emis.core.encrypt;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+
+import net.linlan.commons.core.StringUtils;
 
 /**
  * @author Linlan

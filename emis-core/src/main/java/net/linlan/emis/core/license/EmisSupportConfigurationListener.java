@@ -17,13 +17,13 @@
  */
 package net.linlan.emis.core.license;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.Assert;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.config.SupportProperties;
 
 /**

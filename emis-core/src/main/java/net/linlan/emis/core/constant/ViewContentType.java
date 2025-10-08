@@ -18,7 +18,8 @@
 package net.linlan.emis.core.constant;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
+
+import net.linlan.commons.core.StringUtils;
 import static org.springframework.http.MediaType.*;
 
 /**

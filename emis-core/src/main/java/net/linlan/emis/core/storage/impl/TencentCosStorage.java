@@ -25,9 +25,6 @@ import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
-
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
@@ -43,6 +40,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.DateUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.encrypt.JsonPropertyEncrypt;
 import net.linlan.emis.core.storage.AbstractStorage;
 import net.linlan.emis.core.storage.StorageConfig;
@@ -122,7 +121,7 @@ public class TencentCosStorage extends AbstractStorage {
             // 设置签名过期时间(可选), 若未进行设置, 则默认使用 ClientConfig 中的签名过期时间(1小时)
             // 可以设置任意一个未来的时间，推荐是设置 10 分钟到 3 天的过期时间
             // 这里设置签名在半个小时后过期
-            req.setExpiration(DateUtils.addSeconds(new Date(), EXPIRY_SECONDS));
+            req.setExpiration(DateUtils.addHours(new Date(), EXPIRY_HOURS));
             URL url = cosClient.generatePresignedUrl(req);
             return url.toString();
         } catch (Exception e) {

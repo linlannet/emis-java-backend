@@ -24,11 +24,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.web.util.UrlUtils;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.utils.http.HttpContextUtils;
 
 /**

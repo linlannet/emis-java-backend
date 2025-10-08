@@ -23,11 +23,11 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.lang.NonNull;
 import org.springframework.web.util.HtmlUtils;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.exception.uext.MailTemplateException;
 
 /**

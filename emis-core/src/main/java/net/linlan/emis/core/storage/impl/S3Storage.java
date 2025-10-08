@@ -25,13 +25,13 @@ import java.time.Duration;
 
 import javax.validation.constraints.NotEmpty;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.URL;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.encrypt.JsonPropertyEncrypt;
 import net.linlan.emis.core.storage.AbstractStorage;
 import net.linlan.emis.core.storage.StorageConfig;

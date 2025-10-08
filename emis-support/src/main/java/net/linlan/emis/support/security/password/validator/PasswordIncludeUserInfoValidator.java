@@ -17,7 +17,6 @@
  */
 package net.linlan.emis.support.security.password.validator;
 
-import org.apache.commons.lang3.StringUtils;
 import org.passay.MatchBehavior;
 import org.passay.PasswordData;
 import org.passay.RuleResult;
@@ -27,6 +26,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.security.password.PasswordValidator;
 import net.linlan.emis.support.security.password.exception.InvalidPasswordException;
 import net.linlan.emis.support.security.password.exception.PasswordIncludeUserInfoException;
@@ -47,7 +47,7 @@ public class PasswordIncludeUserInfoValidator implements PasswordValidator {
     public void validate(String password) throws InvalidPasswordException {
         if (enabled) {
             //用户名
-            if (StringUtils.isNoneBlank(username)) {
+            if (StringUtils.isNotEmpty(username)) {
                 UsernameRule usernameRule = new UsernameRule();
                 org.passay.PasswordValidator validator = new org.passay.PasswordValidator(
                     usernameRule);
@@ -60,12 +60,12 @@ public class PasswordIncludeUserInfoValidator implements PasswordValidator {
                 }
             }
             //手机号
-            if (StringUtils.isNoneBlank(mobile) && matchBehavior.match(password, mobile)) {
+            if (StringUtils.isNotEmpty(mobile) && matchBehavior.match(password, mobile)) {
                 log.error("密码包含手机号信息");
                 throw new PasswordIncludeUserInfoException("密码包含手机号信息");
             }
             //姓名拼音
-            if (StringUtils.isNoneBlank(fullName)) {
+            if (StringUtils.isNotEmpty(fullName)) {
                 if (matchBehavior.match(password, Pinyin4jUtils.getFirstSpellPinYin(fullName, true))
                     || matchBehavior.match(password,
                         Pinyin4jUtils.getFirstSpellPinYin(fullName, false))
@@ -75,7 +75,7 @@ public class PasswordIncludeUserInfoValidator implements PasswordValidator {
                 }
             }
             //昵称
-            if (StringUtils.isNoneBlank(nickName)) {
+            if (StringUtils.isNotEmpty(nickName)) {
                 if (matchBehavior.match(password, nickName)
                     || matchBehavior.match(password,
                         Pinyin4jUtils.getFirstSpellPinYin(nickName, true))
@@ -87,7 +87,7 @@ public class PasswordIncludeUserInfoValidator implements PasswordValidator {
                 }
             }
             //邮箱前缀
-            if (StringUtils.isNoneBlank(email)) {
+            if (StringUtils.isNotEmpty(email)) {
                 int splitPosition = email.lastIndexOf('@');
                 if (splitPosition > 0) {
                     String localPart = email.substring(0, splitPosition);

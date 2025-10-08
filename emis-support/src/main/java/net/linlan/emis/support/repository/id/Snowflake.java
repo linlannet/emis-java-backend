@@ -55,8 +55,8 @@ public class Snowflake {
 
     /**
      * Create Snowflake with a nodeId and custom epoch
-     * @param nodeId
-     * @param customEpoch
+     * @param nodeId    节点ID
+     * @param customEpoch   算法
      */
     public Snowflake(long nodeId, long customEpoch) {
         if (nodeId < 0 || nodeId > MAX_NODE_ID) {

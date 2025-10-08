@@ -33,7 +33,6 @@ import net.linlan.emis.core.exception.uext.MailMessageSendException;
 import net.linlan.emis.uext.constant.MailProvider;
 import net.linlan.emis.uext.constant.MailSafetyType;
 import static org.apache.commons.codec.CharEncoding.UTF_8;
-import static org.apache.commons.lang3.BooleanUtils.TRUE;
 
 /**
  * 默认邮件发送实现类
@@ -72,9 +71,9 @@ public class DefaultMailProviderSendImpl implements MailProviderSend {
         javaMailSender.setPort(mailProvider.getPort());
         if (MailSafetyType.SSL.equals(mailProvider.getSafetyType())) {
             Properties properties = new Properties();
-            properties.setProperty(MAIL_SMTP_AUTH, TRUE);
+            properties.setProperty(MAIL_SMTP_AUTH, "true");
             properties.setProperty(MAIL_SMTP_SOCKET_FACTORY_CLASS, JAVAX_NET_SSL_SSLSOCKET_FACTORY);
-            properties.setProperty(MAIL_SMTP_STARTTLS_ENABLE, TRUE);
+            properties.setProperty(MAIL_SMTP_STARTTLS_ENABLE, "true");
             javaMailSender.setJavaMailProperties(properties);
         }
         return javaMailSender;

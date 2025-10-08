@@ -30,7 +30,7 @@ import static java.math.BigInteger.ZERO;
  *
  * @author Linlan
  */
-public class DateUtils {
+public class LocalDateUtils {
 
     public static LocalDateTime dateToLocalDateTime(Date date) {
         Instant instant = date.toInstant();

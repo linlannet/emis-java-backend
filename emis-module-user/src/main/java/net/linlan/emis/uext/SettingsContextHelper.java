@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
 
@@ -37,6 +36,7 @@ import com.shapesecurity.salvation2.Values.Host;
 
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.constant.ConfigBeanNameConstants;
 import net.linlan.emis.core.constant.SettingConstants;
 import net.linlan.emis.core.context.ContentSecurityPolicyUtils;

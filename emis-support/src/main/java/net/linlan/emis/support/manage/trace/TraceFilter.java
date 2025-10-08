@@ -24,7 +24,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.web.servlet.filter.OrderedFilter;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
@@ -32,6 +31,7 @@ import org.springframework.util.JdkIdGenerator;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 
 /**
  * 为所有请求添加trace
@@ -64,7 +64,7 @@ public class TraceFilter extends OncePerRequestFilter implements OrderedFilter {
 
         //先从param里取，没有的话从header里取，还没有的话再创建
         String reqId = request.getParameter(HEADER_NAME_REQUEST_ID);
-        if (StringUtils.isNoneBlank(reqId)) {
+        if (StringUtils.isNotEmpty(reqId)) {
             reqId = request.getHeader(HEADER_NAME_REQUEST_ID);
         }
         if (StringUtils.isBlank(reqId)) {

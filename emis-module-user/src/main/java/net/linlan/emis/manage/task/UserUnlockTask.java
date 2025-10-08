@@ -51,7 +51,7 @@ public class UserUnlockTask {
     @Scheduled(cron = "0 */10 * * * ?")
     public void execute() {
         logger.info("用户自动解锁任务开始");
-        List<UserInfo> list = userRepository.findAllByStatus(UserStatus.LOCKED);
+        List<UserInfo> list = userInfoService.findAllByStatus(UserStatus.LOCKED);
         logger.info("待解锁用户数量: [{}] ", list.size());
         for (UserInfo entity : list) {
             logger.info("开始解锁用户: {}", entity.getUsername());
@@ -59,7 +59,7 @@ public class UserUnlockTask {
             Integer unlockTime = SettingsContextHelper.getAutoUnlockTime();
             if (updateTime.plusMinutes(unlockTime).isBefore(LocalDateTime.now())) {
                 entity.setStatus(UserStatus.ENABLED.getKey());
-                userRepository.save(entity);
+                userInfoService.save(entity);
                 logger.info("成功解锁用户: {}", entity.getUsername());
             }
         }
@@ -70,5 +70,5 @@ public class UserUnlockTask {
      * UserInfoService
      *
      */
-    private final UserInfoService userRepository;
+    private final UserInfoService userInfoService;
 }

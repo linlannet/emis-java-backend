@@ -22,8 +22,6 @@ import java.util.Objects;
 
 import javax.validation.ConstraintViolationException;
 
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -43,12 +41,13 @@ import com.beust.jcommander.internal.Maps;
 
 import lombok.AllArgsConstructor;
 
+import net.linlan.commons.core.ObjectUtils;
 import net.linlan.commons.core.ResponseResult;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.audit.constant.EventStatus;
 import net.linlan.emis.audit.context.AuditContext;
 import net.linlan.emis.audit.entity.Actor;
 import net.linlan.emis.audit.event.AuditEventPublish;
-import static net.linlan.emis.support.constant.EmisConstants.COLON;
 
 /**
  * 审计切面
@@ -118,23 +117,23 @@ public class AuditAspect {
         finally {
             //内容
             Object content = null;
-            if (StringUtils.isNoneBlank(audit.content())) {
+            if (StringUtils.isNotEmpty(audit.content())) {
                 content = spelExpressionParser.parseExpression(audit.content()).getValue(context);
                 if (!Objects.isNull(content)) {
                     try {
-                        content = audit.type().getDesc() + COLON + JSONObject.toJSONString(content);
+                        content = audit.type().getDesc() + StringUtils.COLON + JSONObject.toJSONString(content);
                     } catch (Exception e) {
-                        content = audit.type().getDesc() + COLON + content;
+                        content = audit.type().getDesc() + StringUtils.COLON + content;
                     }
                 }
                 //后面有设置的内容，拼接
-                if (!Objects.isNull(content) && StringUtils.isNoneBlank(AuditContext.getContent())) {
+                if (!Objects.isNull(content) && StringUtils.isNotEmpty(AuditContext.getContent())) {
                     content = content + "," + spelExpressionParser.parseExpression(AuditContext.getContent()).getValue(context);
                 }
             }
             //上下文内容，自动拼接事件类型描述
-            if (Objects.isNull(content) && StringUtils.isNoneBlank(AuditContext.getContent())) {
-                content = audit.type().getDesc() +COLON + AuditContext.getContent();
+            if (Objects.isNull(content) && StringUtils.isNotEmpty(AuditContext.getContent())) {
+                content = audit.type().getDesc() + StringUtils.COLON + AuditContext.getContent();
             }
             if (Objects.isNull(content) && StringUtils.isBlank(AuditContext.getContent())) {
                 content = audit.type().getDesc();

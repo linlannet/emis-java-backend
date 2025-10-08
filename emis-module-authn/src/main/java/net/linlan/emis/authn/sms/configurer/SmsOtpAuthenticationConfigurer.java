@@ -48,7 +48,7 @@ public class SmsOtpAuthenticationConfigurer extends
 
     @Override
     public void init(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new SendSmsOtpFilter(userRepository, otpContextHelp),
+        http.addFilterBefore(new SendSmsOtpFilter(userInfoService, otpContextHelp),
             OAuth2LoginAuthenticationFilter.class);
 
         //OTP
@@ -65,19 +65,19 @@ public class SmsOtpAuthenticationConfigurer extends
         return SendSmsOtpFilter.getRequestMatcher();
     }
 
-    private final UserInfoService    userRepository;
+    private final UserInfoService    userInfoService;
     private final UserDetailsService userDetailsService;
 
     private final OtpContextHelper   otpContextHelp;
 
-    public SmsOtpAuthenticationConfigurer(UserInfoService userRepository,
+    public SmsOtpAuthenticationConfigurer(UserInfoService userInfoService,
                                           UserDetailsService userDetailsService,
                                           OtpContextHelper otpContextHelp) {
-        Assert.notNull(userDetailsService, "userRepository must not be null");
+        Assert.notNull(userDetailsService, "userInfoService must not be null");
         Assert.notNull(userDetailsService, "userDetailsService must not be null");
         Assert.notNull(otpContextHelp, "otpContextHelp must not be null");
         this.userDetailsService = userDetailsService;
-        this.userRepository = userRepository;
+        this.userInfoService = userInfoService;
         this.otpContextHelp = otpContextHelp;
     }
 
@@ -93,10 +93,10 @@ public class SmsOtpAuthenticationConfigurer extends
         return new AntPathRequestMatcher(loginProcessingUrl, HttpMethod.POST.name());
     }
 
-    public static SmsOtpAuthenticationConfigurer smsOtp(UserInfoService userRepository,
+    public static SmsOtpAuthenticationConfigurer smsOtp(UserInfoService userInfoService,
                                                         UserDetailsService userDetailsService,
                                                         OtpContextHelper otpContextHelp) {
-        return new SmsOtpAuthenticationConfigurer(userRepository, userDetailsService,
+        return new SmsOtpAuthenticationConfigurer(userInfoService, userDetailsService,
             otpContextHelp);
     }
 }

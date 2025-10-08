@@ -22,7 +22,6 @@ import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -38,6 +37,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.Assert;
 
 import net.linlan.commons.core.ResponseResult;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.mail.constant.MailOtpAuthenticationConstants;
 import net.linlan.emis.authn.mail.exception.CaptchaNotExistException;
 import net.linlan.emis.authn.mail.exception.MailNotExistException;

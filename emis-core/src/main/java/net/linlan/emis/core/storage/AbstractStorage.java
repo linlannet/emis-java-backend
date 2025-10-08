@@ -20,7 +20,7 @@ package net.linlan.emis.core.storage;
 import java.io.InputStream;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
+import net.linlan.commons.core.StringUtils;
 
 /**
  * @author Linlan
@@ -30,6 +30,7 @@ public class AbstractStorage implements Storage {
     public static final String SEPARATOR      = "/";
     public static final String JOINER         = "-";
     public static final int    EXPIRY_SECONDS = 3600;
+    public static final int    EXPIRY_HOURS   = 1;
     /**
      * url 正则
      */

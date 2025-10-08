@@ -26,7 +26,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -43,6 +42,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.google.common.collect.Lists;
 
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.github.GithubIdentityProviderOAuth2Config;
 import net.linlan.emis.core.context.PropertiesContextHelper;
 import net.linlan.emis.filter.AbstractIdentityProviderAuthenticationProcessingFilter;

@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -52,6 +51,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.dingtalk.DingTalkIdentityProviderOAuth2Config;
 import net.linlan.emis.authn.dingtalk.constant.DingTalkAuthenticationConstants;
 import net.linlan.emis.core.context.PropertiesContextHelper;

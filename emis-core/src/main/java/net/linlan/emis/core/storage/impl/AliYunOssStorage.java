@@ -25,8 +25,6 @@ import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
-import org.apache.commons.lang3.time.DateUtils;
-
 import com.aliyun.oss.HttpMethod;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
@@ -38,6 +36,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.DateUtils;
 import net.linlan.emis.core.encrypt.JsonPropertyEncrypt;
 import net.linlan.emis.core.storage.AbstractStorage;
 import net.linlan.emis.core.storage.StorageConfig;
@@ -113,7 +112,7 @@ public class AliYunOssStorage extends AbstractStorage {
         super.download(path);
         GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest(
             aliYunConfig.getBucket(), path, HttpMethod.GET);
-        request.setExpiration(DateUtils.addSeconds(new Date(), EXPIRY_SECONDS));
+        request.setExpiration(DateUtils.addHours(new Date(), EXPIRY_HOURS));
         URL url = ossClient.generatePresignedUrl(request);
         return url.toString();
     }

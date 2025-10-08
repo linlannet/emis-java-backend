@@ -18,11 +18,11 @@
 package net.linlan.emis.manage.mail;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +32,8 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.DateUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.exception.SupportException;
 import net.linlan.emis.uext.SettingsContextHelper;
 import net.linlan.emis.uext.constant.MailType;
@@ -90,7 +91,7 @@ public class MailMsgEventPublish {
         }
         // 时间点
         param.put(MsgVariable.TIME,
-            LocalDateTime.now().format(EmisConstants.DEFAULT_DATE_TIME_FORMATTER));
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateUtils.yyyyMMddHHmmss)));
         // 客户端名称
         param.put(MsgVariable.CLIENT_NAME, "EMIS 多身份集成系统");
         // 客户端描述

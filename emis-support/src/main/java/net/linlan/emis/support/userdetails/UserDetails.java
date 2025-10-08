@@ -24,7 +24,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -35,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.DateUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.userdetails.geo.GeoLocation;
 import net.linlan.emis.support.userdetails.useragent.UserAgent;
 import net.linlan.frame.comm.constant.AdminType;
@@ -170,7 +170,7 @@ public class UserDetails extends User
     /**
      * 登录时间
      */
-    @JsonFormat(pattern = EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @JsonFormat(pattern = DateUtils.yyyyMMddHHmmss)
     private LocalDateTime      loginTime;
     /**
      * 用户可访问应用列表

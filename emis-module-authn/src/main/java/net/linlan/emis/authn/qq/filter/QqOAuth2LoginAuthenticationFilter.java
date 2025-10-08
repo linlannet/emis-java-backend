@@ -26,7 +26,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -42,6 +41,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.qq.QqIdentityProviderOAuth2Config;
 import net.linlan.emis.authn.qq.constant.QqAuthenticationConstants;
 import net.linlan.emis.core.context.PropertiesContextHelper;
@@ -53,8 +53,8 @@ import net.linlan.emis.manage.core.IdentityProviderUserDetails;
 import net.linlan.emis.provider.constant.AuthenticationConstants;
 import net.linlan.emis.provider.constant.IdentityProviderType;
 import net.linlan.emis.support.exception.SupportException;
+import net.linlan.emis.support.http.HttpClientUtils;
 import net.linlan.emis.support.utils.UrlUtils;
-import net.linlan.utils.http.HttpClientUtils;
 import static com.nimbusds.oauth2.sdk.GrantType.AUTHORIZATION_CODE;
 
 /**

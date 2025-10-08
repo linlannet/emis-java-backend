@@ -19,9 +19,9 @@ package net.linlan.emis.core.security.jackson2;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -30,7 +30,8 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.MissingNode;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.DateUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.userdetails.Application;
 import net.linlan.emis.support.userdetails.Group;
 import net.linlan.emis.support.userdetails.Organization;
@@ -130,8 +131,8 @@ public class UserDetailsDeserializer extends JsonDeserializer<UserDetails> {
         result.setGeoLocation(geoLocation);
         result.setUserAgent(userAgent);
         //登录时间
-        result.setLoginTime(StringUtils.isNoneBlank(loginTime)
-            ? LocalDateTime.parse(loginTime, EmisConstants.DEFAULT_DATE_TIME_FORMATTER)
+        result.setLoginTime(StringUtils.isNotEmpty(loginTime)
+            ? LocalDateTime.parse(loginTime, DateTimeFormatter.ofPattern(DateUtils.yyyyMMddHHmmss))
             : null);
         if (passwordNode.asText(null) == null) {
             result.eraseCredentials();

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import lombok.Data;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.DateUtils;
 import net.linlan.emis.support.userdetails.geo.GeoLocation;
 import net.linlan.emis.support.userdetails.useragent.UserAgent;
 
@@ -78,19 +78,19 @@ public class LocalSession implements Serializable {
     /**
      * 登录时间
      */
-    @JsonFormat(pattern = EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @JsonFormat(pattern = DateUtils.yyyyMMddHHmmss)
     private LocalDateTime     authenticationTime;
 
     /**
      * 最后请求时间
      */
-    @JsonFormat(pattern = EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @JsonFormat(pattern = DateUtils.yyyyMMddHHmmss)
     private LocalDateTime     lastRequestTime;
 
     /**
      * 登录时间
      */
-    @JsonFormat(pattern = EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @JsonFormat(pattern = DateUtils.yyyyMMddHHmmss)
     private LocalDateTime     loginTime;
 
 }

@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
@@ -39,6 +38,7 @@ import com.alibaba.fastjson2.JSONObject;
 
 import lombok.Getter;
 
+import net.linlan.commons.core.ObjectUtils;
 import net.linlan.emis.manage.IdentityProviderAuthenticationService;
 import net.linlan.emis.manage.client.IdentityProviderConfig;
 import net.linlan.emis.manage.client.RegisteredIdentityProviderClient;
@@ -100,8 +100,8 @@ public abstract class AbstractIdentityProviderAuthenticationProcessingFilter ext
             logger.debug(
                 "【" + providerId + "】用户【" + identityProviderUserDetails.getOpenId() + "】未绑定");
             // 自动绑定
-            UserInfoService userRepository = SpringContextUtils.getBean(UserInfoService.class);
-            UserInfo userInfo = userRepository
+            UserInfoService userInfoService = SpringContextUtils.getBean(UserInfoService.class);
+            UserInfo userInfo = userInfoService
                 .getByForeignId(identityProviderUserDetails.getOpenId());
             if (ObjectUtils.isNotEmpty(userInfo)) {
                 try {

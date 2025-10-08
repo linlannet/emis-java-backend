@@ -19,7 +19,7 @@ package net.linlan.emis.support.manage.version;
 
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
+import net.linlan.commons.core.StringUtils;
 
 /**
  * 应用版本

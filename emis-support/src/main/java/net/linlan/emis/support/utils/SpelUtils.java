@@ -20,7 +20,6 @@ package net.linlan.emis.support.utils;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.context.expression.MethodBasedEvaluationContext;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
@@ -28,6 +27,8 @@ import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.ParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.util.StringUtils;
+
+import net.linlan.commons.core.ArrayUtils;
 
 /**
  * spel表达式解析

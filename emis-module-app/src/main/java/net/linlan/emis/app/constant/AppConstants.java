@@ -17,6 +17,7 @@
  */
 package net.linlan.emis.app.constant;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.constant.EmisConstants;
 
 /**
@@ -39,7 +40,7 @@ public final class AppConstants {
     /**
      * APP 配置缓存前缀
      */
-    public static final String APP_CACHE_NAME_PREFIX       = "app" + EmisConstants.COLON;
+    public static final String APP_CACHE_NAME_PREFIX       = "app" + StringUtils.COLON;
 
     /**
      * APP 应用基本信息
@@ -49,7 +50,7 @@ public final class AppConstants {
     /**
      * 分组配置缓存前缀
      */
-    public static final String APP_GROUP_CACHE_NAME_PREFIX = "app_group" + EmisConstants.COLON;
+    public static final String APP_GROUP_CACHE_NAME_PREFIX = "app_group" + StringUtils.COLON;
 
     /**
      * 应用账户缓存名称

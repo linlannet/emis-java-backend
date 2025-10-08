@@ -50,7 +50,7 @@ public class MailOtpAuthenticationConfigurer extends
     @Override
     public void init(HttpSecurity http) throws Exception {
         //邮箱OTP发送
-        http.addFilterBefore(new SendMailOtpFilter(userRepository, otpContextHelp),
+        http.addFilterBefore(new SendMailOtpFilter(userInfoService, otpContextHelp),
             OAuth2LoginAuthenticationFilter.class);
         //邮箱OTP认证
         this.setAuthenticationFilter(
@@ -66,19 +66,19 @@ public class MailOtpAuthenticationConfigurer extends
         return MailOtpAuthenticationFilter.getRequestMatcher();
     }
 
-    private final UserInfoService    userRepository;
+    private final UserInfoService    userInfoService;
     private final UserDetailsService userDetailsService;
 
     private final OtpContextHelper   otpContextHelp;
 
-    public MailOtpAuthenticationConfigurer(UserInfoService userRepository,
+    public MailOtpAuthenticationConfigurer(UserInfoService userInfoService,
                                            UserDetailsService userDetailsService,
                                            OtpContextHelper otpContextHelp) {
-        Assert.notNull(userDetailsService, "userRepository must not be null");
+        Assert.notNull(userDetailsService, "userInfoService must not be null");
         Assert.notNull(userDetailsService, "userDetailsService must not be null");
         Assert.notNull(otpContextHelp, "otpContextHelp must not be null");
         this.userDetailsService = userDetailsService;
-        this.userRepository = userRepository;
+        this.userInfoService = userInfoService;
         this.otpContextHelp = otpContextHelp;
     }
 
@@ -94,10 +94,10 @@ public class MailOtpAuthenticationConfigurer extends
         return new AntPathRequestMatcher(loginProcessingUrl, HttpMethod.POST.name());
     }
 
-    public static MailOtpAuthenticationConfigurer mailOtp(UserInfoService userRepository,
+    public static MailOtpAuthenticationConfigurer mailOtp(UserInfoService userInfoService,
                                                           UserDetailsService userDetailsService,
                                                           OtpContextHelper otpContextHelp) {
-        return new MailOtpAuthenticationConfigurer(userRepository, userDetailsService,
+        return new MailOtpAuthenticationConfigurer(userInfoService, userDetailsService,
             otpContextHelp);
     }
 }

@@ -20,12 +20,12 @@ package net.linlan.emis.app.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.JdkIdGenerator;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.app.constant.AppProtocol;
 import net.linlan.emis.app.constant.AppType;
 import net.linlan.emis.app.constant.AuthorizationType;

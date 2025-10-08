@@ -24,7 +24,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -33,6 +32,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import net.linlan.commons.core.ObjectUtils;
 import net.linlan.commons.core.ResponseResult;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.sms.constant.SmsOtpAuthenticationConstants;
 import net.linlan.emis.authn.sms.exception.MobileNotExistException;
 import net.linlan.emis.support.utils.MobileNumberUtils;
@@ -80,7 +80,7 @@ public class SendSmsOtpFilter extends OncePerRequestFilter {
     public void sendOtp(HttpServletResponse response, String recipient) {
         if (isMobileValidate(recipient)) {
             //判断是否存在用户
-            UserInfoDto user = userRepository
+            UserInfoDto user = userInfoService
                 .getByMobile(MobileNumberUtils.getMobileNumber(recipient));
             if (ObjectUtils.isNotEmpty(user)) {
                 otpContextHelp.sendOtp(recipient, SmsType.LOGIN.getKey(), SMS);
@@ -95,11 +95,11 @@ public class SendSmsOtpFilter extends OncePerRequestFilter {
         }
     }
 
-    private final UserInfoService  userRepository;
+    private final UserInfoService  userInfoService;
     private final OtpContextHelper otpContextHelp;
 
-    public SendSmsOtpFilter(UserInfoService userRepository, OtpContextHelper otpContextHelp) {
-        this.userRepository = userRepository;
+    public SendSmsOtpFilter(UserInfoService userInfoService, OtpContextHelper otpContextHelp) {
+        this.userInfoService = userInfoService;
         this.otpContextHelp = otpContextHelp;
     }
 }

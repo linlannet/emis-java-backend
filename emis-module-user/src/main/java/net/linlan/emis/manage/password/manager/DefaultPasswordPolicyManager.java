@@ -20,9 +20,9 @@ package net.linlan.emis.manage.password.manager;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import net.linlan.commons.core.ObjectUtils;
 import net.linlan.commons.script.json.StringMap;
 import net.linlan.emis.core.frame.EmisSettingVo;
 import net.linlan.emis.manage.password.PasswordPolicyManager;

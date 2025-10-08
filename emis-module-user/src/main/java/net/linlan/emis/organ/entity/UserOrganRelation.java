@@ -20,6 +20,7 @@ package net.linlan.emis.organ.entity;
 import lombok.Data;
 
 import net.linlan.commons.core.RandomUtils;
+import net.linlan.sys.web.KernelConstant;
 import net.linlan.utils.entity.BaseEntity;
 
 /**
@@ -87,7 +88,9 @@ public class UserOrganRelation extends BaseEntity {
         if (getId() == null) {
             setId(RandomUtils.randomSid());
         }
-
+        if (getDelFlag() == null) {
+            setDelFlag(KernelConstant.DEL_FLAG_DEFAULT);
+        }
     }
 
 }

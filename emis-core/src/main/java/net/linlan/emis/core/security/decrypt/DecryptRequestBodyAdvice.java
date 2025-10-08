@@ -27,7 +27,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -42,6 +41,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAd
 
 import com.alibaba.fastjson2.JSONObject;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.constant.EmisConstants;
 import net.linlan.emis.support.manage.enums.SecretType;
 import net.linlan.emis.support.utils.AesUtils;

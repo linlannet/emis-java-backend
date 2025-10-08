@@ -37,8 +37,8 @@ import freemarker.cache.StringTemplateLoader;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.exception.uext.MailMessageSendException;
-import net.linlan.emis.support.constant.EmisConstants;
 import net.linlan.emis.uext.constant.MailType;
 import net.linlan.emis.uext.constant.MessageSettingConstants;
 import net.linlan.emis.uext.entity.MailSendRecord;
@@ -88,7 +88,7 @@ public class MailMsgEventListener implements ApplicationListener<MailMsgEvent> {
             Map<String, Object> parameter = event.getParameter();
             // 判断是否存在自定义
             TemplateInfo templateEntity = (TemplateInfo) redisTemplate.opsForValue()
-                .get(MessageSettingConstants.SETTING_EMAIL_TEMPLATE_CACHE_NAME + EmisConstants.COLON
+                .get(MessageSettingConstants.SETTING_EMAIL_TEMPLATE_CACHE_NAME + StringUtils.COLON
                      + type.getKey());
             if (!Objects.isNull(templateEntity)) {
                 content = htmlUnescape(templateEntity.getContent());

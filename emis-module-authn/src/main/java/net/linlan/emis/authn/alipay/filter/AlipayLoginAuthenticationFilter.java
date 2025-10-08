@@ -26,7 +26,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -42,6 +41,7 @@ import com.alipay.easysdk.kernel.Config;
 import com.alipay.easysdk.kernel.Context;
 
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.alipay.AlipayIdentityProviderOAuth2Config;
 import net.linlan.emis.authn.alipay.client.AlipayClient;
 import net.linlan.emis.authn.alipay.client.AlipaySystemOauthTokenResponse;

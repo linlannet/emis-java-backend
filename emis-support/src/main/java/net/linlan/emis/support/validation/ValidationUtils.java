@@ -28,8 +28,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.groups.Default;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
+
+import net.linlan.commons.core.StringUtils;
 
 /**
  * 验证工具类

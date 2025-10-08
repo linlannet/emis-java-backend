@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
 
 import lombok.Getter;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.security.authentication.CustomWebAuthenticationDetails;
 import net.linlan.emis.support.userdetails.UserDetails;
 
@@ -221,8 +221,8 @@ public class ClusterSessionRegistryImpl<T extends org.springframework.session.Se
      * @return {@link String}
      */
     String getPrincipalKeyPrefix() {
-        return getNamespace() + EmisConstants.COLON + "index" + EmisConstants.COLON
-               + FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME + EmisConstants.COLON;
+        return getNamespace() + StringUtils.COLON + "index" + StringUtils.COLON
+               + FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME + StringUtils.COLON;
     }
 
     /**
@@ -231,7 +231,7 @@ public class ClusterSessionRegistryImpl<T extends org.springframework.session.Se
      * @return {@link String}
      */
     String getSessionKeyPrefix() {
-        return getNamespace() + EmisConstants.COLON + "sessions:";
+        return getNamespace() + StringUtils.COLON + "sessions:";
     }
 
     /**

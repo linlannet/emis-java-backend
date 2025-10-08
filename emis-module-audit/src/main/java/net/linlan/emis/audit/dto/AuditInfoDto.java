@@ -26,11 +26,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import net.linlan.commons.core.DateUtils;
 import net.linlan.emis.audit.constant.EventStatus;
 import net.linlan.emis.audit.entity.GeoLocation;
 import net.linlan.emis.audit.entity.Target;
 import net.linlan.emis.audit.entity.UserAgent;
-import static net.linlan.emis.support.constant.EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN;
 
 /**
  *
@@ -88,7 +88,7 @@ public class AuditInfoDto implements Serializable {
     /**
      * 操作时间
      */
-    @JsonFormat(pattern = DEFAULT_DATE_TIME_FORMATTER_PATTERN)
+    @JsonFormat(pattern = DateUtils.yyyyMMddHHmmss)
     @Schema(description = "事件时间")
     private LocalDateTime eventTime;
 

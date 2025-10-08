@@ -24,7 +24,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -33,6 +32,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import net.linlan.commons.core.ObjectUtils;
 import net.linlan.commons.core.ResponseResult;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.mail.constant.MailOtpAuthenticationConstants;
 import net.linlan.emis.authn.mail.exception.MailNotExistException;
 import net.linlan.emis.uext.OtpContextHelper;
@@ -86,7 +86,7 @@ public class SendMailOtpFilter extends OncePerRequestFilter {
 
     public boolean sendOtp(String recipient) {
         //判断是否存在用户
-        UserInfoDto user = userRepository.getByEmail(recipient);
+        UserInfoDto user = userInfoService.getByEmail(recipient);
         if (ObjectUtils.isNotEmpty(user)) {
             otpContextHelp.sendOtp(recipient, MailType.LOGIN.getKey(), MAIL);
             return true;
@@ -96,11 +96,11 @@ public class SendMailOtpFilter extends OncePerRequestFilter {
         return false;
     }
 
-    private final UserInfoService  userRepository;
+    private final UserInfoService  userInfoService;
     private final OtpContextHelper otpContextHelp;
 
-    public SendMailOtpFilter(UserInfoService userRepository, OtpContextHelper otpContextHelp) {
-        this.userRepository = userRepository;
+    public SendMailOtpFilter(UserInfoService userInfoService, OtpContextHelper otpContextHelp) {
+        this.userInfoService = userInfoService;
         this.otpContextHelp = otpContextHelp;
     }
 }

@@ -144,7 +144,7 @@ public class LogAspect implements Ordered {
             log.setSuccess(success);
             if (!success) {
                 log.setResult(
-                    org.apache.commons.lang3.ObjectUtils.defaultIfNull(throwable.getMessage(), ""));
+                    net.linlan.commons.core.ObjectUtils.defaultIfNull(throwable.getMessage(), ""));
             }
             logger.info(log.toString());
         }

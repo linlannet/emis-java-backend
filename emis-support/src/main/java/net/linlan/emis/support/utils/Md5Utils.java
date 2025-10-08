@@ -20,6 +20,11 @@ package net.linlan.emis.support.utils;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -120,12 +125,30 @@ public class Md5Utils {
         return result;
     }
 
+    /**
+     * byte数组 转 16进制 字符串
+     *
+     * @param b b
+     * @return String
+     */
+    public static String byteToHexString(byte[] b) {
+        StringBuilder result = new StringBuilder();
+        for (byte value : b) {
+            String hex = Integer.toHexString(value & 0xFF);
+            if (hex.length() == 1) {
+                hex = '0' + hex;
+            }
+            result.append(hex.toUpperCase());
+        }
+        return result.toString();
+    }
+
     public static String getMd5Code(String strObj) {
         String resultString;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             // md.digest() 该函数返回值为存放哈希值结果的byte数组
-            resultString = StringUtils.byteToHexString(md.digest(strObj.getBytes()));
+            resultString = byteToHexString(md.digest(strObj.getBytes()));
         } catch (NoSuchAlgorithmException ex) {
             ex.printStackTrace();
             return null;
@@ -155,4 +178,59 @@ public class Md5Utils {
 
         return "";
     }
+
+    /**
+     * 默认分隔符
+     */
+    public static final String SPLIT_DEFAULT = ",";
+
+    /**
+     * Convert char to byte
+     *
+     * @param c char
+     * @return byte
+     */
+
+    private static byte charToByte(char c) {
+        return (byte) "0123456789ABCDEF".indexOf(c);
+    }
+
+    /**
+     * 16进制 转 byte数组
+     *
+     * @param hexString hexString
+     * @return byte[]
+     */
+    public static byte[] hexStringToBytes(String hexString) {
+        if (hexString == null || "".equals(hexString)) {
+            return null;
+        }
+        hexString = hexString.toUpperCase();
+        int length = hexString.length() / 2;
+        char[] hexChars = hexString.toCharArray();
+        byte[] d = new byte[length];
+        for (int i = 0; i < length; i++) {
+            int pos = i * 2;
+            d[i] = (byte) (charToByte(hexChars[pos]) << 4 | charToByte(hexChars[pos + 1]));
+        }
+        return d;
+    }
+
+    /**
+     * 统计字符串字符数（非连续）
+     *
+     * @param string {@link  String}
+     * @return {@link  Map}
+     */
+    public static Map<Character, Long> statisticsCharCount(String string) {
+        return Stream.of(string).flatMap((Function<String, Stream<Character>>) s -> {
+            final char[] chars = s.toCharArray();
+            final ArrayList<Character> list = new ArrayList<>();
+            for (char aChar : chars) {
+                list.add(aChar);
+            }
+            return list.stream();
+        }).collect(Collectors.groupingBy(Character::charValue, Collectors.counting()));
+    }
+
 }

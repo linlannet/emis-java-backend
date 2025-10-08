@@ -19,12 +19,11 @@ package net.linlan.emis.support.utils;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.exception.SupportException;
 import net.linlan.emis.support.validation.ValidationMobile;
 

@@ -25,7 +25,6 @@ import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.message.BasicHeader;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
@@ -41,6 +40,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.nimbusds.oauth2.sdk.GrantType;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.feishu.FeiShuIdentityProviderOAuth2Config;
 import net.linlan.emis.core.context.PropertiesContextHelper;
 import net.linlan.emis.filter.AbstractIdentityProviderAuthenticationProcessingFilter;
@@ -50,8 +50,8 @@ import net.linlan.emis.manage.client.RegisteredIdentityProviderClientRepository;
 import net.linlan.emis.manage.core.IdentityProviderUserDetails;
 import net.linlan.emis.provider.constant.AuthenticationConstants;
 import net.linlan.emis.provider.constant.IdentityProviderType;
+import net.linlan.emis.support.http.HttpClientUtils;
 import net.linlan.emis.support.utils.UrlUtils;
-import net.linlan.utils.http.HttpClientUtils;
 import static net.linlan.emis.authn.feishu.constant.FeiShuAuthenticationConstants.*;
 
 /**

@@ -27,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -44,6 +43,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.wechatwork.WeChatWorkIdentityProviderOAuth2Config;
 import net.linlan.emis.authn.wechatwork.constant.WeChatWorkAuthenticationConstants;
 import net.linlan.emis.core.context.PropertiesContextHelper;
@@ -54,8 +54,8 @@ import net.linlan.emis.manage.client.RegisteredIdentityProviderClientRepository;
 import net.linlan.emis.manage.core.IdentityProviderUserDetails;
 import net.linlan.emis.provider.constant.AuthenticationConstants;
 import net.linlan.emis.provider.constant.IdentityProviderType;
+import net.linlan.emis.support.http.HttpClientUtils;
 import net.linlan.emis.support.utils.UrlUtils;
-import net.linlan.utils.http.HttpClientUtils;
 
 /**
  * 企业微信扫码登录

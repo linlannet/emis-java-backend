@@ -51,13 +51,13 @@ public class UserExpireLockTask {
     public void execute() {
         logger.info("扫描已过期待锁定用户任务开始");
         //1、根据提醒时间，分页查询即将要过期的密码
-        List<UserInfo> list = userRepository.findExpireUser();
+        List<UserInfo> list = userInfoService.findExpireUser();
         Iterator<UserInfo> iterator = list.iterator();
         logger.info("已过期待锁定用户数量为:{}个", list.size());
         while (!list.isEmpty()) {
             UserInfo entity = iterator.next();
             entity.setStatus(UserStatus.EXPIRED_LOCKED.getKey());
-            userRepository.save(entity);
+            userInfoService.save(entity);
             logger.info("锁定已过期用户：{}", entity.getUsername());
             iterator.remove();
             iterator = list.iterator();
@@ -68,6 +68,6 @@ public class UserExpireLockTask {
     /**
      * UserInfoService
      */
-    private final UserInfoService userRepository;
+    private final UserInfoService userInfoService;
 
 }

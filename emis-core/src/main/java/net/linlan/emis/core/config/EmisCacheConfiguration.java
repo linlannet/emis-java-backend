@@ -34,8 +34,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.*;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.cache.EmisKeyGenerator;
-import net.linlan.emis.support.constant.EmisConstants;
 
 /**
  * 缓存配置
@@ -100,8 +100,8 @@ public class EmisCacheConfiguration {
         }
         if (redisProperties.getKeyPrefix() != null) {
             config = config
-                .computePrefixWith(cacheName -> redisProperties.getKeyPrefix() + EmisConstants.COLON
-                                                + cacheName + EmisConstants.COLON);
+                .computePrefixWith(cacheName -> redisProperties.getKeyPrefix() + StringUtils.COLON
+                                                + cacheName + StringUtils.COLON);
         }
         if (!redisProperties.isCacheNullValues()) {
             config = config.disableCachingNullValues();

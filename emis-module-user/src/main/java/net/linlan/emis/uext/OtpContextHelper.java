@@ -21,7 +21,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.redisson.api.RAtomicLong;
 import org.redisson.api.RBucket;
 import org.redisson.api.RScoredSortedSet;
@@ -31,10 +30,11 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.RandomUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.exception.user.OtpSendException;
 import net.linlan.emis.manage.mail.MailMsgEventPublish;
 import net.linlan.emis.manage.sms.SmsMsgEventPublish;
-import net.linlan.emis.support.constant.EmisConstants;
 import net.linlan.emis.support.exception.SupportException;
 import net.linlan.emis.uext.constant.MailType;
 import net.linlan.emis.uext.constant.SmsType;
@@ -65,7 +65,7 @@ public class OtpContextHelper {
             throw new SupportException(SEND_FREQUENTLY);
         } else {
             // 验证码
-            String code = RandomStringUtils.randomNumeric(6);
+            String code = RandomUtils.randomCode(6);
             RScoredSortedSet<String> verifyCodeScored = redissonClient
                 .getScoredSortedSet(getRedisKey(OTP_CODE_VALUE_PREFIX, recipient, type, channel));
             try {
@@ -191,9 +191,9 @@ public class OtpContextHelper {
     private String getRedisKey(String prefix, String recipient, String type,
                                MessageNoticeChannel channel) {
         String keyPrefix = cacheProperties.getRedis().getKeyPrefix();
-        return keyPrefix + EmisConstants.COLON + "otp" + EmisConstants.COLON + prefix
-               + EmisConstants.COLON + channel.getKey() + EmisConstants.COLON + type
-               + EmisConstants.COLON + recipient;
+        return keyPrefix + StringUtils.COLON + "otp" + StringUtils.COLON + prefix
+               + StringUtils.COLON + channel.getKey() + StringUtils.COLON + type + StringUtils.COLON
+               + recipient;
     }
 
     /**

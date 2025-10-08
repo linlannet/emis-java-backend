@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.apache.commons.lang3.StringUtils;
+import net.linlan.commons.core.StringUtils;
 
 /**
  *

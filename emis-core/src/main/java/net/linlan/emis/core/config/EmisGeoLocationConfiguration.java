@@ -22,7 +22,6 @@ import java.util.Objects;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.core.constant.ConfigBeanNameConstants;
 import net.linlan.emis.core.encrypt.EncryptionModule;
 import net.linlan.emis.core.frame.EmisSettingService;

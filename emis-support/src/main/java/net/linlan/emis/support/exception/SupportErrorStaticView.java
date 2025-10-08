@@ -24,15 +24,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.View;
 import org.springframework.web.util.HtmlUtils;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.DateUtils;
+import net.linlan.commons.core.ObjectUtils;
 import static net.linlan.emis.support.exception.SupportErrorAttributes.*;
 
 /**
@@ -79,7 +78,7 @@ public class SupportErrorStaticView implements View {
                     builder.append("<b>Request ID</b>:&nbsp;").append(htmlEscape(requestId)).append("<br/>");
                 }
                 //Timestamp
-                builder.append("<b>Timestamp</b>:&nbsp;").append(htmlEscape(DateFormatUtils.format((Date) model.get("timestamp"), EmisConstants.DEFAULT_DATE_TIME_FORMATTER_PATTERN))).append("<br/>")
+                builder.append("<b>Timestamp</b>:&nbsp;").append(htmlEscape(DateUtils.format((Date) model.get("timestamp"), DateUtils.yyyyMMddHHmmss))).append("<br/>")
                 //Error
                 .append("<b>Error</b>:&nbsp;").append(htmlEscape(error)).append("<br/>");
                 //Exception

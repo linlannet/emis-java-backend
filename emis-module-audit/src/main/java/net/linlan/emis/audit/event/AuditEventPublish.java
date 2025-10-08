@@ -24,8 +24,6 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -35,7 +33,9 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson2.JSONObject;
 import com.google.common.collect.Maps;
 
+import net.linlan.commons.core.ObjectUtils;
 import net.linlan.commons.core.RequestIdUtils;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.audit.constant.EventStatus;
 import net.linlan.emis.audit.entity.*;
 import net.linlan.emis.audit.event.type.EventType;

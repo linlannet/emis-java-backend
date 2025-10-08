@@ -19,7 +19,7 @@ package net.linlan.emis.support.utils;
 
 import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import net.linlan.commons.core.RandomUtils;
 
 public class ImageAvatarUtils {
     public static final String RANDOM_AVATAR = "https://api.multiavatar.com/";
@@ -35,6 +35,6 @@ public class ImageAvatarUtils {
     }
 
     public static String generateAvatarImg() {
-        return RANDOM_AVATAR + RandomStringUtils.randomAlphanumeric(6) + ".svg";
+        return RANDOM_AVATAR + RandomUtils.randomCode(6) + ".svg";
     }
 }

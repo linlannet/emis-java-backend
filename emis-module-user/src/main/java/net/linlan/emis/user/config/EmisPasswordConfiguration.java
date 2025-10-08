@@ -43,7 +43,7 @@ public class EmisPasswordConfiguration {
     /**
      * 密码策略管理器
      *
-     * @param userRepository {@link UserInfoService} UserInfoService
+     * @param userInfoService {@link UserInfoService} UserInfoService
      * @param userHistoryPasswordService {@link UserHistoryPasswordService} 用户历史密码repository
      * @param passwordWeakLib               {@link PasswordWeakLib} PasswordWeakLib
      * @param passwordEncoder               {@link PasswordEncoder} PasswordEncoder
@@ -51,11 +51,11 @@ public class EmisPasswordConfiguration {
      */
     @Bean(ConfigBeanNameConstants.DEFAULT_PASSWORD_POLICY_MANAGER)
     @RefreshScope
-    public PasswordPolicyManager<UserInfo> passwordPolicyManager(UserInfoService userRepository,
+    public PasswordPolicyManager<UserInfo> passwordPolicyManager(UserInfoService userInfoService,
                                                                  UserHistoryPasswordService userHistoryPasswordService,
                                                                  PasswordWeakLib passwordWeakLib,
                                                                  PasswordEncoder passwordEncoder) {
-        return new DefaultPasswordPolicyManager(userRepository, userHistoryPasswordService,
+        return new DefaultPasswordPolicyManager(userInfoService, userHistoryPasswordService,
             passwordWeakLib, passwordEncoder);
     }
 

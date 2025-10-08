@@ -23,7 +23,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -32,6 +31,7 @@ import com.google.common.collect.Maps;
 
 import lombok.RequiredArgsConstructor;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.commons.script.json.StringMap;
 import net.linlan.emis.core.frame.EmisSettingVo;
 import net.linlan.emis.manage.mail.MailMsgEventPublish;

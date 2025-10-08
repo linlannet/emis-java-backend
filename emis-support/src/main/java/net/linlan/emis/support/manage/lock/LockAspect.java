@@ -20,7 +20,6 @@ package net.linlan.emis.support.manage.lock;
 import java.util.Arrays;
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,7 +29,7 @@ import org.redisson.api.RedissonClient;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Component;
 
-import net.linlan.emis.support.constant.EmisConstants;
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.utils.Md5Utils;
 import net.linlan.emis.support.utils.SpelUtils;
 import net.linlan.utils.SpringContextUtils;
@@ -72,7 +71,7 @@ public class LockAspect {
                     .md532(String.join(String.valueOf(pjp.getTarget()), Arrays.toString(args)));
             }
             String namespaces = StringUtils.isNotBlank(lock.namespaces())
-                ? lock.namespaces() + EmisConstants.COLON
+                ? lock.namespaces() + StringUtils.COLON
                 : "";
             String key = getLockKeyPrefix() + namespaces;
             rLock = redis.getLock(key + suffix);
@@ -100,6 +99,6 @@ public class LockAspect {
      */
     public static String getLockKeyPrefix() {
         return SpringContextUtils.getBean(CacheProperties.class).getRedis().getKeyPrefix()
-               + EmisConstants.COLON + "lock" + EmisConstants.COLON + "keys";
+               + StringUtils.COLON + "lock" + StringUtils.COLON + "keys";
     }
 }

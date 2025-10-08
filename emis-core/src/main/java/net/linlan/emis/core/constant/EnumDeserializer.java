@@ -21,14 +21,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.support.manage.enums.ListEnumDeserializer;
 import net.linlan.utils.enums.BaseEnumString;
 

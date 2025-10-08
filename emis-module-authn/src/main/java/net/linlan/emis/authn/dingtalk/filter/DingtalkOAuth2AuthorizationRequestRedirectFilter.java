@@ -27,7 +27,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -46,6 +45,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import net.linlan.commons.core.StringUtils;
 import net.linlan.emis.authn.dingtalk.DingTalkIdentityProviderOAuth2Config;
 import net.linlan.emis.manage.client.RegisteredIdentityProviderClient;
 import net.linlan.emis.manage.client.RegisteredIdentityProviderClientRepository;
