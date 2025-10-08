@@ -11,5 +11,17 @@ feather：社区协同分支
 
 ### 常见问题及处理
 ```
+1、日期的转换
+// Date → LocalDate
+Date date = new Date();
+LocalDate localDate = date.toInstant()
+    .atZone(ZoneId.systemDefault())
+    .toLocalDate();
+
+// LocalDate → Date
+LocalDate localDate = LocalDate.now();
+Date date = Date.from(localDate.atStartOfDay()
+    .atZone(ZoneId.systemDefault())
+    .toInstant());
 
 ```
