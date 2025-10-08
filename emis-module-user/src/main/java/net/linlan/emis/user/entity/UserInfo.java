@@ -24,6 +24,8 @@ import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 import net.linlan.commons.core.RandomUtils;
@@ -237,6 +239,11 @@ public class UserInfo extends BaseEntity {
      * 备用2
      */
     private String        spare2;
+    /**
+     * 暂存密码(明文)
+     */
+    @JsonIgnore
+    private String        passwordPlainText;
 
     /**
      * 初始化方法

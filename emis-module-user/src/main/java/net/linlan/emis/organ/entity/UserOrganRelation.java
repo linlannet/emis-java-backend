@@ -80,6 +80,17 @@ public class UserOrganRelation extends BaseEntity {
      */
     private String  spare2;
 
+    public UserOrganRelation() {
+
+    }
+
+    public UserOrganRelation(String id, String organId, String userId, Long deptId) {
+        this.id = id;
+        this.organId = organId;
+        this.userId = userId;
+        this.deptId = deptId;
+    }
+
     /**
      * 初始化方法
      */

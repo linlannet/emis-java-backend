@@ -42,108 +42,116 @@ public class EmisOrganVo {
     /**
      * 部门ID
      */
-    private Long                 id;
+    private Long             id;
     /**
      * 机构ID
      */
-    private String               organId;
+    private String           organId;
     /**
      * 机构名称
      */
-    private String               organName;
+    private String           organName;
     /**
      * 部门名称，对应AdminDept内sname
      */
-    private String               name;
+    private String           name;
 
     /**
      * 机构编码
      */
-    private String               code;
+    private String           code;
 
     /**
      * 类型
      */
-    private OrganizationType     type;
+    private OrganizationType type;
 
     /**
      * 上级ID
      */
-    private Long                 parentId;
+    private Long             parentId;
 
     /**
      * 路径枚举ID，对应AdminDept内searchCode
      */
-    private String               path;
+    private String           path;
 
     /**
      * 路径显示名称，对应AdminDept内name
      */
-    private String               displayPath;
+    private String           displayPath;
 
     /**
      * 外部ID，对应appId
      */
-    private String               appId;
-
+    private String           appId;
+    /**
+     * 外键ID
+     */
+    private String           foreignId;
     /**
      * 数据来源，对应AdminDept内createType
      */
-    private String               dataOrigin;
+    private String           dataOrigin;
 
     /**
      * 身份源id
      */
-    private String               identitySourceId;
+    private String           identitySourceId;
 
     /**
      * 排序
      */
-    private Integer              priority;
+    private Integer          priority;
 
     /**
      * 是否叶子节点 leaf
      */
-    private Boolean              leaf;
+    private Boolean          leaf;
     /**
      * 子节点数量
      */
-    private String               childNum;
+    private String           childNum;
     /**
      * 是否启用
      */
-    private Boolean              enabled;
+    private Boolean          enabled;
     /**
      * 身份源id
      */
-    private String               imagePath;
+    private String           imagePath;
     /**
      * 创建人id
      */
-    private String               creatorId;
+    private String           creatorId;
     /**
      * 创建时间
      */
-    private Date                 createTime;
+    private Date             createTime;
 
     /**
      * 最后修改时间
      */
-    private Date                 lastTime;
+    private Date             lastTime;
     /**
      * 备注
      */
-    private String               remark;
+    private String           remark;
+
+    public EmisOrganVo() {
+
+    }
+
     /**
      * 数据赋值TO方法，将AdminDept的input对象赋值给AdminDeptVo
      */
     public static final Function TO = new Function<AdminDept, EmisOrganVo>() {
-                                        @Nullable
-                                        @Override
-                                        public EmisOrganVo apply(@Nullable AdminDept input) {
-                                            return new EmisOrganVo(input);
-                                        }
-                                    };
+        @Nullable
+        @Override
+        public EmisOrganVo apply(@Nullable AdminDept input) {
+            return new EmisOrganVo(input);
+        }
+    };
 
     /**
      * @param input 数据库查询出的entity对象，对VO对象进行赋值，默认的字段为全部字段，可结合实际调整
@@ -152,6 +160,8 @@ public class EmisOrganVo {
         this.id = input.getId();
         this.organId = input.getOrganId();
         this.parentId = input.getParentId();
+        this.foreignId = input.getForeignId();
+        this.appId = input.getAppId();
         this.identitySourceId = input.getForeignId();
         this.dataOrigin = input.getCreateType().toString();
         this.type = OrganizationType.fromString(input.getType());
@@ -187,6 +197,7 @@ public class EmisOrganVo {
         this.organId = input.getOrganId();
         this.organName = input.getOrganName();
         this.parentId = input.getParentId();
+        this.foreignId = input.getForeignId();
         this.appId = input.getAppId();
         this.identitySourceId = input.getForeignId();
         this.dataOrigin = input.getCreateType().toString();

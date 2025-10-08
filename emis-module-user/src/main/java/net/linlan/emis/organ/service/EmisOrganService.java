@@ -19,7 +19,6 @@ package net.linlan.emis.organ.service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -64,10 +63,21 @@ public class EmisOrganService {
      * findById
      *
      * @param id {@link Long}
-     * @return {@link Optional}
+     * @return {@link EmisOrganVo}
      */
     public EmisOrganVo getVoById(Long id) {
         AdminDeptDto dto = adminDeptService.getDtoById(id);
+        return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
+    }
+
+    /**
+     * findById
+     *
+     * @param organId {@link String}
+     * @return {@link EmisOrganVo}
+     */
+    public EmisOrganVo getVoByOrganId(String organId) {
+        AdminDeptDto dto = adminDeptService.getByOrganId(organId);
         return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
     }
 
@@ -80,6 +90,14 @@ public class EmisOrganService {
      */
     public EmisOrganVo saveByVo(EmisOrganVo entity) {
         return null;
+    }
+
+    /** batch save the entity with input list
+     * 保存对象应用协议，批量保存list
+     * @param list {@link AdminDept}
+     */
+    public void batchSave(List<AdminDept> list) {
+        dao.batchSave(list);
     }
 
     /**

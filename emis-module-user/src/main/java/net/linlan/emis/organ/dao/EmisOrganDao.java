@@ -20,7 +20,7 @@ package net.linlan.emis.organ.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import net.linlan.commons.db.mybatis.MybatisBaseDao;
-import net.linlan.emis.organ.entity.UserOrganRelation;
+import net.linlan.frame.admin.entity.AdminDept;
 
 /**
 *
@@ -30,6 +30,6 @@ import net.linlan.emis.organ.entity.UserOrganRelation;
 *
 */
 @Mapper
-public interface EmisOrganDao extends MybatisBaseDao<UserOrganRelation> {
+public interface EmisOrganDao extends MybatisBaseDao<AdminDept> {
 
 }
