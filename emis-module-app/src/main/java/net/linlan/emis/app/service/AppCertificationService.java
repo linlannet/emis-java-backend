@@ -161,7 +161,7 @@ public class AppCertificationService {
      * @param usingType 使用类型
      * @return {@link AppCertification}
      */
-    AppCertification findByAppIdAndUsingType(String appId, String usingType) {
+    public AppCertification findByAppIdAndUsingType(String appId, String usingType) {
         List<AppCertification> list = getList(
             new StringMap().put("appId", appId).put("usingType", usingType).map());
         if (list != null && list.size() > 0) {

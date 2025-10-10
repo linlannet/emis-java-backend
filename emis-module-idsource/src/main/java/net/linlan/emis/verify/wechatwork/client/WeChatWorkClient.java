@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import net.linlan.emis.verify.wechatwork.vo.*;
 import org.springframework.util.Assert;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +32,7 @@ import net.linlan.emis.manage.vo.VerifyUser;
 import net.linlan.emis.manage.vo.VerifyUserDetail;
 import net.linlan.emis.verify.wechatwork.WeChatWorkConfig;
 import net.linlan.emis.verify.wechatwork.WeChatWorkConstant;
+import net.linlan.emis.verify.wechatwork.vo.*;
 
 /**
  * 企业微信提供商client
@@ -84,8 +84,8 @@ public class WeChatWorkClient extends AbstractWeChatWorkClient implements Identi
     @Override
     public VerifyDept getDept(String id) {
         String queryParams = ACCESS_TOKEN + getAccessToken() + "&id=" + id;
-        WeChatWorkDeptResponse deptDTO = restOperations
-            .getForObject(WeChatWorkConstant.DEPT_DETAILS + queryParams, WeChatWorkDeptResponse.class);
+        WeChatWorkDeptResponse deptDTO = restOperations.getForObject(
+            WeChatWorkConstant.DEPT_DETAILS + queryParams, WeChatWorkDeptResponse.class);
         Assert.notNull(deptDTO, "获取部门详情返回结果为空");
         if (deptDTO.isSuccess()) {
             WeChatWorkDepartment department = deptDTO.getDepartment();
@@ -103,8 +103,8 @@ public class WeChatWorkClient extends AbstractWeChatWorkClient implements Identi
     @Override
     public List<VerifyDept> getDeptList(String id) {
         String queryParams = ACCESS_TOKEN + getAccessToken() + "&id=" + id;
-        WeChatWorkDeptListResponse deptDTO = restOperations
-            .getForObject(WeChatWorkConstant.DEPT_URL + queryParams, WeChatWorkDeptListResponse.class);
+        WeChatWorkDeptListResponse deptDTO = restOperations.getForObject(
+            WeChatWorkConstant.DEPT_URL + queryParams, WeChatWorkDeptListResponse.class);
         Assert.notNull(deptDTO, "获取部门列表返回结果为空");
         if (deptDTO.isSuccess()) {
             List<WeChatWorkDepartment> department = deptDTO.getDepartment();
@@ -134,8 +134,8 @@ public class WeChatWorkClient extends AbstractWeChatWorkClient implements Identi
     @Override
     public VerifyUser getUser(String userId) {
         String queryParams = ACCESS_TOKEN + getAccessToken() + "&userid=" + userId;
-        WeChatWorkUserResponse user = restOperations
-            .getForObject(WeChatWorkConstant.USER_DETAILS + queryParams, WeChatWorkUserResponse.class);
+        WeChatWorkUserResponse user = restOperations.getForObject(
+            WeChatWorkConstant.USER_DETAILS + queryParams, WeChatWorkUserResponse.class);
         Assert.notNull(user, "获取用户详情返回结果为空");
         if (user.isSuccess()) {
             return buildUser(user.getUserid(),
@@ -152,8 +152,8 @@ public class WeChatWorkClient extends AbstractWeChatWorkClient implements Identi
         // 部门递归获取子部门下面的成员
         String queryParams = ACCESS_TOKEN + getAccessToken() + "&department_id=" + deptId
                              + "&fetch_child=1";
-        WeChatWorkUserListResponse userDTO = restOperations
-            .getForObject(WeChatWorkConstant.WX_USER_URL + queryParams, WeChatWorkUserListResponse.class);
+        WeChatWorkUserListResponse userDTO = restOperations.getForObject(
+            WeChatWorkConstant.WX_USER_URL + queryParams, WeChatWorkUserListResponse.class);
         Assert.notNull(userDTO, "获取用户列表返回结果为空");
         if (userDTO.isSuccess()) {
             List<WeChatWorkUserListResponse.UserList> userList = userDTO.getUserList();

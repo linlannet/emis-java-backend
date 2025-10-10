@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+    Copyright © 2020-2025 Linlan (open@linlan.net)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.linlan.emis.protocol.dao.ProtocolJwtConfigDao">
+
+    <!-- 采用别名使用类成员变量，可根据需求，确定是否启用 -->
+    <resultMap type="net.linlan.emis.protocol.entity.ProtocolJwtConfig" id="protocolJwtConfigMap">
+        <id property="id" column="JWT_ID"/>
+        <result property="appId" column="APP_ID"/>
+        <result property="foreignId" column="FOREIGN_ID"/>
+        <result property="redirectUrl" column="REDIRECT_URL"/>
+        <result property="targetLinkUrl" column="TARGET_LINK_URL"/>
+        <result property="bindingType" column="BINDING_TYPE"/>
+        <result property="idTokenSubjectType" column="ID_TOKEN_SUBJECT_TYPE"/>
+        <result property="idTokenTimeToLive" column="ID_TOKEN_TIME_TO_LIVE"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="lastTime" column="LAST_TIME"/>
+        <result property="delFlag" column="DEL_FLAG"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="spare1" column="SPARE1"/>
+        <result property="spare2" column="SPARE2"/>
+    </resultMap>
+
+    <!-- find by id，通过主键获取对象 -->
+    <select id="findById" resultMap="protocolJwtConfigMap">
+        SELECT
+JWT_ID, APP_ID, FOREIGN_ID, REDIRECT_URL, TARGET_LINK_URL, BINDING_TYPE, ID_TOKEN_SUBJECT_TYPE, ID_TOKEN_TIME_TO_LIVE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+        FROM EMIS_PROTOCOL_JWT_CONFIG B
+        WHERE B.JWT_ID = #{value}
+    </select>
+
+    <!-- get list，通过输入的条件，获取返回的list列表对象，采用相应的分页规则进行分页处理 -->
+    <select id="getList" resultMap="protocolJwtConfigMap">
+        SELECT
+B.JWT_ID, B.APP_ID, B.FOREIGN_ID, B.REDIRECT_URL, B.TARGET_LINK_URL, B.BINDING_TYPE, B.ID_TOKEN_SUBJECT_TYPE, B.ID_TOKEN_TIME_TO_LIVE, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_PROTOCOL_JWT_CONFIG B
+        WHERE 1=1
+        <include refid="commonList"></include>
+        <include refid="getListOrderBy"></include>
+    </select>
+
+    <!-- 通用排序SQL，如果传入参数按照参数排序，如果未传入参数，按照主键排序 -->
+    <sql id="getListOrderBy">
+        <choose>
+            <when test='orderBy != null'>
+                <choose>
+                    <when test='orderBy == 0'>
+                        ORDER BY B.CREATE_TIME DESC
+                    </when>
+                    <when test='orderBy == 1'>
+                        ORDER BY B.CREATE_TIME ASC
+                    </when>
+                    <when test='orderBy == 2'>
+                        ORDER BY B.PRIORITY DESC
+                    </when>
+                    <when test='orderBy == 3'>
+                        ORDER BY B.PRIORITY ASC
+                    </when>
+                    <otherwise>
+                        ORDER BY B.JWT_ID ASC
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                ORDER BY B.JWT_ID DESC
+            </otherwise>
+        </choose>
+    </sql>
+
+    <!-- sql commonList 通过输入的条件，获取返回的list列表对象 -->
+    <sql id="commonList">
+        <!--  只允许默认的本表的字段查询，查询条件可通过Param定义，默认全部字段，后续根据Param内的定义，可删除不需要的查询字段 -->
+        <if test="id != null and id != ''">
+            and B.JWT_ID = #{id}
+        </if>
+        <if test="appId != null and appId != ''">
+            and B.APP_ID = #{appId}
+        </if>
+        <if test="foreignId != null and foreignId != ''">
+            and B.FOREIGN_ID = #{foreignId}
+        </if>
+        <if test="redirectUrl != null and redirectUrl != ''">
+            and B.REDIRECT_URL = #{redirectUrl}
+        </if>
+        <if test="targetLinkUrl != null and targetLinkUrl != ''">
+            and B.TARGET_LINK_URL = #{targetLinkUrl}
+        </if>
+        <if test="bindingType != null and bindingType != ''">
+            and B.BINDING_TYPE = #{bindingType}
+        </if>
+        <if test="idTokenSubjectType != null and idTokenSubjectType != ''">
+            and B.ID_TOKEN_SUBJECT_TYPE = #{idTokenSubjectType}
+        </if>
+        <if test="idTokenTimeToLive != null and idTokenTimeToLive != ''">
+            and B.ID_TOKEN_TIME_TO_LIVE = #{idTokenTimeToLive}
+        </if>
+        <if test="creatorId != null and creatorId != ''">
+            and B.CREATOR_ID = #{creatorId}
+        </if>
+        <choose>
+            <when test="delFlag != null">
+                AND B.DEL_FLAG = #{delFlag}
+            </when>
+            <otherwise>
+                AND ( B.DEL_FLAG = 0 OR B.DEL_FLAG IS NULL)
+            </otherwise>
+        </choose>
+        <if test="description != null and description != ''">
+            and B.DESCRIPTION = #{description}
+        </if>
+        <if test="spare1 != null and spare1 != ''">
+            and B.SPARE1 = #{spare1}
+        </if>
+        <if test="spare2 != null and spare2 != ''">
+            and B.SPARE2 = #{spare2}
+        </if>
+
+        <!-- 各个数据库差异化的查询条件处理，如时间字段 -->
+        <choose>
+            <when test='_databaseId == "mysql"'>
+
+            </when>
+            <when test='_databaseId == "dm8"'>
+
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
+
+    </sql>
+
+    <!-- save object，保存对象信息 -->
+    <insert id="save" parameterType="net.linlan.emis.protocol.entity.ProtocolJwtConfig">
+        INSERT INTO EMIS_PROTOCOL_JWT_CONFIG
+        (
+JWT_ID, APP_ID, FOREIGN_ID, REDIRECT_URL, TARGET_LINK_URL, BINDING_TYPE, ID_TOKEN_SUBJECT_TYPE, ID_TOKEN_TIME_TO_LIVE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+        )
+        VALUES
+        (
+#{id}, #{appId}, #{foreignId}, #{redirectUrl}, #{targetLinkUrl}, #{bindingType}, #{idTokenSubjectType}, #{idTokenTimeToLive}, #{creatorId}, #{createTime}, #{lastTime}, #{delFlag}, #{description}, #{spare1}, #{spare2}
+        )
+    </insert>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        <choose>
+            <when test='_databaseId == "mysql"'>
+                INSERT INTO EMIS_PROTOCOL_JWT_CONFIG
+                (
+JWT_ID, APP_ID, FOREIGN_ID, REDIRECT_URL, TARGET_LINK_URL, BINDING_TYPE, ID_TOKEN_SUBJECT_TYPE, ID_TOKEN_TIME_TO_LIVE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+                )
+                VALUES
+                <foreach collection="list" index="index" item="item" separator=",">
+                    (
+#{item.id}, #{item.appId}, #{item.foreignId}, #{item.redirectUrl}, #{item.targetLinkUrl}, #{item.bindingType}, #{item.idTokenSubjectType}, #{item.idTokenTimeToLive}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+                    )
+                </foreach>
+            </when>
+            <otherwise>
+                <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+                    INSERT INTO EMIS_PROTOCOL_JWT_CONFIG
+                    (
+JWT_ID, APP_ID, FOREIGN_ID, REDIRECT_URL, TARGET_LINK_URL, BINDING_TYPE, ID_TOKEN_SUBJECT_TYPE, ID_TOKEN_TIME_TO_LIVE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+                    )
+                    VALUES
+                    (
+#{item.id}, #{item.appId}, #{item.foreignId}, #{item.redirectUrl}, #{item.targetLinkUrl}, #{item.bindingType}, #{item.idTokenSubjectType}, #{item.idTokenTimeToLive}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+                    )
+                </foreach>
+            </otherwise>
+        </choose>
+    </insert>
+
+    <!-- update object，更新对象信息 -->
+    <update id="update" parameterType="net.linlan.emis.protocol.entity.ProtocolJwtConfig">
+        UPDATE EMIS_PROTOCOL_JWT_CONFIG
+        <set>
+            <if test="appId != null">APP_ID = #{appId}, </if>
+            <if test="foreignId != null">FOREIGN_ID = #{foreignId}, </if>
+            <if test="redirectUrl != null">REDIRECT_URL = #{redirectUrl}, </if>
+            <if test="targetLinkUrl != null">TARGET_LINK_URL = #{targetLinkUrl}, </if>
+            <if test="bindingType != null">BINDING_TYPE = #{bindingType}, </if>
+            <if test="idTokenSubjectType != null">ID_TOKEN_SUBJECT_TYPE = #{idTokenSubjectType}, </if>
+            <if test="idTokenTimeToLive != null">ID_TOKEN_TIME_TO_LIVE = #{idTokenTimeToLive}, </if>
+            <if test="creatorId != null">CREATOR_ID = #{creatorId}, </if>
+            <if test="createTime != null">CREATE_TIME = #{createTime}, </if>
+            <if test="lastTime != null">LAST_TIME = #{lastTime}, </if>
+            <if test="delFlag != null">DEL_FLAG = #{delFlag}, </if>
+            <if test="description != null">DESCRIPTION = #{description}, </if>
+            <if test="spare1 != null">SPARE1 = #{spare1}, </if>
+            <if test="spare2 != null">SPARE2 = #{spare2}</if>
+        </set>
+        WHERE JWT_ID = #{id}
+    </update>
+
+    <!-- delete by id，通过主键删除对象 -->
+    <delete id="deleteById">
+        DELETE FROM EMIS_PROTOCOL_JWT_CONFIG
+        WHERE JWT_ID = #{value}
+    </delete>
+
+    <!-- delete by ids，通过主键数组批量删除对象 -->
+    <delete id="deleteByIds">
+        DELETE FROM EMIS_PROTOCOL_JWT_CONFIG
+        WHERE JWT_ID IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- query total，通过输入的条件，查询返回结果的数量，返回值为int -->
+    <select id="getCount" resultType="int">
+        SELECT COUNT(1)
+        FROM EMIS_PROTOCOL_JWT_CONFIG B
+        WHERE 1 = 1
+        <include refid="commonList"></include>
+    </select>
+
+    <!-- get list with dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
+    <resultMap type="net.linlan.emis.protocol.dto.ProtocolJwtConfigDto" extends="protocolJwtConfigMap" id="protocolJwtConfigDtoMap">
+
+    </resultMap>
+
+    <!-- get page with param input dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
+    <select id="getPageDto" resultMap="protocolJwtConfigDtoMap">
+        SELECT
+B.JWT_ID, B.APP_ID, B.FOREIGN_ID, B.REDIRECT_URL, B.TARGET_LINK_URL, B.BINDING_TYPE, B.ID_TOKEN_SUBJECT_TYPE, B.ID_TOKEN_TIME_TO_LIVE, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_PROTOCOL_JWT_CONFIG B
+        WHERE 1=1
+        <include refid="commonList"></include>
+        <include refid="getListOrderBy"></include>
+
+    </select>
+
+    <!-- get dto with input id，通过ID，查询dto对象 -->
+    <select id="getDtoById" resultMap="protocolJwtConfigDtoMap">
+        SELECT
+B.JWT_ID, B.APP_ID, B.FOREIGN_ID, B.REDIRECT_URL, B.TARGET_LINK_URL, B.BINDING_TYPE, B.ID_TOKEN_SUBJECT_TYPE, B.ID_TOKEN_TIME_TO_LIVE, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_PROTOCOL_JWT_CONFIG B
+        WHERE JWT_ID = #{value}
+    </select>
+
+    <!-- 以下为新增特定的操作 -->
+
+
+</mapper>

@@ -60,7 +60,8 @@ public class WeChatWorkValidator implements IdentitySourceValidator<WeChatWorkCo
             String queryParams = "?corpid=" + config.getCorpId() + "&corpsecret="
                                  + config.getSecret();
             WeChatWorkAccessTokenResponse response = restOperations.getForObject(
-                WeChatWorkConstant.ACCESS_TOKEN_URL + queryParams, WeChatWorkAccessTokenResponse.class);
+                WeChatWorkConstant.ACCESS_TOKEN_URL + queryParams,
+                WeChatWorkAccessTokenResponse.class);
 
             if (Objects.nonNull(response)) {
                 if (response.getErrCode() != 0) {

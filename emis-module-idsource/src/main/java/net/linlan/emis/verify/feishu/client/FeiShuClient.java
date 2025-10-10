@@ -47,11 +47,11 @@ import net.linlan.emis.manage.vo.VerifyUser;
 import net.linlan.emis.manage.vo.VerifyUserDetail;
 import net.linlan.emis.verify.feishu.FeiShuConfig;
 import net.linlan.emis.verify.feishu.vo.FeishuBaseRequest;
-import net.linlan.emis.verify.feishu.vo.FeishuDeptListRequest;
-import net.linlan.emis.verify.feishu.vo.FeishuUserListRequest;
 import net.linlan.emis.verify.feishu.vo.FeishuDepartmentResponse;
+import net.linlan.emis.verify.feishu.vo.FeishuDeptListRequest;
 import net.linlan.emis.verify.feishu.vo.FeishuDetailsResponse;
 import net.linlan.emis.verify.feishu.vo.FeishuListResponse;
+import net.linlan.emis.verify.feishu.vo.FeishuUserListRequest;
 import net.linlan.emis.verify.feishu.vo.FeishuUserResponse;
 import static net.linlan.emis.verify.feishu.FeiShuConstant.*;
 

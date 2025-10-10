@@ -99,8 +99,8 @@ public abstract class AbstractFeiShuClient extends AbstractIdentitySourceClient<
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Object> requestEntity = new HttpEntity<>(JSON.toJSONString(json), headers);
-        ResponseEntity<FeishuAccessTokenResponse> response = restOperations.exchange(ACCESS_TOKEN_URL,
-            HttpMethod.POST, requestEntity, FeishuAccessTokenResponse.class);
+        ResponseEntity<FeishuAccessTokenResponse> response = restOperations.exchange(
+            ACCESS_TOKEN_URL, HttpMethod.POST, requestEntity, FeishuAccessTokenResponse.class);
         return response.getBody();
     }
 

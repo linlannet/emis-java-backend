@@ -22,7 +22,6 @@ import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
 import static net.linlan.emis.verify.feishu.FeiShuConstant.PAGE_SIZE;
 
 /**
