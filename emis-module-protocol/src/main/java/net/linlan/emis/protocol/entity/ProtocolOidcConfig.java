@@ -1,5 +1,5 @@
 /*
- * emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+ * emis-module-protocol - protocol协议配置
  * Copyright © 2020-2025 Linlan (open@linlan.net)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,17 +38,17 @@ public class ProtocolOidcConfig extends BaseEntity {
     /**
      * 主键ID
      */
-    private String id;
+    private String      id;
 
     /**
      * 应用ID
      */
-    private String appId;
+    private String      appId;
 
     /**
      * 外键ID
      */
-    private String foreignId;
+    private String      foreignId;
 
     /**
      * 客户端认证方法
@@ -83,85 +83,84 @@ public class ProtocolOidcConfig extends BaseEntity {
     /**
      * 是否需要授权同意
      */
-    private Boolean requireAuthConsent;
+    private Boolean     requireAuthConsent;
 
     /**
      * 需要PKCE
      */
-    private Boolean requireProofKey;
+    private Boolean     requireProofKey;
 
     /**
      * 令牌Endpoint身份验证签名算法
      */
-    private String tokenEndpointAuthSigningAlgorithm;
+    private String      tokenEndpointAuthSigningAlgorithm;
 
     /**
      * refresh_token 生存时间
      */
-    private Long refreshTokenTimeToLive;
+    private Long        refreshTokenTimeToLive;
 
     /**
      * 授权码生存时间
      */
-    private Long authorizationCodeTimeToLive;
+    private Long        authorizationCodeTimeToLive;
 
     /**
      * 设备授权码生存时间
      */
-    private Long deviceCodeTimeToLive;
+    private Long        deviceCodeTimeToLive;
 
     /**
      * ACCESS_token 生存时间
      */
-    private Long accessTokenTimeToLive;
+    private Long        accessTokenTimeToLive;
 
     /**
      * 生存时间ID_TOKEN
      */
-    private Long idTokenTimeToLive;
+    private Long        idTokenTimeToLive;
 
     /**
      * 签名算法ID_TOKEN
      */
-    private String idTokenSignatureAlgorithm;
+    private String      idTokenSignatureAlgorithm;
 
     /**
      * AccessToken 格式
      */
-    private String accessTokenFormat;
+    private String      accessTokenFormat;
 
     /**
      * 是否重用刷新令牌
      */
-    private Boolean reuseRefreshToken;
+    private Boolean     reuseRefreshToken;
 
     /**
      * 删除标记，0未删除1已删除
      */
-    private Integer delFlag;
+    private Integer     delFlag;
 
     /**
      * 备注
      */
-    private String description;
+    private String      description;
 
     /**
      * 备用1
      */
-    private String spare1;
+    private String      spare1;
 
     /**
      * 备用2
      */
-    private String spare2;
-
+    private String      spare2;
 
     /**
      * 初始化方法
      */
     public void init() {
         //添加对数据库或实体对象的默认值处理
-        if(getId() == null) {
+        if (getId() == null) {
             setId(RandomUtils.randomSid());
         }
 

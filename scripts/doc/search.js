@@ -33,78 +33,92 @@ api.push({
     list: []
 })
 api[2].list.push({
-    alias: 'EmisIdentityProviderController',
+    alias: 'AuditInfoController',
     order: '1',
-    link: 'emisidentityprovider控制域:身份提供商读写控制类',
-    desc: 'EmisIdentityProvider控制域:身份提供商读写控制类',
+    link: 'auditinfo控制域:行为审计读写控制类',
+    desc: 'AuditInfo控制域:行为审计读写控制类',
     list: []
 })
 api[2].list[0].list.push({
     order: '1',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/list.do',
-    desc: 'GetEmisIdentityProviderlist.获取身份提供商列表或分页,返回EmisIdentityProvider对象.',
+    url: 'https://linlan.net/emis_portal/api/audit/info/list.do',
+    desc: 'GetAuditInfolist.获取行为审计列表或分页,返回AuditInfo对象.',
 });
 api[2].list[0].list.push({
     order: '2',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/{id}.do',
-    desc: 'GetEmisIdentityProviderbyid.主键获取身份提供商详细信息.',
+    url: 'https://linlan.net/emis_portal/api/audit/info/{id}.do',
+    desc: 'GetAuditInfobyid.主键获取行为审计详细信息.',
 });
 api[2].list[0].list.push({
     order: '3',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/save.do',
-    desc: 'EmisIdentityProviderOperation.新增身份提供商数据操作逻辑，根据操作类型，执行新增操作.',
+    url: 'https://linlan.net/emis_portal/api/audit/info/save.do',
+    desc: 'AuditInfoOperation.新增行为审计数据操作逻辑，根据操作类型，执行新增操作.',
 });
 api[2].list[0].list.push({
     order: '4',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/update.do',
-    desc: 'EmisIdentityProviderOperation.修改身份提供商数据操作逻辑，根据操作类型，执行修改操作.',
+    url: 'https://linlan.net/emis_portal/api/audit/info/update.do',
+    desc: 'AuditInfoOperation.修改行为审计数据操作逻辑，根据操作类型，执行修改操作.',
 });
 api[2].list[0].list.push({
     order: '5',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/delete/{ids}.do',
-    desc: 'EmisIdentityProviderOperation.删除身份提供商数据操作逻辑，根据操作类型，执行删除操作.',
+    url: 'https://linlan.net/emis_portal/api/audit/info/delete/{ids}.do',
+    desc: 'AuditInfoOperation.删除行为审计数据操作逻辑，根据操作类型，执行删除操作.',
+});
+api[2].list[0].list.push({
+    order: '6',
+    deprecated: 'false',
+    url: 'https://linlan.net/emis_portal/api/audit/info/types/{user_type}.do',
+    desc: '获取审计字典类型',
 });
 api[2].list.push({
-    alias: 'IdentityProviderController',
+    alias: 'StorageFileEndpoint',
     order: '2',
-    link: 'identityprovider控制域:身份提供商读写控制类',
-    desc: 'IdentityProvider控制域:身份提供商读写控制类',
+    link: '存储配置',
+    desc: '存储配置',
     list: []
 })
 api[2].list[1].list.push({
     order: '1',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/list.do',
-    desc: 'GetIdentityProviderlist.获取身份提供商列表或分页,返回IdentityProvider对象.',
+    url: 'https://linlan.net/emis_portal/STORAGE_PATH/upload.do',
+    desc: '上传文件',
 });
 api[2].list[1].list.push({
     order: '2',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/{id}.do',
-    desc: 'GetIdentityProviderbyid.主键获取身份提供商详细信息.',
+    url: 'https://linlan.net/emis_portal/STORAGE_PATH/get.do',
+    desc: '获取存储文件路径',
 });
-api[2].list[1].list.push({
+api[2].list.push({
+    alias: 'PublicSecretEndpoint',
     order: '3',
+    link: '获取加密key',
+    desc: '获取加密key',
+    list: []
+})
+api[2].list[2].list.push({
+    order: '1',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/save.do',
-    desc: 'IdentityProviderOperation.新增身份提供商数据操作逻辑，根据操作类型，执行新增操作.',
+    url: 'https://linlan.net/emis_portal/api/V1/public/secret.do',
+    desc: '获取加密key',
 });
-api[2].list[1].list.push({
+api[2].list.push({
+    alias: 'JumpController',
     order: '4',
+    link: '跳转',
+    desc: '跳转',
+    list: []
+})
+api[2].list[3].list.push({
+    order: '1',
     deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/update.do',
-    desc: 'IdentityProviderOperation.修改身份提供商数据操作逻辑，根据操作类型，执行修改操作.',
-});
-api[2].list[1].list.push({
-    order: '5',
-    deprecated: 'false',
-    url: 'https://linlan.net/emis_portal/api/provider/identity/delete/{ids}.do',
-    desc: 'IdentityProviderOperation.删除身份提供商数据操作逻辑，根据操作类型，执行删除操作.',
+    url: 'https://linlan.net/emis_portal/EmisConstants.V1_API_PATH  /jump/.do',
+    desc: 'jump',
 });
 api.push({
     name: '错误码列表',

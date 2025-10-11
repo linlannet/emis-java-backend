@@ -1,5 +1,5 @@
 /*
- * emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+ * emis-module-protocol - protocol协议配置
  * Copyright © 2020-2025 Linlan (open@linlan.net)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,52 +36,52 @@ public class ProtocolOauth2Config extends BaseEntity {
     /**
      * 主键ID
      */
-    private String id;
+    private String  id;
 
     /**
      * 应用ID
      */
-    private String appId;
+    private String  appId;
 
     /**
      * 外键ID
      */
-    private String foreignId;
+    private String  foreignId;
 
     /**
      * 客户端ID
      */
-    private String clientId;
+    private String  clientId;
 
     /**
      * 客户端密匙
      */
-    private String clientSecret;
+    private String  clientSecret;
 
     /**
      * 客户端申请的权限范围
      */
-    private String scope;
+    private String  scope;
 
     /**
      * 资源ID集合,多个资源时用逗号(,)分隔
      */
-    private String resourceIds;
+    private String  resourceIds;
 
     /**
      * 客户端支持的grant_type
      */
-    private String authorizedGrantTypes;
+    private String  authorizedGrantTypes;
 
     /**
      * 重定向URI
      */
-    private String webServerRedirectUri;
+    private String  webServerRedirectUri;
 
     /**
      * 客户端所拥有的Spring Security的权限值，多个用逗号(,)分隔
      */
-    private String authorities;
+    private String  authorities;
 
     /**
      * 访问令牌有效时间值(单位:秒)
@@ -91,7 +91,7 @@ public class ProtocolOauth2Config extends BaseEntity {
     /**
      * 预留字段
      */
-    private String additionalInformation;
+    private String  additionalInformation;
 
     /**
      * 更新令牌有效时间值(单位:秒)
@@ -101,17 +101,17 @@ public class ProtocolOauth2Config extends BaseEntity {
     /**
      * 用户是否自动Approval操作
      */
-    private String autoapprove;
+    private String  autoapprove;
 
     /**
      * 算法
      */
-    private String algorithm;
+    private String  algorithm;
 
     /**
      * 算法加密值
      */
-    private String algorithmKey;
+    private String  algorithmKey;
 
     /**
      * 删除标记，0未删除1已删除
@@ -121,25 +121,24 @@ public class ProtocolOauth2Config extends BaseEntity {
     /**
      * 备注
      */
-    private String description;
+    private String  description;
 
     /**
      * 备用1
      */
-    private String spare1;
+    private String  spare1;
 
     /**
      * 备用2
      */
-    private String spare2;
-
+    private String  spare2;
 
     /**
      * 初始化方法
      */
     public void init() {
         //添加对数据库或实体对象的默认值处理
-        if(getId() == null) {
+        if (getId() == null) {
             setId(RandomUtils.randomSid());
         }
 

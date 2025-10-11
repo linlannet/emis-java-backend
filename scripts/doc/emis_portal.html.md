@@ -8,18 +8,18 @@ Version |  Update Time  | Status | Author |  Description
 # default
 # 平台通用接口API
 # EMIS平台接口API
-## EmisIdentityProvider控制域:身份提供商读写控制类
-### Get EmisIdentityProvider list. 获取身份提供商列表或分页, 返回EmisIdentityProvider对象.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/list.do
+## AuditInfo控制域:行为审计读写控制类
+### Get AuditInfo list. 获取行为审计列表或分页, 返回AuditInfo对象.
+**URL:** https://linlan.net/emis_portal/api/audit/info/list.do
 
 **Type:** GET
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:07:10<br>
+CreateTime 2025-09-06 15:55:04
 
 **Content-Type:** application/x-www-form-urlencoded;charset=utf-8
 
-**Description:** Get EmisIdentityProvider list. 获取身份提供商列表或分页, 返回EmisIdentityProvider对象.
+**Description:** Get AuditInfo list. 获取行为审计列表或分页, 返回AuditInfo对象.
 
 **Request-headers:**
 
@@ -38,24 +38,16 @@ startTime|string|开始时间|false|-
 endTime|string|结束时间|false|-
 page|int32|分页信息：默认第1页|false|-
 limit|int32|分页每页条数，默认10条|false|-
-id|string|主键ID|false|-
-foreignId|string|外键ID|false|-
-name|string|名称|false|-
-code|string|编码|false|-
-type|string|提供者类型|false|-
-config|string|配置JSON|false|-
-category|string|认证源分类（社交、企业）|false|-
-isEnabled|boolean|是否启用，0否1是|false|-
-isDisplayed|boolean|是否显示，0否1是|false|-
-creatorId|string|创建人ID|false|-
-delFlag|int32|删除标记，0未删除1已删除|false|-
-description|string|备注|false|-
-spare1|string|备用1|false|-
-spare2|string|备用2|false|-
+username|string|用户名|false|-
+eventType|array|审计类型<br/>LOGIN_PORTAL -(PortalEventType.LOGIN_PORTAL)<br/>LOGIN_CONSOLE -(AuthenticationEventType.LOGIN_CONSOLE)<br/>LOGOUT_PORTAL -(PortalEventType.LOGOUT_PORTAL)<br/>LOGOUT_CONSOLE -(AuthenticationEventType.LOGOUT_CONSOLE)<br/>CREATE_ORG -(AccountEventType.CREATE_ORG)<br/>UPDATE_ORG -(AccountEventType.UPDATE_ORG)<br/>DELETE_ORG -(AccountEventType.DELETE_ORGANIZATION)<br/>MOVE_ORGANIZATION -(AccountEventType.MOVE_ORGANIZATION)<br/>CREATE_ORGANIZATION_MEMBER -(AccountEventType.CREATE_ORGANIZATION_MEMBER)<br/>CREATE_USER -(AccountEventType.CREATE_USER)<br/>UPDATE_USER -(AccountEventType.UPDATE_USER)<br/>DELETE_USER -(AccountEventType.DELETE_USER)<br/>ENABLE_USER -(AccountEventType.ENABLE_USER)<br/>DISABLE_USER -(AccountEventType.DISABLE_USER)<br/>USER_RESIGN -(AccountEventType.USER_RESIGN)<br/>MODIFY_USER_PHONE -(AccountEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_PASSWORD -(AccountEventType.MODIFY_USER_PASSWORD)<br/>UNLOCK_USER -(AccountEventType.UNLOCK_USER)<br/>MODIFY_ACCOUNT_INFO_PORTAL -(PortalEventType.MODIFY_ACCOUNT_INFO)<br/>MODIFY_USER_PASSWORD_PORTAL -(PortalEventType.MODIFY_USER_PASSWORD)<br/>MODIFY_USER_PHONE_PORTAL -(PortalEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_EMAIL_PORTAL -(PortalEventType.MODIFY_USER_EMAIL)<br/>BIND_MFA -(PortalEventType.BIND_MFA)<br/>UNBIND_MFA -(PortalEventType.UNBIND_MFA)<br/>BIND_IDP_USER -(PortalEventType.BIND_IDP_USER)<br/>UNBIND_IDP_USER -(PortalEventType.UNBIND_IDP_USER)<br/>PREPARE_MODIFY_PASSWORD -(PortalEventType.PREPARE_MODIFY_PASSWORD)<br/>PREPARE_MODIFY_MOBILE -(PortalEventType.PREPARE_MODIFY_MOBILE)<br/>PREPARE_MODIFY_EMAIL -(PortalEventType.PREPARE_MODIFY_EMAIL)<br/>PREPARE_BIND_MFA -(PortalEventType.PREPARE_BIND_MFA)<br/>CREATE_USER_GROUP -(AccountEventType.CREATE_USER_GROUP)<br/>UPDATE_USER_GROUP -(AccountEventType.UPDATE_USER_GROUP)<br/>DELETE_USER_GROUP -(AccountEventType.DELETE_USER_GROUP)<br/>ADD_USER_GROUP_MEMBER -(AccountEventType.ADD_USER_GROUP_MEMBER)<br/>REMOVE_USER_GROUP_MEMBER -(AccountEventType.REMOVE_USER_GROUP_MEMBER)<br/>CREATE_USER_DYNAMIC_GROUP -(AccountEventType.CREATE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP)<br/>DELETE_USER_DYNAMIC_GROUP -(AccountEventType.DELETE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE)<br/>CREATE_IDENTITY_RESOURCE -(AccountEventType.CREATE_IDENTITY_RESOURCE)<br/>UPDATE_IDENTITY_RESOURCE -(AccountEventType.UPDATE_IDENTITY_RESOURCE)<br/>DELETE_IDENTITY_RESOURCE -(AccountEventType.DELETE_IDENTITY_RESOURCE)<br/>ENABLE_IDENTITY_RESOURCE -(AccountEventType.ENABLE_IDENTITY_RESOURCE)<br/>DISABLE_IDENTITY_RESOURCE -(AccountEventType.DISABLE_IDENTITY_RESOURCE)<br/>IDENTITY_RESOURCE_SYNC -(AccountEventType.IDENTITY_RESOURCE_SYNC)<br/>ADD_IDP -(AuthenticationEventType.ADD_IDP)<br/>UPDATE_IDP -(AuthenticationEventType.UPDATE_IDP)<br/>DELETE_IDP -(AuthenticationEventType.DELETE_IDP)<br/>ENABLE_IDP -(AuthenticationEventType.ENABLE_IDP)<br/>DISABLE_IDP -(AuthenticationEventType.DISABLE_IDP)<br/>APP_SSO -(PortalEventType.APP_SSO)<br/>APP_SLO -(PortalEventType.APP_SLO)<br/>ADD_APP -(AppEventType.ADD_APP)<br/>ENABLE_APP -(AppEventType.ENABLE_APP)<br/>DISABLE_APP -(AppEventType.DISABLE_APP)<br/>UPDATE_APP -(AppEventType.UPDATE_APP)<br/>SAVE_APP_CONFIG -(AppEventType.SAVE_APP_CONFIG)<br/>DELETE_APP -(AppEventType.DELETE_APP)<br/>APP_AUTHORIZATION -(AppEventType.APP_ACCESS_POLICY)<br/>ENABLE_APP_ACCESS_POLICY -(AppEventType.ENABLE_APP_ACCESS_POLICY)<br/>DISABLE_APP_ACCESS_POLICY -(AppEventType.DISABLE_APP_ACCESS_POLICY)<br/>APP_CANCEL_ACCESS_POLICY -(AppEventType.APP_CANCEL_ACCESS_POLICY)<br/>ADD_APP_ACCOUNT -(AppEventType.ADD_APP_ACCOUNT)<br/>UPDATE_DEFAULT_APP_ACCOUNT -(AppEventType.UPDATE_DEFAULT_APP_ACCOUNT)<br/>DELETE_APP_ACCOUNT -(AppEventType.DELETE_APP_ACCOUNT)<br/>SAVE_SSO_CONFIG -(AppEventType.SAVE_SSO_CONFIG)<br/>SAVE_APP_PERMISSION_RESOURCE -(AppEventType.SAVE_APP_PERMISSION_RESOURCE)<br/>UPDATE_APP_PERMISSION_RESOURCE -(AppEventType.UPDATE_APP_PERMISSION_RESOURCE)<br/>DELETE_APP_PERMISSION_RESOURCE -(AppEventType.DELETE_APP_PERMISSION_RESOURCE)<br/>ENABLE_APP_PERMISSION_RESOURCE -(AppEventType.ENABLE_APP_PERMISSION_RESOURCE)<br/>DISABLE_APP_PERMISSION_RESOURCE -(AppEventType.DISABLE_APP_PERMISSION_RESOURCE)<br/>DELETE_USER_IDP_BIND -(AppEventType.DELETE_USER_IDP_BIND)<br/>SAVE_APP_PERMISSION_ROLE -(AppEventType.SAVE_APP_PERMISSION_ROLE)<br/>UPDATE_APP_PERMISSION_ROLE -(AppEventType.UPDATE_APP_PERMISSION_ROLE)<br/>DELETE_APP_PERMISSION_ROLE -(AppEventType.DELETE_APP_PERMISSION_ROLE)<br/>SAVE_LOGIN_SECURITY_BASIC_SETTINGS -(SettingEventType.SAVE_LOGIN_SECURITY_BASIC_SETTINGS)<br/>SAVE_SECURITY_POLICY_SETTINGS -(SettingEventType.SAVE_SECURITY_POLICY_SETTINGS)<br/>SAVE_PASSWORD_POLICY -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>UPDATE_PASSWORD_POLICY -(SettingEventType.UPDATE_PASSWORD_POLICY)<br/>DELETE_PASSWORD_POLICY -(SettingEventType.DELETE_PASSWORD_POLICY)<br/>ENABLE_PASSWORD_POLICY -(SettingEventType.ENABLE_PASSWORD_POLICY)<br/>DISABLE_PASSWORD_POLICY -(SettingEventType.DISABLE_PASSWORD_POLICY)<br/>SORT_PASSWORD_POLICY -(SettingEventType.SORT_PASSWORD_POLICY)<br/>ADD_ADMINISTRATOR -(SettingEventType.ADD_ADMINISTRATOR)<br/>UPDATE_ADMINISTRATOR -(SettingEventType.UPDATE_ADMINISTRATOR)<br/>DELETE_ADMINISTRATOR -(SettingEventType.DELETE_ADMINISTRATOR)<br/>ENABLE_ADMINISTRATOR -(SettingEventType.ENABLE_ADMINISTRATOR)<br/>DISABLE_ADMINISTRATOR -(SettingEventType.DISABLE_ADMINISTRATOR)<br/>RESET_ADMINISTRATOR_PASSWORD -(SettingEventType.RESET_ADMINISTRATOR_PASSWORD)<br/>ADD_ADMINISTRATOR_ROLE -(SettingEventType.ADD_ADMINISTRATOR_ROLE)<br/>UPDATE_ADMINISTRATOR_ROLE -(SettingEventType.UPDATE_ADMINISTRATOR_ROLE)<br/>DELETE_ADMINISTRATOR_ROLE -(SettingEventType.DELETE_ADMINISTRATOR_ROLE)<br/>ENABLE_ADMINISTRATOR_ROLE -(SettingEventType.ENABLE_ADMINISTRATOR_ROLE)<br/>DISABLE_ADMINISTRATOR_ROLE -(SettingEventType.DISABLE_ADMINISTRATOR_ROLE)<br/>SAVE_MAIL_TEMPLATE -(SettingEventType.SAVE_MAIL_TEMPLATE)<br/>SAVE_MAIL_SERVICE -(SettingEventType.SAVE_MAIL_SERVICE)<br/>OFF_MAIL_SERVICE -(SettingEventType.OFF_MAIL_SERVICE)<br/>SAVE_SMS_SERVICE -(SettingEventType.SAVE_SMS_SERVICE)<br/>OFF_SMS_SERVICE -(SettingEventType.OFF_SMS_SERVICE)<br/>SAVE_GEO_LOCATION_SERVICE -(SettingEventType.SAVE_GEO_LOCATION_SERVICE)<br/>OFF_GEO_LOCATION_SERVICE -(SettingEventType.OFF_GEO_LOCATION_SERVICE)<br/>SAVE_STORAGE_SERVICE -(SettingEventType.SAVE_STORAGE_SERVICE)<br/>OFF_STORAGE_SERVICE -(SettingEventType.OFF_STORAGE_SERVICE)<br/>DOWN_LINE_SESSION -(MonitorEventType.DOWN_LINE_SESSION)<br/>ADD_APP_GROUP -(AppEventType.ADD_APP_GROUP)<br/>UPDATE_APP_GROUP -(AppEventType.UPDATE_APP_GROUP)<br/>DELETE_APP_GROUP -(AppEventType.DELETE_APP_GROUP)<br/>REMOVE_APP_GROUP_ASSOCIATION -(AppEventType.REMOVE_APP_GROUP_ASSOCIATION)<br/>SIGN_OUT_APP -(AppEventType.APP_SSO_LOGOUT)<br/>SAVE_PASSWORD_POLICY_SETTINGS -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>SAVE_MFA_SETTINGS -(SettingEventType.SAVE_MFA_SETTINGS)<br/>SAVE_CAPTCHA_PROVIDER -(SettingEventType.SAVE_CAPTCHA_PROVIDER)<br/>|false|-
+userType|string|用户类型|true|-
+eventStatus|enum|事件状态<br/>SUCCESS -("success","成功")<br/>FAIL -("fail","失败")<br/>|false|-
+startEventTime|string|事件开始时间|false|-
+endEventTime|string|事件结束时间|false|-
 
 **Request-example:**
 ```
-curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/list.do?orderBy=318&isDisplayed=true&foreignId=33&creatorId=33&endTime=2025-09-05 23:52:20&isEnabled=true&delFlag=8&description=4ntv38&spare2=ope208&name=renee.stehr&id=33&category=9hsryr&code=86144&limit=10&startTime=2025-09-05 23:52:20&q=tp5ybu&page=1&type=ujxt2g&spare1=myn3pv&config=ox4cst
+curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/audit/info/list.do?endTime=2025-10-11 22:39:08&startTime=2025-10-11 22:39:08&page=1&eventStatus=SUCCESS&username=lorine.rohan&orderBy=886&startEventTime=2025-10-11 22:39:19&endEventTime=2025-10-11 22:39:19&userType=03u366&q=wdvi7p&limit=10
 ```
 **Response-fields:**
 
@@ -70,14 +62,47 @@ data|array|返回数据对象|-
 └─lastTime|string|最后修改时间|-
 └─id|string|主键ID|-
 └─foreignId|string|外键ID|-
-└─name|string|名称|-
-└─code|string|编码|-
-└─type|string|提供者类型|-
-└─config|string|配置JSON|-
-└─category|string|认证源分类（社交、企业）|-
-└─isEnabled|boolean|是否启用，0否1是|-
-└─isDisplayed|boolean|是否显示，0否1是|-
-└─priority|int32|排序码|-
+└─requestId|string|请求ID|-
+└─sessionId|string|会话ID|-
+└─eventType|enum|事件类型<br/>LOGIN_PORTAL -(PortalEventType.LOGIN_PORTAL)<br/>LOGIN_CONSOLE -(AuthenticationEventType.LOGIN_CONSOLE)<br/>LOGOUT_PORTAL -(PortalEventType.LOGOUT_PORTAL)<br/>LOGOUT_CONSOLE -(AuthenticationEventType.LOGOUT_CONSOLE)<br/>CREATE_ORG -(AccountEventType.CREATE_ORG)<br/>UPDATE_ORG -(AccountEventType.UPDATE_ORG)<br/>DELETE_ORG -(AccountEventType.DELETE_ORGANIZATION)<br/>MOVE_ORGANIZATION -(AccountEventType.MOVE_ORGANIZATION)<br/>CREATE_ORGANIZATION_MEMBER -(AccountEventType.CREATE_ORGANIZATION_MEMBER)<br/>CREATE_USER -(AccountEventType.CREATE_USER)<br/>UPDATE_USER -(AccountEventType.UPDATE_USER)<br/>DELETE_USER -(AccountEventType.DELETE_USER)<br/>ENABLE_USER -(AccountEventType.ENABLE_USER)<br/>DISABLE_USER -(AccountEventType.DISABLE_USER)<br/>USER_RESIGN -(AccountEventType.USER_RESIGN)<br/>MODIFY_USER_PHONE -(AccountEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_PASSWORD -(AccountEventType.MODIFY_USER_PASSWORD)<br/>UNLOCK_USER -(AccountEventType.UNLOCK_USER)<br/>MODIFY_ACCOUNT_INFO_PORTAL -(PortalEventType.MODIFY_ACCOUNT_INFO)<br/>MODIFY_USER_PASSWORD_PORTAL -(PortalEventType.MODIFY_USER_PASSWORD)<br/>MODIFY_USER_PHONE_PORTAL -(PortalEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_EMAIL_PORTAL -(PortalEventType.MODIFY_USER_EMAIL)<br/>BIND_MFA -(PortalEventType.BIND_MFA)<br/>UNBIND_MFA -(PortalEventType.UNBIND_MFA)<br/>BIND_IDP_USER -(PortalEventType.BIND_IDP_USER)<br/>UNBIND_IDP_USER -(PortalEventType.UNBIND_IDP_USER)<br/>PREPARE_MODIFY_PASSWORD -(PortalEventType.PREPARE_MODIFY_PASSWORD)<br/>PREPARE_MODIFY_MOBILE -(PortalEventType.PREPARE_MODIFY_MOBILE)<br/>PREPARE_MODIFY_EMAIL -(PortalEventType.PREPARE_MODIFY_EMAIL)<br/>PREPARE_BIND_MFA -(PortalEventType.PREPARE_BIND_MFA)<br/>CREATE_USER_GROUP -(AccountEventType.CREATE_USER_GROUP)<br/>UPDATE_USER_GROUP -(AccountEventType.UPDATE_USER_GROUP)<br/>DELETE_USER_GROUP -(AccountEventType.DELETE_USER_GROUP)<br/>ADD_USER_GROUP_MEMBER -(AccountEventType.ADD_USER_GROUP_MEMBER)<br/>REMOVE_USER_GROUP_MEMBER -(AccountEventType.REMOVE_USER_GROUP_MEMBER)<br/>CREATE_USER_DYNAMIC_GROUP -(AccountEventType.CREATE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP)<br/>DELETE_USER_DYNAMIC_GROUP -(AccountEventType.DELETE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE)<br/>CREATE_IDENTITY_RESOURCE -(AccountEventType.CREATE_IDENTITY_RESOURCE)<br/>UPDATE_IDENTITY_RESOURCE -(AccountEventType.UPDATE_IDENTITY_RESOURCE)<br/>DELETE_IDENTITY_RESOURCE -(AccountEventType.DELETE_IDENTITY_RESOURCE)<br/>ENABLE_IDENTITY_RESOURCE -(AccountEventType.ENABLE_IDENTITY_RESOURCE)<br/>DISABLE_IDENTITY_RESOURCE -(AccountEventType.DISABLE_IDENTITY_RESOURCE)<br/>IDENTITY_RESOURCE_SYNC -(AccountEventType.IDENTITY_RESOURCE_SYNC)<br/>ADD_IDP -(AuthenticationEventType.ADD_IDP)<br/>UPDATE_IDP -(AuthenticationEventType.UPDATE_IDP)<br/>DELETE_IDP -(AuthenticationEventType.DELETE_IDP)<br/>ENABLE_IDP -(AuthenticationEventType.ENABLE_IDP)<br/>DISABLE_IDP -(AuthenticationEventType.DISABLE_IDP)<br/>APP_SSO -(PortalEventType.APP_SSO)<br/>APP_SLO -(PortalEventType.APP_SLO)<br/>ADD_APP -(AppEventType.ADD_APP)<br/>ENABLE_APP -(AppEventType.ENABLE_APP)<br/>DISABLE_APP -(AppEventType.DISABLE_APP)<br/>UPDATE_APP -(AppEventType.UPDATE_APP)<br/>SAVE_APP_CONFIG -(AppEventType.SAVE_APP_CONFIG)<br/>DELETE_APP -(AppEventType.DELETE_APP)<br/>APP_AUTHORIZATION -(AppEventType.APP_ACCESS_POLICY)<br/>ENABLE_APP_ACCESS_POLICY -(AppEventType.ENABLE_APP_ACCESS_POLICY)<br/>DISABLE_APP_ACCESS_POLICY -(AppEventType.DISABLE_APP_ACCESS_POLICY)<br/>APP_CANCEL_ACCESS_POLICY -(AppEventType.APP_CANCEL_ACCESS_POLICY)<br/>ADD_APP_ACCOUNT -(AppEventType.ADD_APP_ACCOUNT)<br/>UPDATE_DEFAULT_APP_ACCOUNT -(AppEventType.UPDATE_DEFAULT_APP_ACCOUNT)<br/>DELETE_APP_ACCOUNT -(AppEventType.DELETE_APP_ACCOUNT)<br/>SAVE_SSO_CONFIG -(AppEventType.SAVE_SSO_CONFIG)<br/>SAVE_APP_PERMISSION_RESOURCE -(AppEventType.SAVE_APP_PERMISSION_RESOURCE)<br/>UPDATE_APP_PERMISSION_RESOURCE -(AppEventType.UPDATE_APP_PERMISSION_RESOURCE)<br/>DELETE_APP_PERMISSION_RESOURCE -(AppEventType.DELETE_APP_PERMISSION_RESOURCE)<br/>ENABLE_APP_PERMISSION_RESOURCE -(AppEventType.ENABLE_APP_PERMISSION_RESOURCE)<br/>DISABLE_APP_PERMISSION_RESOURCE -(AppEventType.DISABLE_APP_PERMISSION_RESOURCE)<br/>DELETE_USER_IDP_BIND -(AppEventType.DELETE_USER_IDP_BIND)<br/>SAVE_APP_PERMISSION_ROLE -(AppEventType.SAVE_APP_PERMISSION_ROLE)<br/>UPDATE_APP_PERMISSION_ROLE -(AppEventType.UPDATE_APP_PERMISSION_ROLE)<br/>DELETE_APP_PERMISSION_ROLE -(AppEventType.DELETE_APP_PERMISSION_ROLE)<br/>SAVE_LOGIN_SECURITY_BASIC_SETTINGS -(SettingEventType.SAVE_LOGIN_SECURITY_BASIC_SETTINGS)<br/>SAVE_SECURITY_POLICY_SETTINGS -(SettingEventType.SAVE_SECURITY_POLICY_SETTINGS)<br/>SAVE_PASSWORD_POLICY -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>UPDATE_PASSWORD_POLICY -(SettingEventType.UPDATE_PASSWORD_POLICY)<br/>DELETE_PASSWORD_POLICY -(SettingEventType.DELETE_PASSWORD_POLICY)<br/>ENABLE_PASSWORD_POLICY -(SettingEventType.ENABLE_PASSWORD_POLICY)<br/>DISABLE_PASSWORD_POLICY -(SettingEventType.DISABLE_PASSWORD_POLICY)<br/>SORT_PASSWORD_POLICY -(SettingEventType.SORT_PASSWORD_POLICY)<br/>ADD_ADMINISTRATOR -(SettingEventType.ADD_ADMINISTRATOR)<br/>UPDATE_ADMINISTRATOR -(SettingEventType.UPDATE_ADMINISTRATOR)<br/>DELETE_ADMINISTRATOR -(SettingEventType.DELETE_ADMINISTRATOR)<br/>ENABLE_ADMINISTRATOR -(SettingEventType.ENABLE_ADMINISTRATOR)<br/>DISABLE_ADMINISTRATOR -(SettingEventType.DISABLE_ADMINISTRATOR)<br/>RESET_ADMINISTRATOR_PASSWORD -(SettingEventType.RESET_ADMINISTRATOR_PASSWORD)<br/>ADD_ADMINISTRATOR_ROLE -(SettingEventType.ADD_ADMINISTRATOR_ROLE)<br/>UPDATE_ADMINISTRATOR_ROLE -(SettingEventType.UPDATE_ADMINISTRATOR_ROLE)<br/>DELETE_ADMINISTRATOR_ROLE -(SettingEventType.DELETE_ADMINISTRATOR_ROLE)<br/>ENABLE_ADMINISTRATOR_ROLE -(SettingEventType.ENABLE_ADMINISTRATOR_ROLE)<br/>DISABLE_ADMINISTRATOR_ROLE -(SettingEventType.DISABLE_ADMINISTRATOR_ROLE)<br/>SAVE_MAIL_TEMPLATE -(SettingEventType.SAVE_MAIL_TEMPLATE)<br/>SAVE_MAIL_SERVICE -(SettingEventType.SAVE_MAIL_SERVICE)<br/>OFF_MAIL_SERVICE -(SettingEventType.OFF_MAIL_SERVICE)<br/>SAVE_SMS_SERVICE -(SettingEventType.SAVE_SMS_SERVICE)<br/>OFF_SMS_SERVICE -(SettingEventType.OFF_SMS_SERVICE)<br/>SAVE_GEO_LOCATION_SERVICE -(SettingEventType.SAVE_GEO_LOCATION_SERVICE)<br/>OFF_GEO_LOCATION_SERVICE -(SettingEventType.OFF_GEO_LOCATION_SERVICE)<br/>SAVE_STORAGE_SERVICE -(SettingEventType.SAVE_STORAGE_SERVICE)<br/>OFF_STORAGE_SERVICE -(SettingEventType.OFF_STORAGE_SERVICE)<br/>DOWN_LINE_SESSION -(MonitorEventType.DOWN_LINE_SESSION)<br/>ADD_APP_GROUP -(AppEventType.ADD_APP_GROUP)<br/>UPDATE_APP_GROUP -(AppEventType.UPDATE_APP_GROUP)<br/>DELETE_APP_GROUP -(AppEventType.DELETE_APP_GROUP)<br/>REMOVE_APP_GROUP_ASSOCIATION -(AppEventType.REMOVE_APP_GROUP_ASSOCIATION)<br/>SIGN_OUT_APP -(AppEventType.APP_SSO_LOGOUT)<br/>SAVE_PASSWORD_POLICY_SETTINGS -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>SAVE_MFA_SETTINGS -(SettingEventType.SAVE_MFA_SETTINGS)<br/>SAVE_CAPTCHA_PROVIDER -(SettingEventType.SAVE_CAPTCHA_PROVIDER)<br/>|-
+└─eventParam|string|事件参数|-
+└─eventContent|string|事件内容|-
+└─eventResult|string|事件结果|-
+└─eventTime|string|事件时间|-
+└─eventStatus|enum|事件状态<br/>SUCCESS -("success","成功")<br/>FAIL -("fail","失败")<br/>|-
+└─actorId|string|操作者ID|-
+└─actorType|string|操作者类型|-
+└─actorAuthType|string|操作者认证类型|-
+└─target|array|操作目标|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─id|string|目标 ID|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|目标名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─type|enum|目标类型<br/>USER -("user","用户")<br/>USER_DETAIL -("user_detail","用户详情")<br/>USER_GROUP -("user_group","用户组")<br/>USER_GROUP_MEMBER -("user_group_member","用户组成员")<br/>IDENTITY_SOURCE -("identity_source","身份源")<br/>ORGANIZATION -("organization","组织机构")<br/>APPLICATION -("application","应用")<br/>APPLICATION_ACCOUNT -("application_account","应用账户")<br/>SESSION -("session","会话管理")<br/>APP_PERMISSION_RESOURCE -("app_permission_resource","应用权限")<br/>APP_PERMISSION_POLICY -("app_permission_policy","应用权限策略")<br/>APP_PERMISSION_ROLE -("app_permission_role","应用权限角色")<br/>APP_GROUP -("app_group","应用分组")<br/>ROLE -("role","系统角色")<br/>ADMINISTRATOR -("administrator","管理员")<br/>PASSWORD_POLICY -("password_policy","密码策略")<br/>MAIL_TEMPLATE -("mail_template","邮件模版")<br/>IDENTITY_PROVIDER -("identity_provider","身份认证提供商")<br/>CONSOLE -("console","控制台")<br/>PORTAL -("portal","门户端")<br/>USER_IDP -("user_idp","用户绑定三方用户")<br/>|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─typeName|string|目标类型名称|-
+└─userAgent|object|用户代理|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─deviceType|string|设备类型|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platform|string|系统平台|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platformVersion|string|平台版本|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browser|string|浏览器|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserType|string|浏览器类型|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserMajorVersion|string|浏览器主版本|-
+└─geoLocation|object|地理位置|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ip|string|IP|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentCode|string|continent code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentName|string|continent Name|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryCode|string|国家code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryName|string|国家名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceCode|string|省份code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceName|string|省份|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityCode|string|城市code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityName|string|城市名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─point|object|地理坐标|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lat|double|经度|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lon|double|维度|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provider|object|提供商|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─code|string|code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─downloadUrl|string|库文件下载地址|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─sha256Url|string|sha256校验文件下载地址|-
 └─delFlag|int32|删除标记，0未删除1已删除|-
 └─description|string|备注|-
 └─spare1|string|备用1|-
@@ -93,41 +118,77 @@ timestamp|string|返回时间戳字符串|-
   "msg": "正常",
   "data": [
     {
-      "creatorId": "33",
-      "createTime": "2025-09-05 23:52:28",
-      "lastTime": "2025-09-05 23:52:28",
-      "id": "33",
-      "foreignId": "33",
-      "name": "renee.stehr",
-      "code": "86144",
-      "type": "92i0sy",
-      "config": "hm4m4s",
-      "category": "mwgmfo",
-      "isEnabled": true,
-      "isDisplayed": true,
-      "priority": 103,
-      "delFlag": 8,
-      "description": "zmq1qi",
-      "spare1": "cdeths",
-      "spare2": "el9dfa"
+      "creatorId": "19",
+      "createTime": "2025-10-11 22:39:19",
+      "lastTime": "2025-10-11 22:39:19",
+      "id": "19",
+      "foreignId": "19",
+      "requestId": "19",
+      "sessionId": "19",
+      "eventType": "LOGIN_PORTAL",
+      "eventParam": "evr0lz",
+      "eventContent": "crdf72",
+      "eventResult": "b7yzpf",
+      "eventTime": "2025-10-11 22:39:19",
+      "eventStatus": "SUCCESS",
+      "actorId": "19",
+      "actorType": "47ol9w",
+      "actorAuthType": "yusa6k",
+      "target": [
+        {
+          "id": "19",
+          "name": "lorine.rohan",
+          "type": "USER",
+          "typeName": "lorine.rohan"
+        }
+      ],
+      "userAgent": {
+        "deviceType": "edxu3g",
+        "platform": "3kz3ff",
+        "platformVersion": "0.61",
+        "browser": "vuspz9",
+        "browserType": "t6ioxi",
+        "browserMajorVersion": "0.61"
+      },
+      "geoLocation": {
+        "ip": "207.171.28.69",
+        "continentCode": "59282",
+        "continentName": "lorine.rohan",
+        "countryCode": "59282",
+        "countryName": "lorine.rohan",
+        "provinceCode": "59282",
+        "provinceName": "lorine.rohan",
+        "cityCode": "59282",
+        "cityName": "lorine.rohan",
+        "point": {
+          "$ref": "..."
+        },
+        "provider": {
+          "$ref": "..."
+        }
+      },
+      "delFlag": 4,
+      "description": "d0cn09",
+      "spare1": "9rqos3",
+      "spare2": "8w7bp0"
     }
   ],
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
 }
 ```
 
-### Get EmisIdentityProvider by id. 主键获取身份提供商详细信息.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/{id}.do
+### Get AuditInfo by id. 主键获取行为审计详细信息.
+**URL:** https://linlan.net/emis_portal/api/audit/info/{id}.do
 
 **Type:** GET
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:07:10<br>
+CreateTime 2025-09-06 15:55:04
 
 **Content-Type:** application/x-www-form-urlencoded;charset=utf-8
 
-**Description:** Get EmisIdentityProvider by id. 主键获取身份提供商详细信息.
+**Description:** Get AuditInfo by id. 主键获取行为审计详细信息.
 
 **Request-headers:**
 
@@ -144,7 +205,7 @@ id|string|主键ID|true|-
 
 **Request-example:**
 ```
-curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/1.do
+curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/audit/info/1.do
 ```
 **Response-fields:**
 
@@ -159,14 +220,47 @@ data|object|返回数据对象|-
 └─lastTime|string|最后修改时间|-
 └─id|string|主键ID|-
 └─foreignId|string|外键ID|-
-└─name|string|名称|-
-└─code|string|编码|-
-└─type|string|提供者类型|-
-└─config|string|配置JSON|-
-└─category|string|认证源分类（社交、企业）|-
-└─isEnabled|boolean|是否启用，0否1是|-
-└─isDisplayed|boolean|是否显示，0否1是|-
-└─priority|int32|排序码|-
+└─requestId|string|请求ID|-
+└─sessionId|string|会话ID|-
+└─eventType|enum|事件类型<br/>LOGIN_PORTAL -(PortalEventType.LOGIN_PORTAL)<br/>LOGIN_CONSOLE -(AuthenticationEventType.LOGIN_CONSOLE)<br/>LOGOUT_PORTAL -(PortalEventType.LOGOUT_PORTAL)<br/>LOGOUT_CONSOLE -(AuthenticationEventType.LOGOUT_CONSOLE)<br/>CREATE_ORG -(AccountEventType.CREATE_ORG)<br/>UPDATE_ORG -(AccountEventType.UPDATE_ORG)<br/>DELETE_ORG -(AccountEventType.DELETE_ORGANIZATION)<br/>MOVE_ORGANIZATION -(AccountEventType.MOVE_ORGANIZATION)<br/>CREATE_ORGANIZATION_MEMBER -(AccountEventType.CREATE_ORGANIZATION_MEMBER)<br/>CREATE_USER -(AccountEventType.CREATE_USER)<br/>UPDATE_USER -(AccountEventType.UPDATE_USER)<br/>DELETE_USER -(AccountEventType.DELETE_USER)<br/>ENABLE_USER -(AccountEventType.ENABLE_USER)<br/>DISABLE_USER -(AccountEventType.DISABLE_USER)<br/>USER_RESIGN -(AccountEventType.USER_RESIGN)<br/>MODIFY_USER_PHONE -(AccountEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_PASSWORD -(AccountEventType.MODIFY_USER_PASSWORD)<br/>UNLOCK_USER -(AccountEventType.UNLOCK_USER)<br/>MODIFY_ACCOUNT_INFO_PORTAL -(PortalEventType.MODIFY_ACCOUNT_INFO)<br/>MODIFY_USER_PASSWORD_PORTAL -(PortalEventType.MODIFY_USER_PASSWORD)<br/>MODIFY_USER_PHONE_PORTAL -(PortalEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_EMAIL_PORTAL -(PortalEventType.MODIFY_USER_EMAIL)<br/>BIND_MFA -(PortalEventType.BIND_MFA)<br/>UNBIND_MFA -(PortalEventType.UNBIND_MFA)<br/>BIND_IDP_USER -(PortalEventType.BIND_IDP_USER)<br/>UNBIND_IDP_USER -(PortalEventType.UNBIND_IDP_USER)<br/>PREPARE_MODIFY_PASSWORD -(PortalEventType.PREPARE_MODIFY_PASSWORD)<br/>PREPARE_MODIFY_MOBILE -(PortalEventType.PREPARE_MODIFY_MOBILE)<br/>PREPARE_MODIFY_EMAIL -(PortalEventType.PREPARE_MODIFY_EMAIL)<br/>PREPARE_BIND_MFA -(PortalEventType.PREPARE_BIND_MFA)<br/>CREATE_USER_GROUP -(AccountEventType.CREATE_USER_GROUP)<br/>UPDATE_USER_GROUP -(AccountEventType.UPDATE_USER_GROUP)<br/>DELETE_USER_GROUP -(AccountEventType.DELETE_USER_GROUP)<br/>ADD_USER_GROUP_MEMBER -(AccountEventType.ADD_USER_GROUP_MEMBER)<br/>REMOVE_USER_GROUP_MEMBER -(AccountEventType.REMOVE_USER_GROUP_MEMBER)<br/>CREATE_USER_DYNAMIC_GROUP -(AccountEventType.CREATE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP)<br/>DELETE_USER_DYNAMIC_GROUP -(AccountEventType.DELETE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE)<br/>CREATE_IDENTITY_RESOURCE -(AccountEventType.CREATE_IDENTITY_RESOURCE)<br/>UPDATE_IDENTITY_RESOURCE -(AccountEventType.UPDATE_IDENTITY_RESOURCE)<br/>DELETE_IDENTITY_RESOURCE -(AccountEventType.DELETE_IDENTITY_RESOURCE)<br/>ENABLE_IDENTITY_RESOURCE -(AccountEventType.ENABLE_IDENTITY_RESOURCE)<br/>DISABLE_IDENTITY_RESOURCE -(AccountEventType.DISABLE_IDENTITY_RESOURCE)<br/>IDENTITY_RESOURCE_SYNC -(AccountEventType.IDENTITY_RESOURCE_SYNC)<br/>ADD_IDP -(AuthenticationEventType.ADD_IDP)<br/>UPDATE_IDP -(AuthenticationEventType.UPDATE_IDP)<br/>DELETE_IDP -(AuthenticationEventType.DELETE_IDP)<br/>ENABLE_IDP -(AuthenticationEventType.ENABLE_IDP)<br/>DISABLE_IDP -(AuthenticationEventType.DISABLE_IDP)<br/>APP_SSO -(PortalEventType.APP_SSO)<br/>APP_SLO -(PortalEventType.APP_SLO)<br/>ADD_APP -(AppEventType.ADD_APP)<br/>ENABLE_APP -(AppEventType.ENABLE_APP)<br/>DISABLE_APP -(AppEventType.DISABLE_APP)<br/>UPDATE_APP -(AppEventType.UPDATE_APP)<br/>SAVE_APP_CONFIG -(AppEventType.SAVE_APP_CONFIG)<br/>DELETE_APP -(AppEventType.DELETE_APP)<br/>APP_AUTHORIZATION -(AppEventType.APP_ACCESS_POLICY)<br/>ENABLE_APP_ACCESS_POLICY -(AppEventType.ENABLE_APP_ACCESS_POLICY)<br/>DISABLE_APP_ACCESS_POLICY -(AppEventType.DISABLE_APP_ACCESS_POLICY)<br/>APP_CANCEL_ACCESS_POLICY -(AppEventType.APP_CANCEL_ACCESS_POLICY)<br/>ADD_APP_ACCOUNT -(AppEventType.ADD_APP_ACCOUNT)<br/>UPDATE_DEFAULT_APP_ACCOUNT -(AppEventType.UPDATE_DEFAULT_APP_ACCOUNT)<br/>DELETE_APP_ACCOUNT -(AppEventType.DELETE_APP_ACCOUNT)<br/>SAVE_SSO_CONFIG -(AppEventType.SAVE_SSO_CONFIG)<br/>SAVE_APP_PERMISSION_RESOURCE -(AppEventType.SAVE_APP_PERMISSION_RESOURCE)<br/>UPDATE_APP_PERMISSION_RESOURCE -(AppEventType.UPDATE_APP_PERMISSION_RESOURCE)<br/>DELETE_APP_PERMISSION_RESOURCE -(AppEventType.DELETE_APP_PERMISSION_RESOURCE)<br/>ENABLE_APP_PERMISSION_RESOURCE -(AppEventType.ENABLE_APP_PERMISSION_RESOURCE)<br/>DISABLE_APP_PERMISSION_RESOURCE -(AppEventType.DISABLE_APP_PERMISSION_RESOURCE)<br/>DELETE_USER_IDP_BIND -(AppEventType.DELETE_USER_IDP_BIND)<br/>SAVE_APP_PERMISSION_ROLE -(AppEventType.SAVE_APP_PERMISSION_ROLE)<br/>UPDATE_APP_PERMISSION_ROLE -(AppEventType.UPDATE_APP_PERMISSION_ROLE)<br/>DELETE_APP_PERMISSION_ROLE -(AppEventType.DELETE_APP_PERMISSION_ROLE)<br/>SAVE_LOGIN_SECURITY_BASIC_SETTINGS -(SettingEventType.SAVE_LOGIN_SECURITY_BASIC_SETTINGS)<br/>SAVE_SECURITY_POLICY_SETTINGS -(SettingEventType.SAVE_SECURITY_POLICY_SETTINGS)<br/>SAVE_PASSWORD_POLICY -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>UPDATE_PASSWORD_POLICY -(SettingEventType.UPDATE_PASSWORD_POLICY)<br/>DELETE_PASSWORD_POLICY -(SettingEventType.DELETE_PASSWORD_POLICY)<br/>ENABLE_PASSWORD_POLICY -(SettingEventType.ENABLE_PASSWORD_POLICY)<br/>DISABLE_PASSWORD_POLICY -(SettingEventType.DISABLE_PASSWORD_POLICY)<br/>SORT_PASSWORD_POLICY -(SettingEventType.SORT_PASSWORD_POLICY)<br/>ADD_ADMINISTRATOR -(SettingEventType.ADD_ADMINISTRATOR)<br/>UPDATE_ADMINISTRATOR -(SettingEventType.UPDATE_ADMINISTRATOR)<br/>DELETE_ADMINISTRATOR -(SettingEventType.DELETE_ADMINISTRATOR)<br/>ENABLE_ADMINISTRATOR -(SettingEventType.ENABLE_ADMINISTRATOR)<br/>DISABLE_ADMINISTRATOR -(SettingEventType.DISABLE_ADMINISTRATOR)<br/>RESET_ADMINISTRATOR_PASSWORD -(SettingEventType.RESET_ADMINISTRATOR_PASSWORD)<br/>ADD_ADMINISTRATOR_ROLE -(SettingEventType.ADD_ADMINISTRATOR_ROLE)<br/>UPDATE_ADMINISTRATOR_ROLE -(SettingEventType.UPDATE_ADMINISTRATOR_ROLE)<br/>DELETE_ADMINISTRATOR_ROLE -(SettingEventType.DELETE_ADMINISTRATOR_ROLE)<br/>ENABLE_ADMINISTRATOR_ROLE -(SettingEventType.ENABLE_ADMINISTRATOR_ROLE)<br/>DISABLE_ADMINISTRATOR_ROLE -(SettingEventType.DISABLE_ADMINISTRATOR_ROLE)<br/>SAVE_MAIL_TEMPLATE -(SettingEventType.SAVE_MAIL_TEMPLATE)<br/>SAVE_MAIL_SERVICE -(SettingEventType.SAVE_MAIL_SERVICE)<br/>OFF_MAIL_SERVICE -(SettingEventType.OFF_MAIL_SERVICE)<br/>SAVE_SMS_SERVICE -(SettingEventType.SAVE_SMS_SERVICE)<br/>OFF_SMS_SERVICE -(SettingEventType.OFF_SMS_SERVICE)<br/>SAVE_GEO_LOCATION_SERVICE -(SettingEventType.SAVE_GEO_LOCATION_SERVICE)<br/>OFF_GEO_LOCATION_SERVICE -(SettingEventType.OFF_GEO_LOCATION_SERVICE)<br/>SAVE_STORAGE_SERVICE -(SettingEventType.SAVE_STORAGE_SERVICE)<br/>OFF_STORAGE_SERVICE -(SettingEventType.OFF_STORAGE_SERVICE)<br/>DOWN_LINE_SESSION -(MonitorEventType.DOWN_LINE_SESSION)<br/>ADD_APP_GROUP -(AppEventType.ADD_APP_GROUP)<br/>UPDATE_APP_GROUP -(AppEventType.UPDATE_APP_GROUP)<br/>DELETE_APP_GROUP -(AppEventType.DELETE_APP_GROUP)<br/>REMOVE_APP_GROUP_ASSOCIATION -(AppEventType.REMOVE_APP_GROUP_ASSOCIATION)<br/>SIGN_OUT_APP -(AppEventType.APP_SSO_LOGOUT)<br/>SAVE_PASSWORD_POLICY_SETTINGS -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>SAVE_MFA_SETTINGS -(SettingEventType.SAVE_MFA_SETTINGS)<br/>SAVE_CAPTCHA_PROVIDER -(SettingEventType.SAVE_CAPTCHA_PROVIDER)<br/>|-
+└─eventParam|string|事件参数|-
+└─eventContent|string|事件内容|-
+└─eventResult|string|事件结果|-
+└─eventTime|string|事件时间|-
+└─eventStatus|enum|事件状态<br/>SUCCESS -("success","成功")<br/>FAIL -("fail","失败")<br/>|-
+└─actorId|string|操作者ID|-
+└─actorType|string|操作者类型|-
+└─actorAuthType|string|操作者认证类型|-
+└─target|array|操作目标|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─id|string|目标 ID|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|目标名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─type|enum|目标类型<br/>USER -("user","用户")<br/>USER_DETAIL -("user_detail","用户详情")<br/>USER_GROUP -("user_group","用户组")<br/>USER_GROUP_MEMBER -("user_group_member","用户组成员")<br/>IDENTITY_SOURCE -("identity_source","身份源")<br/>ORGANIZATION -("organization","组织机构")<br/>APPLICATION -("application","应用")<br/>APPLICATION_ACCOUNT -("application_account","应用账户")<br/>SESSION -("session","会话管理")<br/>APP_PERMISSION_RESOURCE -("app_permission_resource","应用权限")<br/>APP_PERMISSION_POLICY -("app_permission_policy","应用权限策略")<br/>APP_PERMISSION_ROLE -("app_permission_role","应用权限角色")<br/>APP_GROUP -("app_group","应用分组")<br/>ROLE -("role","系统角色")<br/>ADMINISTRATOR -("administrator","管理员")<br/>PASSWORD_POLICY -("password_policy","密码策略")<br/>MAIL_TEMPLATE -("mail_template","邮件模版")<br/>IDENTITY_PROVIDER -("identity_provider","身份认证提供商")<br/>CONSOLE -("console","控制台")<br/>PORTAL -("portal","门户端")<br/>USER_IDP -("user_idp","用户绑定三方用户")<br/>|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─typeName|string|目标类型名称|-
+└─userAgent|object|用户代理|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─deviceType|string|设备类型|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platform|string|系统平台|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platformVersion|string|平台版本|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browser|string|浏览器|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserType|string|浏览器类型|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserMajorVersion|string|浏览器主版本|-
+└─geoLocation|object|地理位置|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ip|string|IP|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentCode|string|continent code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentName|string|continent Name|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryCode|string|国家code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryName|string|国家名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceCode|string|省份code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceName|string|省份|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityCode|string|城市code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityName|string|城市名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─point|object|地理坐标|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lat|double|经度|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lon|double|维度|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provider|object|提供商|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─code|string|code|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─downloadUrl|string|库文件下载地址|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─sha256Url|string|sha256校验文件下载地址|-
 └─delFlag|int32|删除标记，0未删除1已删除|-
 └─description|string|备注|-
 └─spare1|string|备用1|-
@@ -181,40 +275,80 @@ timestamp|string|返回时间戳字符串|-
   "code": "0",
   "msg": "正常",
   "data": {
-    "creatorId": "33",
-    "createTime": "2025-09-05 23:52:28",
-    "lastTime": "2025-09-05 23:52:28",
-    "id": "33",
-    "foreignId": "33",
-    "name": "renee.stehr",
-    "code": "86144",
-    "type": "9q9f8p",
-    "config": "30iyot",
-    "category": "hv2zi0",
-    "isEnabled": true,
-    "isDisplayed": true,
-    "priority": 169,
-    "delFlag": 8,
-    "description": "p1zzh9",
-    "spare1": "0sadbq",
-    "spare2": "wz756s"
+    "creatorId": "19",
+    "createTime": "2025-10-11 22:39:19",
+    "lastTime": "2025-10-11 22:39:19",
+    "id": "19",
+    "foreignId": "19",
+    "requestId": "19",
+    "sessionId": "19",
+    "eventType": "LOGIN_PORTAL",
+    "eventParam": "jdnqbl",
+    "eventContent": "r9lad7",
+    "eventResult": "hzr0sp",
+    "eventTime": "2025-10-11 22:39:19",
+    "eventStatus": "SUCCESS",
+    "actorId": "19",
+    "actorType": "3ivrp9",
+    "actorAuthType": "z1pero",
+    "target": [
+      {
+        "id": "19",
+        "name": "lorine.rohan",
+        "type": "USER",
+        "typeName": "lorine.rohan"
+      }
+    ],
+    "userAgent": {
+      "deviceType": "5pic9v",
+      "platform": "wbnufb",
+      "platformVersion": "0.61",
+      "browser": "o73nfq",
+      "browserType": "f4z5wt",
+      "browserMajorVersion": "0.61"
+    },
+    "geoLocation": {
+      "ip": "207.171.28.69",
+      "continentCode": "59282",
+      "continentName": "lorine.rohan",
+      "countryCode": "59282",
+      "countryName": "lorine.rohan",
+      "provinceCode": "59282",
+      "provinceName": "lorine.rohan",
+      "cityCode": "59282",
+      "cityName": "lorine.rohan",
+      "point": {
+        "lat": 82.17,
+        "lon": 9.69
+      },
+      "provider": {
+        "code": "59282",
+        "name": "lorine.rohan",
+        "downloadUrl": "www.vida-hills.name",
+        "sha256Url": "www.vida-hills.name"
+      }
+    },
+    "delFlag": 4,
+    "description": "llsanu",
+    "spare1": "vbooy0",
+    "spare2": "z3q5dd"
   },
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
 }
 ```
 
-### EmisIdentityProvider Operation. 新增身份提供商数据操作逻辑，根据操作类型，执行新增操作.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/save.do
+### AuditInfo Operation. 新增行为审计数据操作逻辑，根据操作类型，执行新增操作.
+**URL:** https://linlan.net/emis_portal/api/audit/info/save.do
 
 **Type:** POST
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:07:10<br>
+CreateTime 2025-09-06 15:55:04
 
 **Content-Type:** application/json; charset=utf-8
 
-**Description:** EmisIdentityProvider Operation. 新增身份提供商数据操作逻辑，根据操作类型，执行新增操作.
+**Description:** AuditInfo Operation. 新增行为审计数据操作逻辑，根据操作类型，执行新增操作.
 
 **Request-headers:**
 
@@ -233,14 +367,47 @@ data|object|请求数据对象，放入RequestBody内|false|-
 └─lastTime|string|最后修改时间|false|-
 └─id|string|主键ID|false|-
 └─foreignId|string|外键ID|false|-
-└─name|string|名称|false|-
-└─code|string|编码|false|-
-└─type|string|提供者类型|false|-
-└─config|string|配置JSON|false|-
-└─category|string|认证源分类（社交、企业）|false|-
-└─isEnabled|boolean|是否启用，0否1是|false|-
-└─isDisplayed|boolean|是否显示，0否1是|false|-
-└─priority|int32|排序码|false|-
+└─requestId|string|请求ID|false|-
+└─sessionId|string|会话ID|false|-
+└─eventType|enum|事件类型<br/>LOGIN_PORTAL -(PortalEventType.LOGIN_PORTAL)<br/>LOGIN_CONSOLE -(AuthenticationEventType.LOGIN_CONSOLE)<br/>LOGOUT_PORTAL -(PortalEventType.LOGOUT_PORTAL)<br/>LOGOUT_CONSOLE -(AuthenticationEventType.LOGOUT_CONSOLE)<br/>CREATE_ORG -(AccountEventType.CREATE_ORG)<br/>UPDATE_ORG -(AccountEventType.UPDATE_ORG)<br/>DELETE_ORG -(AccountEventType.DELETE_ORGANIZATION)<br/>MOVE_ORGANIZATION -(AccountEventType.MOVE_ORGANIZATION)<br/>CREATE_ORGANIZATION_MEMBER -(AccountEventType.CREATE_ORGANIZATION_MEMBER)<br/>CREATE_USER -(AccountEventType.CREATE_USER)<br/>UPDATE_USER -(AccountEventType.UPDATE_USER)<br/>DELETE_USER -(AccountEventType.DELETE_USER)<br/>ENABLE_USER -(AccountEventType.ENABLE_USER)<br/>DISABLE_USER -(AccountEventType.DISABLE_USER)<br/>USER_RESIGN -(AccountEventType.USER_RESIGN)<br/>MODIFY_USER_PHONE -(AccountEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_PASSWORD -(AccountEventType.MODIFY_USER_PASSWORD)<br/>UNLOCK_USER -(AccountEventType.UNLOCK_USER)<br/>MODIFY_ACCOUNT_INFO_PORTAL -(PortalEventType.MODIFY_ACCOUNT_INFO)<br/>MODIFY_USER_PASSWORD_PORTAL -(PortalEventType.MODIFY_USER_PASSWORD)<br/>MODIFY_USER_PHONE_PORTAL -(PortalEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_EMAIL_PORTAL -(PortalEventType.MODIFY_USER_EMAIL)<br/>BIND_MFA -(PortalEventType.BIND_MFA)<br/>UNBIND_MFA -(PortalEventType.UNBIND_MFA)<br/>BIND_IDP_USER -(PortalEventType.BIND_IDP_USER)<br/>UNBIND_IDP_USER -(PortalEventType.UNBIND_IDP_USER)<br/>PREPARE_MODIFY_PASSWORD -(PortalEventType.PREPARE_MODIFY_PASSWORD)<br/>PREPARE_MODIFY_MOBILE -(PortalEventType.PREPARE_MODIFY_MOBILE)<br/>PREPARE_MODIFY_EMAIL -(PortalEventType.PREPARE_MODIFY_EMAIL)<br/>PREPARE_BIND_MFA -(PortalEventType.PREPARE_BIND_MFA)<br/>CREATE_USER_GROUP -(AccountEventType.CREATE_USER_GROUP)<br/>UPDATE_USER_GROUP -(AccountEventType.UPDATE_USER_GROUP)<br/>DELETE_USER_GROUP -(AccountEventType.DELETE_USER_GROUP)<br/>ADD_USER_GROUP_MEMBER -(AccountEventType.ADD_USER_GROUP_MEMBER)<br/>REMOVE_USER_GROUP_MEMBER -(AccountEventType.REMOVE_USER_GROUP_MEMBER)<br/>CREATE_USER_DYNAMIC_GROUP -(AccountEventType.CREATE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP)<br/>DELETE_USER_DYNAMIC_GROUP -(AccountEventType.DELETE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE)<br/>CREATE_IDENTITY_RESOURCE -(AccountEventType.CREATE_IDENTITY_RESOURCE)<br/>UPDATE_IDENTITY_RESOURCE -(AccountEventType.UPDATE_IDENTITY_RESOURCE)<br/>DELETE_IDENTITY_RESOURCE -(AccountEventType.DELETE_IDENTITY_RESOURCE)<br/>ENABLE_IDENTITY_RESOURCE -(AccountEventType.ENABLE_IDENTITY_RESOURCE)<br/>DISABLE_IDENTITY_RESOURCE -(AccountEventType.DISABLE_IDENTITY_RESOURCE)<br/>IDENTITY_RESOURCE_SYNC -(AccountEventType.IDENTITY_RESOURCE_SYNC)<br/>ADD_IDP -(AuthenticationEventType.ADD_IDP)<br/>UPDATE_IDP -(AuthenticationEventType.UPDATE_IDP)<br/>DELETE_IDP -(AuthenticationEventType.DELETE_IDP)<br/>ENABLE_IDP -(AuthenticationEventType.ENABLE_IDP)<br/>DISABLE_IDP -(AuthenticationEventType.DISABLE_IDP)<br/>APP_SSO -(PortalEventType.APP_SSO)<br/>APP_SLO -(PortalEventType.APP_SLO)<br/>ADD_APP -(AppEventType.ADD_APP)<br/>ENABLE_APP -(AppEventType.ENABLE_APP)<br/>DISABLE_APP -(AppEventType.DISABLE_APP)<br/>UPDATE_APP -(AppEventType.UPDATE_APP)<br/>SAVE_APP_CONFIG -(AppEventType.SAVE_APP_CONFIG)<br/>DELETE_APP -(AppEventType.DELETE_APP)<br/>APP_AUTHORIZATION -(AppEventType.APP_ACCESS_POLICY)<br/>ENABLE_APP_ACCESS_POLICY -(AppEventType.ENABLE_APP_ACCESS_POLICY)<br/>DISABLE_APP_ACCESS_POLICY -(AppEventType.DISABLE_APP_ACCESS_POLICY)<br/>APP_CANCEL_ACCESS_POLICY -(AppEventType.APP_CANCEL_ACCESS_POLICY)<br/>ADD_APP_ACCOUNT -(AppEventType.ADD_APP_ACCOUNT)<br/>UPDATE_DEFAULT_APP_ACCOUNT -(AppEventType.UPDATE_DEFAULT_APP_ACCOUNT)<br/>DELETE_APP_ACCOUNT -(AppEventType.DELETE_APP_ACCOUNT)<br/>SAVE_SSO_CONFIG -(AppEventType.SAVE_SSO_CONFIG)<br/>SAVE_APP_PERMISSION_RESOURCE -(AppEventType.SAVE_APP_PERMISSION_RESOURCE)<br/>UPDATE_APP_PERMISSION_RESOURCE -(AppEventType.UPDATE_APP_PERMISSION_RESOURCE)<br/>DELETE_APP_PERMISSION_RESOURCE -(AppEventType.DELETE_APP_PERMISSION_RESOURCE)<br/>ENABLE_APP_PERMISSION_RESOURCE -(AppEventType.ENABLE_APP_PERMISSION_RESOURCE)<br/>DISABLE_APP_PERMISSION_RESOURCE -(AppEventType.DISABLE_APP_PERMISSION_RESOURCE)<br/>DELETE_USER_IDP_BIND -(AppEventType.DELETE_USER_IDP_BIND)<br/>SAVE_APP_PERMISSION_ROLE -(AppEventType.SAVE_APP_PERMISSION_ROLE)<br/>UPDATE_APP_PERMISSION_ROLE -(AppEventType.UPDATE_APP_PERMISSION_ROLE)<br/>DELETE_APP_PERMISSION_ROLE -(AppEventType.DELETE_APP_PERMISSION_ROLE)<br/>SAVE_LOGIN_SECURITY_BASIC_SETTINGS -(SettingEventType.SAVE_LOGIN_SECURITY_BASIC_SETTINGS)<br/>SAVE_SECURITY_POLICY_SETTINGS -(SettingEventType.SAVE_SECURITY_POLICY_SETTINGS)<br/>SAVE_PASSWORD_POLICY -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>UPDATE_PASSWORD_POLICY -(SettingEventType.UPDATE_PASSWORD_POLICY)<br/>DELETE_PASSWORD_POLICY -(SettingEventType.DELETE_PASSWORD_POLICY)<br/>ENABLE_PASSWORD_POLICY -(SettingEventType.ENABLE_PASSWORD_POLICY)<br/>DISABLE_PASSWORD_POLICY -(SettingEventType.DISABLE_PASSWORD_POLICY)<br/>SORT_PASSWORD_POLICY -(SettingEventType.SORT_PASSWORD_POLICY)<br/>ADD_ADMINISTRATOR -(SettingEventType.ADD_ADMINISTRATOR)<br/>UPDATE_ADMINISTRATOR -(SettingEventType.UPDATE_ADMINISTRATOR)<br/>DELETE_ADMINISTRATOR -(SettingEventType.DELETE_ADMINISTRATOR)<br/>ENABLE_ADMINISTRATOR -(SettingEventType.ENABLE_ADMINISTRATOR)<br/>DISABLE_ADMINISTRATOR -(SettingEventType.DISABLE_ADMINISTRATOR)<br/>RESET_ADMINISTRATOR_PASSWORD -(SettingEventType.RESET_ADMINISTRATOR_PASSWORD)<br/>ADD_ADMINISTRATOR_ROLE -(SettingEventType.ADD_ADMINISTRATOR_ROLE)<br/>UPDATE_ADMINISTRATOR_ROLE -(SettingEventType.UPDATE_ADMINISTRATOR_ROLE)<br/>DELETE_ADMINISTRATOR_ROLE -(SettingEventType.DELETE_ADMINISTRATOR_ROLE)<br/>ENABLE_ADMINISTRATOR_ROLE -(SettingEventType.ENABLE_ADMINISTRATOR_ROLE)<br/>DISABLE_ADMINISTRATOR_ROLE -(SettingEventType.DISABLE_ADMINISTRATOR_ROLE)<br/>SAVE_MAIL_TEMPLATE -(SettingEventType.SAVE_MAIL_TEMPLATE)<br/>SAVE_MAIL_SERVICE -(SettingEventType.SAVE_MAIL_SERVICE)<br/>OFF_MAIL_SERVICE -(SettingEventType.OFF_MAIL_SERVICE)<br/>SAVE_SMS_SERVICE -(SettingEventType.SAVE_SMS_SERVICE)<br/>OFF_SMS_SERVICE -(SettingEventType.OFF_SMS_SERVICE)<br/>SAVE_GEO_LOCATION_SERVICE -(SettingEventType.SAVE_GEO_LOCATION_SERVICE)<br/>OFF_GEO_LOCATION_SERVICE -(SettingEventType.OFF_GEO_LOCATION_SERVICE)<br/>SAVE_STORAGE_SERVICE -(SettingEventType.SAVE_STORAGE_SERVICE)<br/>OFF_STORAGE_SERVICE -(SettingEventType.OFF_STORAGE_SERVICE)<br/>DOWN_LINE_SESSION -(MonitorEventType.DOWN_LINE_SESSION)<br/>ADD_APP_GROUP -(AppEventType.ADD_APP_GROUP)<br/>UPDATE_APP_GROUP -(AppEventType.UPDATE_APP_GROUP)<br/>DELETE_APP_GROUP -(AppEventType.DELETE_APP_GROUP)<br/>REMOVE_APP_GROUP_ASSOCIATION -(AppEventType.REMOVE_APP_GROUP_ASSOCIATION)<br/>SIGN_OUT_APP -(AppEventType.APP_SSO_LOGOUT)<br/>SAVE_PASSWORD_POLICY_SETTINGS -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>SAVE_MFA_SETTINGS -(SettingEventType.SAVE_MFA_SETTINGS)<br/>SAVE_CAPTCHA_PROVIDER -(SettingEventType.SAVE_CAPTCHA_PROVIDER)<br/>|false|-
+└─eventParam|string|事件参数|false|-
+└─eventContent|string|事件内容|false|-
+└─eventResult|string|事件结果|false|-
+└─eventTime|string|事件时间|false|-
+└─eventStatus|enum|事件状态<br/>SUCCESS -("success","成功")<br/>FAIL -("fail","失败")<br/>|false|-
+└─actorId|string|操作者ID|false|-
+└─actorType|string|操作者类型|false|-
+└─actorAuthType|string|操作者认证类型|false|-
+└─target|array|操作目标|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─id|string|目标 ID|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|目标名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─type|enum|目标类型<br/>USER -("user","用户")<br/>USER_DETAIL -("user_detail","用户详情")<br/>USER_GROUP -("user_group","用户组")<br/>USER_GROUP_MEMBER -("user_group_member","用户组成员")<br/>IDENTITY_SOURCE -("identity_source","身份源")<br/>ORGANIZATION -("organization","组织机构")<br/>APPLICATION -("application","应用")<br/>APPLICATION_ACCOUNT -("application_account","应用账户")<br/>SESSION -("session","会话管理")<br/>APP_PERMISSION_RESOURCE -("app_permission_resource","应用权限")<br/>APP_PERMISSION_POLICY -("app_permission_policy","应用权限策略")<br/>APP_PERMISSION_ROLE -("app_permission_role","应用权限角色")<br/>APP_GROUP -("app_group","应用分组")<br/>ROLE -("role","系统角色")<br/>ADMINISTRATOR -("administrator","管理员")<br/>PASSWORD_POLICY -("password_policy","密码策略")<br/>MAIL_TEMPLATE -("mail_template","邮件模版")<br/>IDENTITY_PROVIDER -("identity_provider","身份认证提供商")<br/>CONSOLE -("console","控制台")<br/>PORTAL -("portal","门户端")<br/>USER_IDP -("user_idp","用户绑定三方用户")<br/>|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─typeName|string|目标类型名称|false|-
+└─userAgent|object|用户代理|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─deviceType|string|设备类型|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platform|string|系统平台|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platformVersion|string|平台版本|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browser|string|浏览器|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserType|string|浏览器类型|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserMajorVersion|string|浏览器主版本|false|-
+└─geoLocation|object|地理位置|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ip|string|IP|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentCode|string|continent code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentName|string|continent Name|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryCode|string|国家code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryName|string|国家名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceCode|string|省份code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceName|string|省份|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityCode|string|城市code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityName|string|城市名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─point|object|地理坐标|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lat|double|经度|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lon|double|维度|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provider|object|提供商|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─code|string|code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─downloadUrl|string|库文件下载地址|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─sha256Url|string|sha256校验文件下载地址|false|-
 └─delFlag|int32|删除标记，0未删除1已删除|false|-
 └─description|string|备注|false|-
 └─spare1|string|备用1|false|-
@@ -248,25 +415,65 @@ data|object|请求数据对象，放入RequestBody内|false|-
 
 **Request-example:**
 ```
-curl -X POST -k -H 'Content-Type: application/json; charset=utf-8' -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/save.do --data '{
+curl -X POST -k -H 'Content-Type: application/json; charset=utf-8' -H 'token:${token}' -i https://linlan.net/emis_portal/api/audit/info/save.do --data '{
   "data": {
-    "creatorId": "33",
-    "createTime": "2025-09-05 23:52:28",
-    "lastTime": "2025-09-05 23:52:28",
-    "id": "33",
-    "foreignId": "33",
-    "name": "renee.stehr",
-    "code": "86144",
-    "type": "pz6r80",
-    "config": "pmw27k",
-    "category": "tonrat",
-    "isEnabled": true,
-    "isDisplayed": true,
-    "priority": 122,
-    "delFlag": 8,
-    "description": "rntzzd",
-    "spare1": "605mh2",
-    "spare2": "j6brnx"
+    "creatorId": "19",
+    "createTime": "2025-10-11 22:39:19",
+    "lastTime": "2025-10-11 22:39:19",
+    "id": "19",
+    "foreignId": "19",
+    "requestId": "19",
+    "sessionId": "19",
+    "eventType": "LOGIN_PORTAL",
+    "eventParam": "93p62k",
+    "eventContent": "1zb0wu",
+    "eventResult": "6ou9ew",
+    "eventTime": "2025-10-11 22:39:19",
+    "eventStatus": "SUCCESS",
+    "actorId": "19",
+    "actorType": "y2wyqb",
+    "actorAuthType": "gs1nm6",
+    "target": [
+      {
+        "id": "19",
+        "name": "lorine.rohan",
+        "type": "USER",
+        "typeName": "lorine.rohan"
+      }
+    ],
+    "userAgent": {
+      "deviceType": "h3maap",
+      "platform": "b3zq5t",
+      "platformVersion": "0.61",
+      "browser": "83ckwd",
+      "browserType": "u7h1uz",
+      "browserMajorVersion": "0.61"
+    },
+    "geoLocation": {
+      "ip": "207.171.28.69",
+      "continentCode": "59282",
+      "continentName": "lorine.rohan",
+      "countryCode": "59282",
+      "countryName": "lorine.rohan",
+      "provinceCode": "59282",
+      "provinceName": "lorine.rohan",
+      "cityCode": "59282",
+      "cityName": "lorine.rohan",
+      "point": {
+        "lat": 35.34,
+        "lon": 56.67
+      },
+      "provider": {
+        "code": "59282",
+        "name": "lorine.rohan",
+        "downloadUrl": "www.vida-hills.name",
+        "sha256Url": "www.vida-hills.name"
+      }
+    },
+    "delFlag": 4,
+    "description": "tor04o",
+    "spare1": "eu3mxf",
+    "spare2": "7j2bd5"
   }
 }'
 ```
@@ -287,23 +494,23 @@ timestamp|string|返回时间戳字符串|-
   "success": true,
   "code": "0",
   "msg": "正常",
-  "data": "9xaaoq",
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
+  "data": "e8caji",
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
 }
 ```
 
-### EmisIdentityProvider Operation. 修改身份提供商数据操作逻辑，根据操作类型，执行修改操作.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/update.do
+### AuditInfo Operation. 修改行为审计数据操作逻辑，根据操作类型，执行修改操作.
+**URL:** https://linlan.net/emis_portal/api/audit/info/update.do
 
 **Type:** POST
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:07:10<br>
+CreateTime 2025-09-06 15:55:04
 
 **Content-Type:** application/json; charset=utf-8
 
-**Description:** EmisIdentityProvider Operation. 修改身份提供商数据操作逻辑，根据操作类型，执行修改操作.
+**Description:** AuditInfo Operation. 修改行为审计数据操作逻辑，根据操作类型，执行修改操作.
 
 **Request-headers:**
 
@@ -322,14 +529,47 @@ data|object|请求数据对象，放入RequestBody内|false|-
 └─lastTime|string|最后修改时间|false|-
 └─id|string|主键ID|false|-
 └─foreignId|string|外键ID|false|-
-└─name|string|名称|false|-
-└─code|string|编码|false|-
-└─type|string|提供者类型|false|-
-└─config|string|配置JSON|false|-
-└─category|string|认证源分类（社交、企业）|false|-
-└─isEnabled|boolean|是否启用，0否1是|false|-
-└─isDisplayed|boolean|是否显示，0否1是|false|-
-└─priority|int32|排序码|false|-
+└─requestId|string|请求ID|false|-
+└─sessionId|string|会话ID|false|-
+└─eventType|enum|事件类型<br/>LOGIN_PORTAL -(PortalEventType.LOGIN_PORTAL)<br/>LOGIN_CONSOLE -(AuthenticationEventType.LOGIN_CONSOLE)<br/>LOGOUT_PORTAL -(PortalEventType.LOGOUT_PORTAL)<br/>LOGOUT_CONSOLE -(AuthenticationEventType.LOGOUT_CONSOLE)<br/>CREATE_ORG -(AccountEventType.CREATE_ORG)<br/>UPDATE_ORG -(AccountEventType.UPDATE_ORG)<br/>DELETE_ORG -(AccountEventType.DELETE_ORGANIZATION)<br/>MOVE_ORGANIZATION -(AccountEventType.MOVE_ORGANIZATION)<br/>CREATE_ORGANIZATION_MEMBER -(AccountEventType.CREATE_ORGANIZATION_MEMBER)<br/>CREATE_USER -(AccountEventType.CREATE_USER)<br/>UPDATE_USER -(AccountEventType.UPDATE_USER)<br/>DELETE_USER -(AccountEventType.DELETE_USER)<br/>ENABLE_USER -(AccountEventType.ENABLE_USER)<br/>DISABLE_USER -(AccountEventType.DISABLE_USER)<br/>USER_RESIGN -(AccountEventType.USER_RESIGN)<br/>MODIFY_USER_PHONE -(AccountEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_PASSWORD -(AccountEventType.MODIFY_USER_PASSWORD)<br/>UNLOCK_USER -(AccountEventType.UNLOCK_USER)<br/>MODIFY_ACCOUNT_INFO_PORTAL -(PortalEventType.MODIFY_ACCOUNT_INFO)<br/>MODIFY_USER_PASSWORD_PORTAL -(PortalEventType.MODIFY_USER_PASSWORD)<br/>MODIFY_USER_PHONE_PORTAL -(PortalEventType.MODIFY_USER_PHONE)<br/>MODIFY_USER_EMAIL_PORTAL -(PortalEventType.MODIFY_USER_EMAIL)<br/>BIND_MFA -(PortalEventType.BIND_MFA)<br/>UNBIND_MFA -(PortalEventType.UNBIND_MFA)<br/>BIND_IDP_USER -(PortalEventType.BIND_IDP_USER)<br/>UNBIND_IDP_USER -(PortalEventType.UNBIND_IDP_USER)<br/>PREPARE_MODIFY_PASSWORD -(PortalEventType.PREPARE_MODIFY_PASSWORD)<br/>PREPARE_MODIFY_MOBILE -(PortalEventType.PREPARE_MODIFY_MOBILE)<br/>PREPARE_MODIFY_EMAIL -(PortalEventType.PREPARE_MODIFY_EMAIL)<br/>PREPARE_BIND_MFA -(PortalEventType.PREPARE_BIND_MFA)<br/>CREATE_USER_GROUP -(AccountEventType.CREATE_USER_GROUP)<br/>UPDATE_USER_GROUP -(AccountEventType.UPDATE_USER_GROUP)<br/>DELETE_USER_GROUP -(AccountEventType.DELETE_USER_GROUP)<br/>ADD_USER_GROUP_MEMBER -(AccountEventType.ADD_USER_GROUP_MEMBER)<br/>REMOVE_USER_GROUP_MEMBER -(AccountEventType.REMOVE_USER_GROUP_MEMBER)<br/>CREATE_USER_DYNAMIC_GROUP -(AccountEventType.CREATE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP)<br/>DELETE_USER_DYNAMIC_GROUP -(AccountEventType.DELETE_USER_DYNAMIC_GROUP)<br/>UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE -(AccountEventType.UPDATE_USER_DYNAMIC_GROUP_FILTER_RULE)<br/>CREATE_IDENTITY_RESOURCE -(AccountEventType.CREATE_IDENTITY_RESOURCE)<br/>UPDATE_IDENTITY_RESOURCE -(AccountEventType.UPDATE_IDENTITY_RESOURCE)<br/>DELETE_IDENTITY_RESOURCE -(AccountEventType.DELETE_IDENTITY_RESOURCE)<br/>ENABLE_IDENTITY_RESOURCE -(AccountEventType.ENABLE_IDENTITY_RESOURCE)<br/>DISABLE_IDENTITY_RESOURCE -(AccountEventType.DISABLE_IDENTITY_RESOURCE)<br/>IDENTITY_RESOURCE_SYNC -(AccountEventType.IDENTITY_RESOURCE_SYNC)<br/>ADD_IDP -(AuthenticationEventType.ADD_IDP)<br/>UPDATE_IDP -(AuthenticationEventType.UPDATE_IDP)<br/>DELETE_IDP -(AuthenticationEventType.DELETE_IDP)<br/>ENABLE_IDP -(AuthenticationEventType.ENABLE_IDP)<br/>DISABLE_IDP -(AuthenticationEventType.DISABLE_IDP)<br/>APP_SSO -(PortalEventType.APP_SSO)<br/>APP_SLO -(PortalEventType.APP_SLO)<br/>ADD_APP -(AppEventType.ADD_APP)<br/>ENABLE_APP -(AppEventType.ENABLE_APP)<br/>DISABLE_APP -(AppEventType.DISABLE_APP)<br/>UPDATE_APP -(AppEventType.UPDATE_APP)<br/>SAVE_APP_CONFIG -(AppEventType.SAVE_APP_CONFIG)<br/>DELETE_APP -(AppEventType.DELETE_APP)<br/>APP_AUTHORIZATION -(AppEventType.APP_ACCESS_POLICY)<br/>ENABLE_APP_ACCESS_POLICY -(AppEventType.ENABLE_APP_ACCESS_POLICY)<br/>DISABLE_APP_ACCESS_POLICY -(AppEventType.DISABLE_APP_ACCESS_POLICY)<br/>APP_CANCEL_ACCESS_POLICY -(AppEventType.APP_CANCEL_ACCESS_POLICY)<br/>ADD_APP_ACCOUNT -(AppEventType.ADD_APP_ACCOUNT)<br/>UPDATE_DEFAULT_APP_ACCOUNT -(AppEventType.UPDATE_DEFAULT_APP_ACCOUNT)<br/>DELETE_APP_ACCOUNT -(AppEventType.DELETE_APP_ACCOUNT)<br/>SAVE_SSO_CONFIG -(AppEventType.SAVE_SSO_CONFIG)<br/>SAVE_APP_PERMISSION_RESOURCE -(AppEventType.SAVE_APP_PERMISSION_RESOURCE)<br/>UPDATE_APP_PERMISSION_RESOURCE -(AppEventType.UPDATE_APP_PERMISSION_RESOURCE)<br/>DELETE_APP_PERMISSION_RESOURCE -(AppEventType.DELETE_APP_PERMISSION_RESOURCE)<br/>ENABLE_APP_PERMISSION_RESOURCE -(AppEventType.ENABLE_APP_PERMISSION_RESOURCE)<br/>DISABLE_APP_PERMISSION_RESOURCE -(AppEventType.DISABLE_APP_PERMISSION_RESOURCE)<br/>DELETE_USER_IDP_BIND -(AppEventType.DELETE_USER_IDP_BIND)<br/>SAVE_APP_PERMISSION_ROLE -(AppEventType.SAVE_APP_PERMISSION_ROLE)<br/>UPDATE_APP_PERMISSION_ROLE -(AppEventType.UPDATE_APP_PERMISSION_ROLE)<br/>DELETE_APP_PERMISSION_ROLE -(AppEventType.DELETE_APP_PERMISSION_ROLE)<br/>SAVE_LOGIN_SECURITY_BASIC_SETTINGS -(SettingEventType.SAVE_LOGIN_SECURITY_BASIC_SETTINGS)<br/>SAVE_SECURITY_POLICY_SETTINGS -(SettingEventType.SAVE_SECURITY_POLICY_SETTINGS)<br/>SAVE_PASSWORD_POLICY -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>UPDATE_PASSWORD_POLICY -(SettingEventType.UPDATE_PASSWORD_POLICY)<br/>DELETE_PASSWORD_POLICY -(SettingEventType.DELETE_PASSWORD_POLICY)<br/>ENABLE_PASSWORD_POLICY -(SettingEventType.ENABLE_PASSWORD_POLICY)<br/>DISABLE_PASSWORD_POLICY -(SettingEventType.DISABLE_PASSWORD_POLICY)<br/>SORT_PASSWORD_POLICY -(SettingEventType.SORT_PASSWORD_POLICY)<br/>ADD_ADMINISTRATOR -(SettingEventType.ADD_ADMINISTRATOR)<br/>UPDATE_ADMINISTRATOR -(SettingEventType.UPDATE_ADMINISTRATOR)<br/>DELETE_ADMINISTRATOR -(SettingEventType.DELETE_ADMINISTRATOR)<br/>ENABLE_ADMINISTRATOR -(SettingEventType.ENABLE_ADMINISTRATOR)<br/>DISABLE_ADMINISTRATOR -(SettingEventType.DISABLE_ADMINISTRATOR)<br/>RESET_ADMINISTRATOR_PASSWORD -(SettingEventType.RESET_ADMINISTRATOR_PASSWORD)<br/>ADD_ADMINISTRATOR_ROLE -(SettingEventType.ADD_ADMINISTRATOR_ROLE)<br/>UPDATE_ADMINISTRATOR_ROLE -(SettingEventType.UPDATE_ADMINISTRATOR_ROLE)<br/>DELETE_ADMINISTRATOR_ROLE -(SettingEventType.DELETE_ADMINISTRATOR_ROLE)<br/>ENABLE_ADMINISTRATOR_ROLE -(SettingEventType.ENABLE_ADMINISTRATOR_ROLE)<br/>DISABLE_ADMINISTRATOR_ROLE -(SettingEventType.DISABLE_ADMINISTRATOR_ROLE)<br/>SAVE_MAIL_TEMPLATE -(SettingEventType.SAVE_MAIL_TEMPLATE)<br/>SAVE_MAIL_SERVICE -(SettingEventType.SAVE_MAIL_SERVICE)<br/>OFF_MAIL_SERVICE -(SettingEventType.OFF_MAIL_SERVICE)<br/>SAVE_SMS_SERVICE -(SettingEventType.SAVE_SMS_SERVICE)<br/>OFF_SMS_SERVICE -(SettingEventType.OFF_SMS_SERVICE)<br/>SAVE_GEO_LOCATION_SERVICE -(SettingEventType.SAVE_GEO_LOCATION_SERVICE)<br/>OFF_GEO_LOCATION_SERVICE -(SettingEventType.OFF_GEO_LOCATION_SERVICE)<br/>SAVE_STORAGE_SERVICE -(SettingEventType.SAVE_STORAGE_SERVICE)<br/>OFF_STORAGE_SERVICE -(SettingEventType.OFF_STORAGE_SERVICE)<br/>DOWN_LINE_SESSION -(MonitorEventType.DOWN_LINE_SESSION)<br/>ADD_APP_GROUP -(AppEventType.ADD_APP_GROUP)<br/>UPDATE_APP_GROUP -(AppEventType.UPDATE_APP_GROUP)<br/>DELETE_APP_GROUP -(AppEventType.DELETE_APP_GROUP)<br/>REMOVE_APP_GROUP_ASSOCIATION -(AppEventType.REMOVE_APP_GROUP_ASSOCIATION)<br/>SIGN_OUT_APP -(AppEventType.APP_SSO_LOGOUT)<br/>SAVE_PASSWORD_POLICY_SETTINGS -(SettingEventType.SAVE_PASSWORD_POLICY)<br/>SAVE_MFA_SETTINGS -(SettingEventType.SAVE_MFA_SETTINGS)<br/>SAVE_CAPTCHA_PROVIDER -(SettingEventType.SAVE_CAPTCHA_PROVIDER)<br/>|false|-
+└─eventParam|string|事件参数|false|-
+└─eventContent|string|事件内容|false|-
+└─eventResult|string|事件结果|false|-
+└─eventTime|string|事件时间|false|-
+└─eventStatus|enum|事件状态<br/>SUCCESS -("success","成功")<br/>FAIL -("fail","失败")<br/>|false|-
+└─actorId|string|操作者ID|false|-
+└─actorType|string|操作者类型|false|-
+└─actorAuthType|string|操作者认证类型|false|-
+└─target|array|操作目标|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─id|string|目标 ID|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|目标名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─type|enum|目标类型<br/>USER -("user","用户")<br/>USER_DETAIL -("user_detail","用户详情")<br/>USER_GROUP -("user_group","用户组")<br/>USER_GROUP_MEMBER -("user_group_member","用户组成员")<br/>IDENTITY_SOURCE -("identity_source","身份源")<br/>ORGANIZATION -("organization","组织机构")<br/>APPLICATION -("application","应用")<br/>APPLICATION_ACCOUNT -("application_account","应用账户")<br/>SESSION -("session","会话管理")<br/>APP_PERMISSION_RESOURCE -("app_permission_resource","应用权限")<br/>APP_PERMISSION_POLICY -("app_permission_policy","应用权限策略")<br/>APP_PERMISSION_ROLE -("app_permission_role","应用权限角色")<br/>APP_GROUP -("app_group","应用分组")<br/>ROLE -("role","系统角色")<br/>ADMINISTRATOR -("administrator","管理员")<br/>PASSWORD_POLICY -("password_policy","密码策略")<br/>MAIL_TEMPLATE -("mail_template","邮件模版")<br/>IDENTITY_PROVIDER -("identity_provider","身份认证提供商")<br/>CONSOLE -("console","控制台")<br/>PORTAL -("portal","门户端")<br/>USER_IDP -("user_idp","用户绑定三方用户")<br/>|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─typeName|string|目标类型名称|false|-
+└─userAgent|object|用户代理|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─deviceType|string|设备类型|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platform|string|系统平台|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─platformVersion|string|平台版本|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browser|string|浏览器|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserType|string|浏览器类型|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─browserMajorVersion|string|浏览器主版本|false|-
+└─geoLocation|object|地理位置|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ip|string|IP|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentCode|string|continent code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─continentName|string|continent Name|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryCode|string|国家code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─countryName|string|国家名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceCode|string|省份code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provinceName|string|省份|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityCode|string|城市code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─cityName|string|城市名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─point|object|地理坐标|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lat|double|经度|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─lon|double|维度|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─provider|object|提供商|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─code|string|code|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|名称|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─downloadUrl|string|库文件下载地址|false|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─sha256Url|string|sha256校验文件下载地址|false|-
 └─delFlag|int32|删除标记，0未删除1已删除|false|-
 └─description|string|备注|false|-
 └─spare1|string|备用1|false|-
@@ -337,25 +577,65 @@ data|object|请求数据对象，放入RequestBody内|false|-
 
 **Request-example:**
 ```
-curl -X POST -k -H 'Content-Type: application/json; charset=utf-8' -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/update.do --data '{
+curl -X POST -k -H 'Content-Type: application/json; charset=utf-8' -H 'token:${token}' -i https://linlan.net/emis_portal/api/audit/info/update.do --data '{
   "data": {
-    "creatorId": "33",
-    "createTime": "2025-09-05 23:52:28",
-    "lastTime": "2025-09-05 23:52:28",
-    "id": "33",
-    "foreignId": "33",
-    "name": "renee.stehr",
-    "code": "86144",
-    "type": "utxtgy",
-    "config": "plze5f",
-    "category": "7uvpjf",
-    "isEnabled": true,
-    "isDisplayed": true,
-    "priority": 173,
-    "delFlag": 8,
-    "description": "cvo7o5",
-    "spare1": "vpf3md",
-    "spare2": "i10ox3"
+    "creatorId": "19",
+    "createTime": "2025-10-11 22:39:19",
+    "lastTime": "2025-10-11 22:39:19",
+    "id": "19",
+    "foreignId": "19",
+    "requestId": "19",
+    "sessionId": "19",
+    "eventType": "LOGIN_PORTAL",
+    "eventParam": "4bkybb",
+    "eventContent": "31s8yv",
+    "eventResult": "x24q2h",
+    "eventTime": "2025-10-11 22:39:19",
+    "eventStatus": "SUCCESS",
+    "actorId": "19",
+    "actorType": "jos6td",
+    "actorAuthType": "cdjlzf",
+    "target": [
+      {
+        "id": "19",
+        "name": "lorine.rohan",
+        "type": "USER",
+        "typeName": "lorine.rohan"
+      }
+    ],
+    "userAgent": {
+      "deviceType": "hv33jl",
+      "platform": "ggxboa",
+      "platformVersion": "0.61",
+      "browser": "5osiqh",
+      "browserType": "plmdci",
+      "browserMajorVersion": "0.61"
+    },
+    "geoLocation": {
+      "ip": "207.171.28.69",
+      "continentCode": "59282",
+      "continentName": "lorine.rohan",
+      "countryCode": "59282",
+      "countryName": "lorine.rohan",
+      "provinceCode": "59282",
+      "provinceName": "lorine.rohan",
+      "cityCode": "59282",
+      "cityName": "lorine.rohan",
+      "point": {
+        "lat": 49.91,
+        "lon": 84.36
+      },
+      "provider": {
+        "code": "59282",
+        "name": "lorine.rohan",
+        "downloadUrl": "www.vida-hills.name",
+        "sha256Url": "www.vida-hills.name"
+      }
+    },
+    "delFlag": 4,
+    "description": "69w1ek",
+    "spare1": "vcg27m",
+    "spare2": "0oamlo"
   }
 }'
 ```
@@ -376,23 +656,23 @@ timestamp|string|返回时间戳字符串|-
   "success": true,
   "code": "0",
   "msg": "正常",
-  "data": "va11hh",
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
+  "data": "ba04on",
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
 }
 ```
 
-### EmisIdentityProvider Operation. 删除身份提供商数据操作逻辑，根据操作类型，执行删除操作.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/delete/{ids}.do
+### AuditInfo Operation. 删除行为审计数据操作逻辑，根据操作类型，执行删除操作.
+**URL:** https://linlan.net/emis_portal/api/audit/info/delete/{ids}.do
 
 **Type:** POST
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:07:10<br>
+CreateTime 2025-09-06 15:55:04
 
 **Content-Type:** application/x-www-form-urlencoded;charset=utf-8
 
-**Description:** EmisIdentityProvider Operation. 删除身份提供商数据操作逻辑，根据操作类型，执行删除操作.
+**Description:** AuditInfo Operation. 删除行为审计数据操作逻辑，根据操作类型，执行删除操作.
 
 **Request-headers:**
 
@@ -409,7 +689,7 @@ ids|array|主键ID:null;1;1,2,3,[array of string]|true|
 
 **Request-example:**
 ```
-curl -X POST -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/delete/.do
+curl -X POST -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/audit/info/delete/.do
 ```
 **Response-fields:**
 
@@ -428,24 +708,182 @@ timestamp|string|返回时间戳字符串|-
   "success": true,
   "code": "0",
   "msg": "正常",
-  "data": "s7op5b",
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
+  "data": "yxgbp6",
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
 }
 ```
 
-## IdentityProvider控制域:身份提供商读写控制类
-### Get IdentityProvider list. 获取身份提供商列表或分页, 返回IdentityProvider对象.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/list.do
+### 获取审计字典类型
+**URL:** https://linlan.net/emis_portal/api/audit/info/types/{user_type}.do
 
 **Type:** GET
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:33:33<br>
+CreateTime 2025-09-06 15:55:04
 
 **Content-Type:** application/x-www-form-urlencoded;charset=utf-8
 
-**Description:** Get IdentityProvider list. 获取身份提供商列表或分页, 返回IdentityProvider对象.
+**Description:** 获取审计字典类型
+
+**Request-headers:**
+
+Header | Type|Description|Required|Since
+---|---|---|---|----
+token|string|令牌|true|-
+
+
+**Path-parameters:**
+
+Parameter | Type|Description|Required|Since
+---|---|---|---|---
+user_type|string|No comments found.|true|-
+
+**Request-example:**
+```
+curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/audit/info/types/y9cq6k.do
+```
+**Response-fields:**
+
+Field | Type|Description|Since
+---|---|---|---
+success|boolean|成功标记:正常为true,错误为false|-
+code|string|返回状态码:正常状态为0|-
+msg|string|返回消息|-
+data|array|返回数据对象|-
+└─name|string|No comments found.|-
+└─code|string|No comments found.|-
+└─types|array|No comments found.|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─name|string|名称|-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─code|string|代码|-
+requestId|string|请求ID|-
+timestamp|string|返回时间戳字符串|-
+
+**Response-example:**
+```
+{
+  "success": true,
+  "code": "0",
+  "msg": "正常",
+  "data": [
+    {
+      "name": "lorine.rohan",
+      "code": "59282",
+      "types": [
+        {
+          "name": "lorine.rohan",
+          "code": "59282"
+        }
+      ]
+    }
+  ],
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
+}
+```
+
+## 存储配置
+### 上传文件
+**URL:** https://linlan.net/emis_portal/STORAGE_PATH/upload.do
+
+**Type:** POST
+
+**Author:** Linlan
+
+**Content-Type:** multipart/form-data
+
+**Description:** 上传文件
+
+**Query-parameters:**
+
+Parameter | Type|Description|Required|Since
+---|---|---|---|---
+file|file| 上传文件|true|-
+
+**Request-example:**
+```
+curl -X POST -k -H 'Content-Type: multipart/form-data' -i https://linlan.net/emis_portal/STORAGE_PATH/upload.do
+```
+**Response-fields:**
+
+Field | Type|Description|Since
+---|---|---|---
+success|boolean|成功标记:正常为true,错误为false|-
+code|string|返回状态码:正常状态为0|-
+msg|string|返回消息|-
+data|object|返回数据对象|-
+└─any object|object|any object.|-
+requestId|string|请求ID|-
+timestamp|string|返回时间戳字符串|-
+
+**Response-example:**
+```
+{
+  "success": true,
+  "code": "0",
+  "msg": "正常",
+  "data": {},
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
+}
+```
+
+### 获取存储文件路径
+**URL:** https://linlan.net/emis_portal/STORAGE_PATH/get.do
+
+**Type:** GET
+
+**Author:** Linlan
+
+**Content-Type:** application/x-www-form-urlencoded;charset=utf-8
+
+**Description:** 获取存储文件路径
+
+**Query-parameters:**
+
+Parameter | Type|Description|Required|Since
+---|---|---|---|---
+path|string| 存储文件路径|true|-
+
+**Request-example:**
+```
+curl -X GET -k -i https://linlan.net/emis_portal/STORAGE_PATH/get.do?path=4g584a
+```
+**Response-fields:**
+
+Field | Type|Description|Since
+---|---|---|---
+success|boolean|成功标记:正常为true,错误为false|-
+code|string|返回状态码:正常状态为0|-
+msg|string|返回消息|-
+data|object|返回数据对象|-
+└─any object|object|any object.|-
+requestId|string|请求ID|-
+timestamp|string|返回时间戳字符串|-
+
+**Response-example:**
+```
+{
+  "success": true,
+  "code": "0",
+  "msg": "正常",
+  "data": {},
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
+}
+```
+
+## 获取加密key
+### 获取加密key
+**URL:** https://linlan.net/emis_portal/api/V1/public/secret.do
+
+**Type:** GET
+
+**Author:** Linlan
+
+**Content-Type:** application/x-www-form-urlencoded;charset=utf-8
+
+**Description:** 获取加密key
 
 **Request-headers:**
 
@@ -458,30 +896,11 @@ token|string|令牌|true|-
 
 Parameter | Type|Description|Required|Since
 ---|---|---|---|---
-q|string|关键字：查询输入条件q，可匹配name、title、keywords等文本信息|false|-
-orderBy|int32|排序，默认主键倒序|false|-
-startTime|string|开始时间|false|-
-endTime|string|结束时间|false|-
-page|int32|分页信息：默认第1页|false|-
-limit|int32|分页每页条数，默认10条|false|-
-id|string|主键ID|false|-
-foreignId|string|外键ID|false|-
-name|string|名称|false|-
-code|string|编码|false|-
-type|string|提供者类型|false|-
-config|string|配置JSON|false|-
-category|string|认证源分类（社交、企业）|false|-
-isEnabled|boolean|是否启用，0否1是|false|-
-isDisplayed|boolean|是否显示，0否1是|false|-
-creatorId|string|创建人ID|false|-
-delFlag|int32|删除标记，0未删除1已删除|false|-
-description|string|备注|false|-
-spare1|string|备用1|false|-
-spare2|string|备用2|false|-
+type|enum|LOGIN -(login,EmisConstants.LOGIN_SECRET,登录)<br/>ENCRYPT -(encrypt,EmisConstants.ENCRYPT_SECRET,加密)<br/>|true|-
 
 **Request-example:**
 ```
-curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/list.do?q=hnyn5p&startTime=2025-09-05 23:52:20&isDisplayed=true&spare1=mwyiyu&config=r0no6e&isEnabled=true&category=58mt3j&description=2sa6e6&endTime=2025-09-05 23:52:20&code=86144&delFlag=8&creatorId=33&foreignId=33&spare2=t410v3&id=33&page=1&orderBy=319&name=renee.stehr&type=9b41yd&limit=10
+curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/V1/public/secret.do?type=LOGIN
 ```
 **Response-fields:**
 
@@ -490,24 +909,8 @@ Field | Type|Description|Since
 success|boolean|成功标记:正常为true,错误为false|-
 code|string|返回状态码:正常状态为0|-
 msg|string|返回消息|-
-data|array|返回数据对象|-
-└─creatorId|string|创建人id|-
-└─createTime|string|创建时间|-
-└─lastTime|string|最后修改时间|-
-└─id|string|主键ID|-
-└─foreignId|string|外键ID|-
-└─name|string|名称|-
-└─code|string|编码|-
-└─type|string|提供者类型|-
-└─config|string|配置JSON|-
-└─category|string|认证源分类（社交、企业）|-
-└─isEnabled|boolean|是否启用，0否1是|-
-└─isDisplayed|boolean|是否显示，0否1是|-
-└─priority|int32|排序码|-
-└─delFlag|int32|删除标记，0未删除1已删除|-
-└─description|string|备注|-
-└─spare1|string|备用1|-
-└─spare2|string|备用2|-
+data|object|返回数据对象|-
+└─secret|string|秘钥|-
 requestId|string|请求ID|-
 timestamp|string|返回时间戳字符串|-
 
@@ -517,60 +920,29 @@ timestamp|string|返回时间戳字符串|-
   "success": true,
   "code": "0",
   "msg": "正常",
-  "data": [
-    {
-      "creatorId": "33",
-      "createTime": "2025-09-05 23:52:28",
-      "lastTime": "2025-09-05 23:52:28",
-      "id": "33",
-      "foreignId": "33",
-      "name": "renee.stehr",
-      "code": "86144",
-      "type": "qbycuv",
-      "config": "e0s7mx",
-      "category": "y0qlkx",
-      "isEnabled": true,
-      "isDisplayed": true,
-      "priority": 381,
-      "delFlag": 8,
-      "description": "jtigx9",
-      "spare1": "tqtmpz",
-      "spare2": "86weyl"
-    }
-  ],
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
+  "data": {
+    "secret": "ff7hyv"
+  },
+  "requestId": "19",
+  "timestamp": "2025-10-11 22:39:08"
 }
 ```
 
-### Get IdentityProvider by id. 主键获取身份提供商详细信息.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/{id}.do
+## 跳转
+### jump
+**URL:** https://linlan.net/emis_portal/EmisConstants.V1_API_PATH  /jump/.do
 
 **Type:** GET
 
 **Author:** Linlan
-CreateTime 2025-08-31 23:33:33<br>
 
 **Content-Type:** application/x-www-form-urlencoded;charset=utf-8
 
-**Description:** Get IdentityProvider by id. 主键获取身份提供商详细信息.
-
-**Request-headers:**
-
-Header | Type|Description|Required|Since
----|---|---|---|----
-token|string|令牌|true|-
-
-
-**Path-parameters:**
-
-Parameter | Type|Description|Required|Since
----|---|---|---|---
-id|string|主键ID|true|-
+**Description:** jump
 
 **Request-example:**
 ```
-curl -X GET -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/1.do
+curl -X GET -k -i https://linlan.net/emis_portal/EmisConstants.V1_API_PATH  /jump/.do
 ```
 **Response-fields:**
 
@@ -580,284 +952,16 @@ success|boolean|成功标记:正常为true,错误为false|-
 code|string|返回状态码:正常状态为0|-
 msg|string|返回消息|-
 data|object|返回数据对象|-
-└─creatorId|string|创建人id|-
-└─createTime|string|创建时间|-
-└─lastTime|string|最后修改时间|-
-└─id|string|主键ID|-
-└─foreignId|string|外键ID|-
-└─name|string|名称|-
-└─code|string|编码|-
-└─type|string|提供者类型|-
-└─config|string|配置JSON|-
-└─category|string|认证源分类（社交、企业）|-
-└─isEnabled|boolean|是否启用，0否1是|-
-└─isDisplayed|boolean|是否显示，0否1是|-
-└─priority|int32|排序码|-
-└─delFlag|int32|删除标记，0未删除1已删除|-
-└─description|string|备注|-
-└─spare1|string|备用1|-
-└─spare2|string|备用2|-
+└─view|object|No comments found.|-
+└─model|object|No comments found.|-
+└─status|enum|null<br/>CONTINUE<br/>SWITCHING_PROTOCOLS<br/>PROCESSING<br/>CHECKPOINT<br/>OK<br/>CREATED<br/>ACCEPTED<br/>NON_AUTHORITATIVE_INFORMATION<br/>NO_CONTENT<br/>RESET_CONTENT<br/>PARTIAL_CONTENT<br/>MULTI_STATUS<br/>ALREADY_REPORTED<br/>IM_USED<br/>MULTIPLE_CHOICES<br/>MOVED_PERMANENTLY<br/>FOUND<br/>MOVED_TEMPORARILY<br/>SEE_OTHER<br/>NOT_MODIFIED<br/>USE_PROXY<br/>TEMPORARY_REDIRECT<br/>PERMANENT_REDIRECT<br/>BAD_REQUEST<br/>UNAUTHORIZED<br/>PAYMENT_REQUIRED<br/>FORBIDDEN<br/>NOT_FOUND<br/>METHOD_NOT_ALLOWED<br/>NOT_ACCEPTABLE<br/>PROXY_AUTHENTICATION_REQUIRED<br/>REQUEST_TIMEOUT<br/>CONFLICT<br/>GONE<br/>LENGTH_REQUIRED<br/>PRECONDITION_FAILED<br/>PAYLOAD_TOO_LARGE<br/>REQUEST_ENTITY_TOO_LARGE<br/>URI_TOO_LONG<br/>REQUEST_URI_TOO_LONG<br/>UNSUPPORTED_MEDIA_TYPE<br/>REQUESTED_RANGE_NOT_SATISFIABLE<br/>EXPECTATION_FAILED<br/>I_AM_A_TEAPOT<br/>INSUFFICIENT_SPACE_ON_RESOURCE<br/>METHOD_FAILURE<br/>DESTINATION_LOCKED<br/>UNPROCESSABLE_ENTITY<br/>LOCKED<br/>FAILED_DEPENDENCY<br/>TOO_EARLY<br/>UPGRADE_REQUIRED<br/>PRECONDITION_REQUIRED<br/>TOO_MANY_REQUESTS<br/>REQUEST_HEADER_FIELDS_TOO_LARGE<br/>UNAVAILABLE_FOR_LEGAL_REASONS<br/>INTERNAL_SERVER_ERROR<br/>NOT_IMPLEMENTED<br/>BAD_GATEWAY<br/>SERVICE_UNAVAILABLE<br/>GATEWAY_TIMEOUT<br/>HTTP_VERSION_NOT_SUPPORTED<br/>VARIANT_ALSO_NEGOTIATES<br/>INSUFFICIENT_STORAGE<br/>LOOP_DETECTED<br/>BANDWIDTH_LIMIT_EXCEEDED<br/>NOT_EXTENDED<br/>NETWORK_AUTHENTICATION_REQUIRED<br/>|-
+└─cleared|boolean|No comments found.|-
 requestId|string|请求ID|-
 timestamp|string|返回时间戳字符串|-
 
 **Response-example:**
 ```
-{
-  "success": true,
-  "code": "0",
-  "msg": "正常",
-  "data": {
-    "creatorId": "33",
-    "createTime": "2025-09-05 23:52:28",
-    "lastTime": "2025-09-05 23:52:28",
-    "id": "33",
-    "foreignId": "33",
-    "name": "renee.stehr",
-    "code": "86144",
-    "type": "id5fde",
-    "config": "gjbmgn",
-    "category": "2tv5nr",
-    "isEnabled": true,
-    "isDisplayed": true,
-    "priority": 345,
-    "delFlag": 8,
-    "description": "722aiu",
-    "spare1": "ihbj05",
-    "spare2": "ly6wio"
-  },
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
-}
-```
-
-### IdentityProvider Operation. 新增身份提供商数据操作逻辑，根据操作类型，执行新增操作.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/save.do
-
-**Type:** POST
-
-**Author:** Linlan
-CreateTime 2025-08-31 23:33:33<br>
-
-**Content-Type:** application/json; charset=utf-8
-
-**Description:** IdentityProvider Operation. 新增身份提供商数据操作逻辑，根据操作类型，执行新增操作.
-
-**Request-headers:**
-
-Header | Type|Description|Required|Since
----|---|---|---|----
-token|string|令牌|true|-
-
-
-**Body-parameters:**
-
-Parameter | Type|Description|Required|Since
----|---|---|---|---
-data|object|请求数据对象，放入RequestBody内|false|-
-└─creatorId|string|创建人id|false|-
-└─createTime|string|创建时间|false|-
-└─lastTime|string|最后修改时间|false|-
-└─id|string|主键ID|false|-
-└─foreignId|string|外键ID|false|-
-└─name|string|名称|false|-
-└─code|string|编码|false|-
-└─type|string|提供者类型|false|-
-└─config|string|配置JSON|false|-
-└─category|string|认证源分类（社交、企业）|false|-
-└─isEnabled|boolean|是否启用，0否1是|false|-
-└─isDisplayed|boolean|是否显示，0否1是|false|-
-└─priority|int32|排序码|false|-
-└─delFlag|int32|删除标记，0未删除1已删除|false|-
-└─description|string|备注|false|-
-└─spare1|string|备用1|false|-
-└─spare2|string|备用2|false|-
-
-**Request-example:**
-```
-curl -X POST -k -H 'Content-Type: application/json; charset=utf-8' -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/save.do --data '{
-  "data": {
-    "creatorId": "33",
-    "createTime": "2025-09-05 23:52:28",
-    "lastTime": "2025-09-05 23:52:28",
-    "id": "33",
-    "foreignId": "33",
-    "name": "renee.stehr",
-    "code": "86144",
-    "type": "qcqj3d",
-    "config": "0krpki",
-    "category": "30938y",
-    "isEnabled": true,
-    "isDisplayed": true,
-    "priority": 10,
-    "delFlag": 8,
-    "description": "q1khlx",
-    "spare1": "948h8v",
-    "spare2": "6zrdzq"
-  }
-}'
-```
-**Response-fields:**
-
-Field | Type|Description|Since
----|---|---|---
-success|boolean|成功标记:正常为true,错误为false|-
-code|string|返回状态码:正常状态为0|-
-msg|string|返回消息|-
-data|object|返回数据对象|-
-requestId|string|请求ID|-
-timestamp|string|返回时间戳字符串|-
-
-**Response-example:**
-```
-{
-  "success": true,
-  "code": "0",
-  "msg": "正常",
-  "data": "34z3y3",
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
-}
-```
-
-### IdentityProvider Operation. 修改身份提供商数据操作逻辑，根据操作类型，执行修改操作.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/update.do
-
-**Type:** POST
-
-**Author:** Linlan
-CreateTime 2025-08-31 23:33:33<br>
-
-**Content-Type:** application/json; charset=utf-8
-
-**Description:** IdentityProvider Operation. 修改身份提供商数据操作逻辑，根据操作类型，执行修改操作.
-
-**Request-headers:**
-
-Header | Type|Description|Required|Since
----|---|---|---|----
-token|string|令牌|true|-
-
-
-**Body-parameters:**
-
-Parameter | Type|Description|Required|Since
----|---|---|---|---
-data|object|请求数据对象，放入RequestBody内|false|-
-└─creatorId|string|创建人id|false|-
-└─createTime|string|创建时间|false|-
-└─lastTime|string|最后修改时间|false|-
-└─id|string|主键ID|false|-
-└─foreignId|string|外键ID|false|-
-└─name|string|名称|false|-
-└─code|string|编码|false|-
-└─type|string|提供者类型|false|-
-└─config|string|配置JSON|false|-
-└─category|string|认证源分类（社交、企业）|false|-
-└─isEnabled|boolean|是否启用，0否1是|false|-
-└─isDisplayed|boolean|是否显示，0否1是|false|-
-└─priority|int32|排序码|false|-
-└─delFlag|int32|删除标记，0未删除1已删除|false|-
-└─description|string|备注|false|-
-└─spare1|string|备用1|false|-
-└─spare2|string|备用2|false|-
-
-**Request-example:**
-```
-curl -X POST -k -H 'Content-Type: application/json; charset=utf-8' -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/update.do --data '{
-  "data": {
-    "creatorId": "33",
-    "createTime": "2025-09-05 23:52:28",
-    "lastTime": "2025-09-05 23:52:28",
-    "id": "33",
-    "foreignId": "33",
-    "name": "renee.stehr",
-    "code": "86144",
-    "type": "6uv047",
-    "config": "5icggl",
-    "category": "3j5d99",
-    "isEnabled": true,
-    "isDisplayed": true,
-    "priority": 631,
-    "delFlag": 8,
-    "description": "cdka0d",
-    "spare1": "xu0efg",
-    "spare2": "3xm5dg"
-  }
-}'
-```
-**Response-fields:**
-
-Field | Type|Description|Since
----|---|---|---
-success|boolean|成功标记:正常为true,错误为false|-
-code|string|返回状态码:正常状态为0|-
-msg|string|返回消息|-
-data|object|返回数据对象|-
-requestId|string|请求ID|-
-timestamp|string|返回时间戳字符串|-
-
-**Response-example:**
-```
-{
-  "success": true,
-  "code": "0",
-  "msg": "正常",
-  "data": "53rxu3",
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
-}
-```
-
-### IdentityProvider Operation. 删除身份提供商数据操作逻辑，根据操作类型，执行删除操作.
-**URL:** https://linlan.net/emis_portal/api/provider/identity/delete/{ids}.do
-
-**Type:** POST
-
-**Author:** Linlan
-CreateTime 2025-08-31 23:33:33<br>
-
-**Content-Type:** application/x-www-form-urlencoded;charset=utf-8
-
-**Description:** IdentityProvider Operation. 删除身份提供商数据操作逻辑，根据操作类型，执行删除操作.
-
-**Request-headers:**
-
-Header | Type|Description|Required|Since
----|---|---|---|----
-token|string|令牌|true|-
-
-
-**Path-parameters:**
-
-Parameter | Type|Description|Required|Since
----|---|---|---|---
-ids|array|主键ID:null;1;1,2,3,[array of string]|true|
-
-**Request-example:**
-```
-curl -X POST -k -H 'token:${token}' -i https://linlan.net/emis_portal/api/provider/identity/delete/.do
-```
-**Response-fields:**
-
-Field | Type|Description|Since
----|---|---|---
-success|boolean|成功标记:正常为true,错误为false|-
-code|string|返回状态码:正常状态为0|-
-msg|string|返回消息|-
-data|object|返回数据对象|-
-requestId|string|请求ID|-
-timestamp|string|返回时间戳字符串|-
-
-**Response-example:**
-```
-{
-  "success": true,
-  "code": "0",
-  "msg": "正常",
-  "data": "ys1r4e",
-  "requestId": "33",
-  "timestamp": "2025-09-05 23:52:20"
-}
+{"success":true,"code":"0","msg":"正常","data":Forward or redirect to a page view.,"requestId":"19","timestamp":"2025-10-11 22:39:08"}
 ```
 
 ## 错误码列表

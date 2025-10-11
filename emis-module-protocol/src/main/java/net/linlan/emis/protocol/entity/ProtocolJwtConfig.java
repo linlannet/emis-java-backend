@@ -1,5 +1,5 @@
 /*
- * emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+ * emis-module-protocol - protocol协议配置
  * Copyright © 2020-2025 Linlan (open@linlan.net)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,45 +36,45 @@ public class ProtocolJwtConfig extends BaseEntity {
     /**
      * 主键ID
      */
-    private String id;
+    private String  id;
 
     /**
      * 应用ID
      */
-    private String appId;
+    private String  appId;
 
     /**
      * 外键ID
      */
-    private String foreignId;
+    private String  foreignId;
 
     /**
      * 业务系统JWT SSO地址
      * 业务系统中的JWT SSO地址，在单点登录时本系统将向该地址发送id_token信息，参数名为id_token，业务系统通过id_token与Public Key可获取业务系统中的用户信息，如果在业务系统（SP）发起登录，请求SP登录地址时如果携带service参数，系统会检验合法性，成功后会将浏览器重定向到该地址，并携带id_token身份令牌。
      */
-    private String redirectUrl;
+    private String  redirectUrl;
 
     /**
      * 业务系统中在JWT SSO成功后重定向的URL，一般用于跳转到二级菜单等，若设置了该URL，在JWT SSO时会以参数target_link_url优先传递该值，若未设置该值，此时若SSO中有请求参数target_link_url，则会按照请求参数传递该值。此项可选。
      * 若设置了该URL，在JWT SSO时会以参数target_uri优先传递该值，
      * 若未设置该值，此时若SSO中有请求参数target_uri，则会按照请求参数传递该值。此项可选。
      */
-    private String targetLinkUrl;
+    private String  targetLinkUrl;
 
     /**
      * 跳转方式
      */
-    private String bindingType;
+    private String  bindingType;
 
     /**
      * ID_TOKEN SUBJECT 类型
      */
-    private String idTokenSubjectType;
+    private String  idTokenSubjectType;
 
     /**
      * ID_TOKEN 有效期（秒）
      */
-    private Long idTokenTimeToLive;
+    private Long    idTokenTimeToLive;
 
     /**
      * 删除标记，0未删除1已删除
@@ -84,25 +84,24 @@ public class ProtocolJwtConfig extends BaseEntity {
     /**
      * 备注
      */
-    private String description;
+    private String  description;
 
     /**
      * 备用1
      */
-    private String spare1;
+    private String  spare1;
 
     /**
      * 备用2
      */
-    private String spare2;
-
+    private String  spare2;
 
     /**
      * 初始化方法
      */
     public void init() {
         //添加对数据库或实体对象的默认值处理
-        if(getId() == null) {
+        if (getId() == null) {
             setId(RandomUtils.randomSid());
         }
 

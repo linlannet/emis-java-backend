@@ -1,5 +1,5 @@
 /*
- * emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+ * emis-module-protocol - protocol协议配置
  * Copyright © 2020-2025 Linlan (open@linlan.net)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,31 +35,31 @@ public class ProtocolTsaConfigParam extends BaseParam {
     /**
      * 主键ID
      */
-    private String id;
+    private String  id;
     /**
      * 应用ID
      */
-    private String appId;
+    private String  appId;
     /**
      * 外键ID
      */
-    private String foreignId;
+    private String  foreignId;
     /**
      * 登录页面URL
      */
-    private String loginPage;
+    private String  loginPage;
     /**
      * 自动登录步骤
      */
-    private String autoLoginSteps;
+    private String  autoLoginSteps;
     /**
      * 创建账号步骤
      */
-    private String createAccountSteps;
+    private String  createAccountSteps;
     /**
      * 创建人ID
      */
-    private String creatorId;
+    private String  creatorId;
     /**
      * 删除标记，0未删除1已删除
      */
@@ -67,14 +67,14 @@ public class ProtocolTsaConfigParam extends BaseParam {
     /**
      * 备注
      */
-    private String description;
+    private String  description;
     /**
      * 备用1
      */
-    private String spare1;
+    private String  spare1;
     /**
      * 备用2
      */
-    private String spare2;
+    private String  spare2;
 
 }

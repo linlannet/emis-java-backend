@@ -1,5 +1,5 @@
 /*
- * emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+ * emis-module-protocol - protocol协议配置
  * Copyright © 2020-2025 Linlan (open@linlan.net)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,31 +35,31 @@ public class ProtocolSaml2ConfigParam extends BaseParam {
     /**
      * 主键ID
      */
-    private String id;
+    private String  id;
     /**
      * 应用ID
      */
-    private String appId;
+    private String  appId;
     /**
      * 外键ID
      */
-    private String foreignId;
+    private String  foreignId;
     /**
      * SP实体ID
      */
-    private String spEntityId;
+    private String  spEntityId;
     /**
      * SP元数据
      */
-    private String spMetadata;
+    private String  spMetadata;
     /**
      * SP断言消费地址
      */
-    private String spAcsUrl;
+    private String  spAcsUrl;
     /**
      * SP单点登出地址
      */
-    private String spSloUrl;
+    private String  spSloUrl;
     /**
      * 是否对 SAML Request 签名进行验证 ，用来对SAML Request签名进行验证，对应SP元数据文件中“AuthnRequestsSigned”值
      */
@@ -67,31 +67,31 @@ public class ProtocolSaml2ConfigParam extends BaseParam {
     /**
      * SP公钥证书，用来验证SAML request的签名，对应SP元数据文件中 use='signing' 证书内容
      */
-    private String spSignCert;
+    private String  spSignCert;
     /**
      * 断言Binding方式
      */
-    private String acsBinding;
+    private String  acsBinding;
     /**
      * 单点登出Binding方式
      */
-    private String slsBinding;
+    private String  slsBinding;
     /**
      * 断言接收者地址
      */
-    private String recipient;
+    private String  recipient;
     /**
      * 指定此SAML断言的目标受众，默认和SP Entity ID相同。
      */
-    private String audience;
+    private String  audience;
     /**
      * 断言NameIDFormat
      */
-    private String nameidFormat;
+    private String  nameidFormat;
     /**
      * 断言NameID值表达式
      */
-    private String nameidValueType;
+    private String  nameidValueType;
     /**
      * 断言是否签名
      */
@@ -99,7 +99,7 @@ public class ProtocolSaml2ConfigParam extends BaseParam {
     /**
      * 断言签名使用的非对称算法
      */
-    private String assertSignAlgorithm;
+    private String  assertSignAlgorithm;
     /**
      * 断言是否加密
      */
@@ -107,7 +107,7 @@ public class ProtocolSaml2ConfigParam extends BaseParam {
     /**
      * 断言加密使用的非对称算法
      */
-    private String assertEncryptAlgorithm;
+    private String  assertEncryptAlgorithm;
     /**
      * 是否签名Response
      */
@@ -115,27 +115,27 @@ public class ProtocolSaml2ConfigParam extends BaseParam {
     /**
      * 签名Response使用的非对称算法
      */
-    private String responseSignAlgorithm;
+    private String  responseSignAlgorithm;
     /**
      * 身份认证SAML上下文
      */
-    private String authnContextClassref;
+    private String  authnContextClassref;
     /**
      * RelayState
      */
-    private String relayState;
+    private String  relayState;
     /**
      * AttributeStatements
      */
-    private String attributeStatements;
+    private String  attributeStatements;
     /**
      * 额外配置
      */
-    private String additionalConfig;
+    private String  additionalConfig;
     /**
      * 创建人ID
      */
-    private String creatorId;
+    private String  creatorId;
     /**
      * 删除标记，0未删除1已删除
      */
@@ -143,14 +143,14 @@ public class ProtocolSaml2ConfigParam extends BaseParam {
     /**
      * 备注
      */
-    private String description;
+    private String  description;
     /**
      * 备用1
      */
-    private String spare1;
+    private String  spare1;
     /**
      * 备用2
      */
-    private String spare2;
+    private String  spare2;
 
 }

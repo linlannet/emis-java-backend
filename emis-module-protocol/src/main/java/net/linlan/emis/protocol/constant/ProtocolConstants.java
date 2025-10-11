@@ -1,5 +1,5 @@
 /*
- * emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+ * emis-module-protocol - protocol协议配置
  * Copyright © 2020-2025 Linlan (open@linlan.net)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,77 +34,77 @@ public abstract class ProtocolConstants {
     /**
      * 应用code
      */
-    public static final String APP_CODE                  = "appCode";
+    public static final String APP_CODE                 = "appCode";
     /**
      * 提供商变量
      */
-    public static final String APP_CODE_VARIABLE         = "{" + APP_CODE + "}";
+    public static final String APP_CODE_VARIABLE        = "{" + APP_CODE + "}";
 
     /**
      * 应用账户缓存名称
      */
-    public static final String APP_ACCOUNT_CACHE_NAME    = AppConstants.APP_CACHE_NAME_PREFIX
-                                                           + "account";
+    public static final String APP_ACCOUNT_CACHE_NAME   = AppConstants.APP_CACHE_NAME_PREFIX
+                                                          + "account";
 
     /**
      * SAML2 配置缓存名称
      */
-    public static final String SAML2_CONFIG_CACHE_NAME   = AppConstants.APP_CACHE_NAME_PREFIX
-                                                           + "saml";
+    public static final String SAML2_CONFIG_CACHE_NAME  = AppConstants.APP_CACHE_NAME_PREFIX
+                                                          + "saml";
 
     /**
      * CAS 配置缓存名称
      */
-    public static final String CAS_CONFIG_CACHE_NAME     = AppConstants.APP_CACHE_NAME_PREFIX
-                                                           + "cas";
+    public static final String CAS_CONFIG_CACHE_NAME    = AppConstants.APP_CACHE_NAME_PREFIX
+                                                          + "cas";
 
     /**
      * OIDC 配置缓存名称
      */
-    public static final String OIDC_CONFIG_CACHE_NAME    = AppConstants.APP_CACHE_NAME_PREFIX
-                                                           + "oidc";
+    public static final String OIDC_CONFIG_CACHE_NAME   = AppConstants.APP_CACHE_NAME_PREFIX
+                                                          + "oidc";
 
     /**
      * APP 认证缓存名称
      */
-    public static final String APP_CERT_CACHE_NAME       = AppConstants.APP_CACHE_NAME_PREFIX
-                                                           + "cert";
+    public static final String APP_CERT_CACHE_NAME      = AppConstants.APP_CACHE_NAME_PREFIX
+                                                          + "cert";
     /**
      * 认证路径
      */
-    public final static String AUTHORIZE_PATH            = EmisConstants.V1_API_PATH + "/authorize";
+    public final static String AUTHORIZE_PATH           = EmisConstants.V1_API_PATH + "/authorize";
 
     /**
      * 协议缓存前缀
      */
-    public static final String PROTOCOL_CACHE_PREFIX     = "protocol" + StringUtils.COLON;
+    public static final String PROTOCOL_CACHE_PREFIX    = "protocol" + StringUtils.COLON;
     /**
      * CAS IDP SSO 发起
      */
-    public static final String IDP_CAS_SSO_INITIATOR     = AUTHORIZE_PATH + "/cas/"
-                                                           + APP_CODE_VARIABLE + "/initiator";
+    public static final String IDP_CAS_SSO_INITIATOR    = AUTHORIZE_PATH + "/cas/"
+                                                          + APP_CODE_VARIABLE + "/initiator";
     /**
      * FORM IDP SSO 发起
      */
-    public static final String IDP_FORM_SSO_INITIATOR    = AUTHORIZE_PATH + "/form/"
-                                                           + APP_CODE_VARIABLE + "/initiator";
+    public static final String IDP_FORM_SSO_INITIATOR   = AUTHORIZE_PATH + "/form/"
+                                                          + APP_CODE_VARIABLE + "/initiator";
 
     /**
      * JWT IDP SSO 发起
      */
-    public static final String IDP_JWT_SSO_INITIATOR     = AUTHORIZE_PATH + "/jwt/"
-                                                           + APP_CODE_VARIABLE + "/initiator";
+    public static final String IDP_JWT_SSO_INITIATOR    = AUTHORIZE_PATH + "/jwt/"
+                                                          + APP_CODE_VARIABLE + "/initiator";
 
     /**
      * OAuth2 IDP SSO 发起
      */
-    public static final String IDP_OAUTH2_SSO_INITIATOR  = AUTHORIZE_PATH + "/oauth2/"
-                                                           + APP_CODE_VARIABLE + "/initiator";
+    public static final String IDP_OAUTH2_SSO_INITIATOR = AUTHORIZE_PATH + "/oauth2/"
+                                                          + APP_CODE_VARIABLE + "/initiator";
     /**
      * SAML2 IDP SSO 发起
      */
-    public static final String IDP_SAML2_SSO_INITIATOR   = AUTHORIZE_PATH + "/saml2/"
-                                                           + APP_CODE_VARIABLE + "/initiator";
+    public static final String IDP_SAML2_SSO_INITIATOR  = AUTHORIZE_PATH + "/saml2/"
+                                                          + APP_CODE_VARIABLE + "/initiator";
 
     /**
      * OIDC Endpoint config

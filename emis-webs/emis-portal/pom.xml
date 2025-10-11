@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    emis-java-backend - 基于JAVA开发的企业级多身份管理系统后端工程，依托EFRAME框架开发，基于Springboot，采用支持 JAVA 1.8最高版本的framework、security，后端数据访问采用Mybatis框架，支持多种数据库一套代码适配，提供脚手架可快速生成Mapper等，在仓库功能上，借鉴主流的SSO和IAM框架，实现统一用户管理。前端提供VUE框架和REACT框架的控制台管理工程、企业个人门户工程和移动端应用扩展。
+    emis-portal - portal门户平台
     Copyright © 2020-2025 Linlan (open@linlan.net)
 
     This program is free software: you can redistribute it and/or modify
@@ -25,10 +25,10 @@
     <parent>
         <groupId>net.linlan.emis</groupId>
         <artifactId>emis-webs</artifactId>
-        <version>1.2.6</version>
+        <version>1.2.7</version>
     </parent>
     <artifactId>emis-portal</artifactId>
-    <version>1.2.6</version>
+    <version>1.2.7</version>
     <packaging>jar</packaging>
     <name>emis-portal</name>
     <description>
@@ -347,53 +347,53 @@
 <!--            </plugin>-->
 
             <!-- 为自动生成接口文档进行扩展 -->
-            <plugin>
-                <groupId>net.linlan.plugin</groupId>
-                <artifactId>java-plugin-doc-generate</artifactId>
-                <version>${linlan.plugin.version}</version>
-                <configuration>
-                    <!--指定生成文档的使用的配置文件,配置文件放在自己的项目中-->
-                    <configFile>./src/main/resources/smart-doc.json</configFile>
-                    <!--指定项目名称-->
-                    <projectName>api-doc</projectName>
-                    <!--smart-doc实现自动分析依赖树加载第三方依赖的源码，如果一些框架依赖库加载不到导致报错，这时请使用excludes排除掉-->
-                    <excludes>
-                        <!--格式为：groupId:artifactId;参考如下-->
-                        <exclude>com.alibaba:fastjson2</exclude>
-                        <exclude>org.springframework.boot:*</exclude>
-                        <include>net.linlan.eframe:eframe-api</include>
-                    </excludes>
-                    <!--自1.0.8版本开始，插件提供includes支持,配置了includes后插件会按照用户配置加载而不是自动加载，因此使用时需要注意-->
-                    <!--smart-doc能自动分析依赖树加载所有依赖源码，原则上会影响文档构建效率，因此你可以使用includes来让插件加载你配置的组件-->
-                    <includes>
-                        <!--格式为：groupId:artifactId;参考如下-->
-                        <include>net.linlan.commons:commons-core</include>
-                        <include>net.linlan.eframe:eframe-support</include>
-                        <include>net.linlan.eframe:eframe-model</include>
-                        <include>net.linlan.eframe:eframe-core</include>
-                        <include>net.linlan.eframe:eframe-view</include>
-                        <include>net.linlan.emis:emis-support</include>
-                        <include>net.linlan.emis:emis-core</include>
-                        <include>net.linlan.emis:emis-module-provider</include>
-                        <include>net.linlan.emis:emis-module-user</include>
-                        <include>net.linlan.emis:emis-module-audit</include>
-                        <include>net.linlan.emis:emis-module-app</include>
-                        <include>net.linlan.emis:emis-module-idsource</include>
-                        <include>net.linlan.emis:emis-module-protocol</include>
-                    </includes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <!--如果不需要在执行编译时启动smart-doc，则将phase注释掉-->
-                        <phase>compile</phase>
-                        <goals>
-                            <!--smart-doc提供了html、openapi、markdown等goal，可按需配置-->
-                            <goal>html</goal>
-                            <goal>markdown</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>net.linlan.plugin</groupId>-->
+<!--                <artifactId>java-plugin-doc-generate</artifactId>-->
+<!--                <version>${linlan.plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;指定生成文档的使用的配置文件,配置文件放在自己的项目中&ndash;&gt;-->
+<!--                    <configFile>./src/main/resources/smart-doc.json</configFile>-->
+<!--                    &lt;!&ndash;指定项目名称&ndash;&gt;-->
+<!--                    <projectName>api-doc</projectName>-->
+<!--                    &lt;!&ndash;smart-doc实现自动分析依赖树加载第三方依赖的源码，如果一些框架依赖库加载不到导致报错，这时请使用excludes排除掉&ndash;&gt;-->
+<!--                    <excludes>-->
+<!--                        &lt;!&ndash;格式为：groupId:artifactId;参考如下&ndash;&gt;-->
+<!--                        <exclude>com.alibaba:fastjson2</exclude>-->
+<!--                        <exclude>org.springframework.boot:*</exclude>-->
+<!--                        <include>net.linlan.eframe:eframe-api</include>-->
+<!--                    </excludes>-->
+<!--                    &lt;!&ndash;自1.0.8版本开始，插件提供includes支持,配置了includes后插件会按照用户配置加载而不是自动加载，因此使用时需要注意&ndash;&gt;-->
+<!--                    &lt;!&ndash;smart-doc能自动分析依赖树加载所有依赖源码，原则上会影响文档构建效率，因此你可以使用includes来让插件加载你配置的组件&ndash;&gt;-->
+<!--                    <includes>-->
+<!--                        &lt;!&ndash;格式为：groupId:artifactId;参考如下&ndash;&gt;-->
+<!--                        <include>net.linlan.commons:commons-core</include>-->
+<!--                        <include>net.linlan.eframe:eframe-support</include>-->
+<!--                        <include>net.linlan.eframe:eframe-model</include>-->
+<!--                        <include>net.linlan.eframe:eframe-core</include>-->
+<!--                        <include>net.linlan.eframe:eframe-view</include>-->
+<!--                        <include>net.linlan.emis:emis-support</include>-->
+<!--                        <include>net.linlan.emis:emis-core</include>-->
+<!--                        <include>net.linlan.emis:emis-module-provider</include>-->
+<!--                        <include>net.linlan.emis:emis-module-user</include>-->
+<!--                        <include>net.linlan.emis:emis-module-audit</include>-->
+<!--                        <include>net.linlan.emis:emis-module-app</include>-->
+<!--                        <include>net.linlan.emis:emis-module-idsource</include>-->
+<!--                        <include>net.linlan.emis:emis-module-protocol</include>                    -->
+<!--                    </includes>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        &lt;!&ndash;如果不需要在执行编译时启动smart-doc，则将phase注释掉&ndash;&gt;-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash;smart-doc提供了html、openapi、markdown等goal，可按需配置&ndash;&gt;-->
+<!--                            <goal>html</goal>-->
+<!--                            <goal>markdown</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
         </plugins>
 
