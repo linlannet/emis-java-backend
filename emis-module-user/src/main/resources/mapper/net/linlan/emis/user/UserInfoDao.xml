@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    emis-module-user - user账户模块
+    Copyright © 2020-2025 Linlan (open@linlan.net)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.linlan.emis.user.dao.UserInfoDao">
+
+    <!-- 采用别名使用类成员变量，可根据需求，确定是否启用 -->
+    <resultMap type="net.linlan.emis.user.entity.UserInfo" id="userInfoMap">
+        <id property="id" column="USER_ID"/>
+        <result property="xzqhId" column="XZQH_ID"/>
+        <result property="idsourceId" column="IDSOURCE_ID"/>
+        <result property="foreignId" column="FOREIGN_ID"/>
+        <result property="username" column="USERNAME"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="salt" column="SALT"/>
+        <result property="mobile" column="MOBILE"/>
+        <result property="mobileAreaCode" column="MOBILE_AREA_CODE"/>
+        <result property="mobileVerified" column="MOBILE_VERIFIED"/>
+        <result property="email" column="EMAIL"/>
+        <result property="emailVerified" column="EMAIL_VERIFIED"/>
+        <result property="fullName" column="FULL_NAME"/>
+        <result property="nickName" column="NICK_NAME"/>
+        <result property="avatarUrl" column="AVATAR_URL"/>
+        <result property="createType" column="CREATE_TYPE"/>
+        <result property="sharedSecret" column="SHARED_SECRET"/>
+        <result property="totpBind" column="TOTP_BIND"/>
+        <result property="outSourceId" column="OUT_SOURCE_ID"/>
+        <result property="expireDate" column="EXPIRE_DATE"/>
+        <result property="lockExpiredTime" column="LOCK_EXPIRED_TIME"/>
+        <result property="lastAppId" column="LAST_APP_ID"/>
+        <result property="status" column="STATUS"/>
+        <result property="loginCount" column="LOGIN_COUNT"/>
+        <result property="currentLoginTime" column="CURRENT_LOGIN_TIME"/>
+        <result property="currentLoginIp" column="CURRENT_LOGIN_IP"/>
+        <result property="authTotal" column="AUTH_TOTAL"/>
+        <result property="lastAuthIp" column="LAST_AUTH_IP"/>
+        <result property="lastAuthTime" column="LAST_AUTH_TIME"/>
+        <result property="resetKey" column="RESET_KEY"/>
+        <result property="resetPwd" column="RESET_PWD"/>
+        <result property="lastResetTime" column="LAST_RESET_TIME"/>
+        <result property="activation" column="ACTIVATION"/>
+        <result property="activationCode" column="ACTIVATION_CODE"/>
+        <result property="expandParam" column="EXPAND_PARAM"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="lastTime" column="LAST_TIME"/>
+        <result property="delFlag" column="DEL_FLAG"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="spare1" column="SPARE1"/>
+        <result property="spare2" column="SPARE2"/>
+    </resultMap>
+
+    <!-- find by id，通过主键获取对象 -->
+    <select id="findById" resultMap="userInfoMap">
+        SELECT
+USER_ID, XZQH_ID, IDSOURCE_ID, FOREIGN_ID, USERNAME, PASSWORD, SALT, MOBILE, MOBILE_AREA_CODE, MOBILE_VERIFIED, EMAIL, EMAIL_VERIFIED, FULL_NAME, NICK_NAME, AVATAR_URL, CREATE_TYPE, SHARED_SECRET, TOTP_BIND, OUT_SOURCE_ID, EXPIRE_DATE, LOCK_EXPIRED_TIME, LAST_APP_ID, STATUS, LOGIN_COUNT, CURRENT_LOGIN_TIME, CURRENT_LOGIN_IP, AUTH_TOTAL, LAST_AUTH_IP, LAST_AUTH_TIME, RESET_KEY, RESET_PWD, LAST_RESET_TIME, ACTIVATION, ACTIVATION_CODE, EXPAND_PARAM, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE B.USER_ID = #{value}
+    </select>
+
+    <!-- get list，通过输入的条件，获取返回的list列表对象，采用相应的分页规则进行分页处理 -->
+    <select id="getList" resultMap="userInfoMap">
+        SELECT
+B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE 1=1
+        <include refid="commonList"></include>
+        <include refid="getListOrderBy"></include>
+    </select>
+
+    <!-- 通用排序SQL，如果传入参数按照参数排序，如果未传入参数，按照主键排序 -->
+    <sql id="getListOrderBy">
+        <choose>
+            <when test='orderBy != null'>
+                <choose>
+                    <when test='orderBy == 0'>
+                        ORDER BY B.CREATE_TIME DESC
+                    </when>
+                    <when test='orderBy == 1'>
+                        ORDER BY B.CREATE_TIME ASC
+                    </when>
+                    <when test='orderBy == 2'>
+                        ORDER BY B.PRIORITY DESC
+                    </when>
+                    <when test='orderBy == 3'>
+                        ORDER BY B.PRIORITY ASC
+                    </when>
+                    <otherwise>
+                        ORDER BY B.USER_ID ASC
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                ORDER BY B.USER_ID DESC
+            </otherwise>
+        </choose>
+    </sql>
+
+    <!-- sql commonList 通过输入的条件，获取返回的list列表对象 -->
+    <sql id="commonList">
+        <!--  只允许默认的本表的字段查询，查询条件可通过Param定义，默认全部字段，后续根据Param内的定义，可删除不需要的查询字段 -->
+        <if test="id != null and id != ''">
+            and B.USER_ID = #{id}
+        </if>
+        <if test="xzqhId != null and xzqhId != ''">
+            and B.XZQH_ID = #{xzqhId}
+        </if>
+        <if test="idsourceId != null and idsourceId != ''">
+            and B.IDSOURCE_ID = #{idsourceId}
+        </if>
+        <if test="foreignId != null and foreignId != ''">
+            and B.FOREIGN_ID = #{foreignId}
+        </if>
+        <if test="username != null and username != ''">
+            and B.USERNAME = #{username}
+        </if>
+        <if test="password != null and password != ''">
+            and B.PASSWORD = #{password}
+        </if>
+        <if test="salt != null and salt != ''">
+            and B.SALT = #{salt}
+        </if>
+        <if test="mobile != null and mobile != ''">
+            and B.MOBILE = #{mobile}
+        </if>
+        <if test="mobileAreaCode != null and mobileAreaCode != ''">
+            and B.MOBILE_AREA_CODE = #{mobileAreaCode}
+        </if>
+        <if test="mobileVerified != null and mobileVerified != ''">
+            and B.MOBILE_VERIFIED = #{mobileVerified}
+        </if>
+        <if test="email != null and email != ''">
+            and B.EMAIL = #{email}
+        </if>
+        <if test="emailVerified != null and emailVerified != ''">
+            and B.EMAIL_VERIFIED = #{emailVerified}
+        </if>
+        <if test="fullName != null and fullName != ''">
+            and B.FULL_NAME = #{fullName}
+        </if>
+        <if test="nickName != null and nickName != ''">
+            and B.NICK_NAME = #{nickName}
+        </if>
+        <if test="avatarUrl != null and avatarUrl != ''">
+            and B.AVATAR_URL = #{avatarUrl}
+        </if>
+        <if test="createType != null and createType != ''">
+            and B.CREATE_TYPE = #{createType}
+        </if>
+        <if test="sharedSecret != null and sharedSecret != ''">
+            and B.SHARED_SECRET = #{sharedSecret}
+        </if>
+        <if test="totpBind != null and totpBind != ''">
+            and B.TOTP_BIND = #{totpBind}
+        </if>
+        <if test="outSourceId != null and outSourceId != ''">
+            and B.OUT_SOURCE_ID = #{outSourceId}
+        </if>
+        <if test="expireDate != null and expireDate != ''">
+            and B.EXPIRE_DATE = #{expireDate}
+        </if>
+        <if test="lockExpiredTime != null and lockExpiredTime != ''">
+            and B.LOCK_EXPIRED_TIME = #{lockExpiredTime}
+        </if>
+        <if test="lastAppId != null and lastAppId != ''">
+            and B.LAST_APP_ID = #{lastAppId}
+        </if>
+        <if test="status != null and status != ''">
+            and B.STATUS = #{status}
+        </if>
+        <if test="loginCount != null and loginCount != ''">
+            and B.LOGIN_COUNT = #{loginCount}
+        </if>
+        <if test="currentLoginTime != null and currentLoginTime != ''">
+            and B.CURRENT_LOGIN_TIME = #{currentLoginTime}
+        </if>
+        <if test="currentLoginIp != null and currentLoginIp != ''">
+            and B.CURRENT_LOGIN_IP = #{currentLoginIp}
+        </if>
+        <if test="authTotal != null and authTotal != ''">
+            and B.AUTH_TOTAL = #{authTotal}
+        </if>
+        <if test="lastAuthIp != null and lastAuthIp != ''">
+            and B.LAST_AUTH_IP = #{lastAuthIp}
+        </if>
+        <if test="lastAuthTime != null and lastAuthTime != ''">
+            and B.LAST_AUTH_TIME = #{lastAuthTime}
+        </if>
+        <if test="resetKey != null and resetKey != ''">
+            and B.RESET_KEY = #{resetKey}
+        </if>
+        <if test="resetPwd != null and resetPwd != ''">
+            and B.RESET_PWD = #{resetPwd}
+        </if>
+        <if test="lastResetTime != null and lastResetTime != ''">
+            and B.LAST_RESET_TIME = #{lastResetTime}
+        </if>
+        <if test="activation != null and activation != ''">
+            and B.ACTIVATION = #{activation}
+        </if>
+        <if test="activationCode != null and activationCode != ''">
+            and B.ACTIVATION_CODE = #{activationCode}
+        </if>
+        <if test="expandParam != null and expandParam != ''">
+            and B.EXPAND_PARAM = #{expandParam}
+        </if>
+        <if test="creatorId != null and creatorId != ''">
+            and B.CREATOR_ID = #{creatorId}
+        </if>
+        <choose>
+            <when test="delFlag != null">
+                AND B.DEL_FLAG = #{delFlag}
+            </when>
+            <otherwise>
+                AND ( B.DEL_FLAG = 0 OR B.DEL_FLAG IS NULL)
+            </otherwise>
+        </choose>
+        <if test="description != null and description != ''">
+            and B.DESCRIPTION = #{description}
+        </if>
+        <if test="spare1 != null and spare1 != ''">
+            and B.SPARE1 = #{spare1}
+        </if>
+        <if test="spare2 != null and spare2 != ''">
+            and B.SPARE2 = #{spare2}
+        </if>
+
+        <!-- 各个数据库差异化的查询条件处理，如时间字段 -->
+        <choose>
+            <when test='_databaseId == "mysql"'>
+
+            </when>
+            <when test='_databaseId == "dm8"'>
+
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
+
+    </sql>
+
+    <!-- save object，保存对象信息 -->
+    <insert id="save" parameterType="net.linlan.emis.user.entity.UserInfo">
+        INSERT INTO EMIS_USER_INFO
+        (
+USER_ID, XZQH_ID, IDSOURCE_ID, FOREIGN_ID, USERNAME, PASSWORD, SALT, MOBILE, MOBILE_AREA_CODE, MOBILE_VERIFIED, EMAIL, EMAIL_VERIFIED, FULL_NAME, NICK_NAME, AVATAR_URL, CREATE_TYPE, SHARED_SECRET, TOTP_BIND, OUT_SOURCE_ID, EXPIRE_DATE, LOCK_EXPIRED_TIME, LAST_APP_ID, STATUS, LOGIN_COUNT, CURRENT_LOGIN_TIME, CURRENT_LOGIN_IP, AUTH_TOTAL, LAST_AUTH_IP, LAST_AUTH_TIME, RESET_KEY, RESET_PWD, LAST_RESET_TIME, ACTIVATION, ACTIVATION_CODE, EXPAND_PARAM, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+        )
+        VALUES
+        (
+#{id}, #{xzqhId}, #{idsourceId}, #{foreignId}, #{username}, #{password}, #{salt}, #{mobile}, #{mobileAreaCode}, #{mobileVerified}, #{email}, #{emailVerified}, #{fullName}, #{nickName}, #{avatarUrl}, #{createType}, #{sharedSecret}, #{totpBind}, #{outSourceId}, #{expireDate}, #{lockExpiredTime}, #{lastAppId}, #{status}, #{loginCount}, #{currentLoginTime}, #{currentLoginIp}, #{authTotal}, #{lastAuthIp}, #{lastAuthTime}, #{resetKey}, #{resetPwd}, #{lastResetTime}, #{activation}, #{activationCode}, #{expandParam}, #{creatorId}, #{createTime}, #{lastTime}, #{delFlag}, #{description}, #{spare1}, #{spare2}
+        )
+    </insert>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        <choose>
+            <when test='_databaseId == "mysql"'>
+                INSERT INTO EMIS_USER_INFO
+                (
+USER_ID, XZQH_ID, IDSOURCE_ID, FOREIGN_ID, USERNAME, PASSWORD, SALT, MOBILE, MOBILE_AREA_CODE, MOBILE_VERIFIED, EMAIL, EMAIL_VERIFIED, FULL_NAME, NICK_NAME, AVATAR_URL, CREATE_TYPE, SHARED_SECRET, TOTP_BIND, OUT_SOURCE_ID, EXPIRE_DATE, LOCK_EXPIRED_TIME, LAST_APP_ID, STATUS, LOGIN_COUNT, CURRENT_LOGIN_TIME, CURRENT_LOGIN_IP, AUTH_TOTAL, LAST_AUTH_IP, LAST_AUTH_TIME, RESET_KEY, RESET_PWD, LAST_RESET_TIME, ACTIVATION, ACTIVATION_CODE, EXPAND_PARAM, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+                )
+                VALUES
+                <foreach collection="list" index="index" item="item" separator=",">
+                    (
+#{item.id}, #{item.xzqhId}, #{item.idsourceId}, #{item.foreignId}, #{item.username}, #{item.password}, #{item.salt}, #{item.mobile}, #{item.mobileAreaCode}, #{item.mobileVerified}, #{item.email}, #{item.emailVerified}, #{item.fullName}, #{item.nickName}, #{item.avatarUrl}, #{item.createType}, #{item.sharedSecret}, #{item.totpBind}, #{item.outSourceId}, #{item.expireDate}, #{item.lockExpiredTime}, #{item.lastAppId}, #{item.status}, #{item.loginCount}, #{item.currentLoginTime}, #{item.currentLoginIp}, #{item.authTotal}, #{item.lastAuthIp}, #{item.lastAuthTime}, #{item.resetKey}, #{item.resetPwd}, #{item.lastResetTime}, #{item.activation}, #{item.activationCode}, #{item.expandParam}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+                    )
+                </foreach>
+            </when>
+            <otherwise>
+                <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+                    INSERT INTO EMIS_USER_INFO
+                    (
+USER_ID, XZQH_ID, IDSOURCE_ID, FOREIGN_ID, USERNAME, PASSWORD, SALT, MOBILE, MOBILE_AREA_CODE, MOBILE_VERIFIED, EMAIL, EMAIL_VERIFIED, FULL_NAME, NICK_NAME, AVATAR_URL, CREATE_TYPE, SHARED_SECRET, TOTP_BIND, OUT_SOURCE_ID, EXPIRE_DATE, LOCK_EXPIRED_TIME, LAST_APP_ID, STATUS, LOGIN_COUNT, CURRENT_LOGIN_TIME, CURRENT_LOGIN_IP, AUTH_TOTAL, LAST_AUTH_IP, LAST_AUTH_TIME, RESET_KEY, RESET_PWD, LAST_RESET_TIME, ACTIVATION, ACTIVATION_CODE, EXPAND_PARAM, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+                    )
+                    VALUES
+                    (
+#{item.id}, #{item.xzqhId}, #{item.idsourceId}, #{item.foreignId}, #{item.username}, #{item.password}, #{item.salt}, #{item.mobile}, #{item.mobileAreaCode}, #{item.mobileVerified}, #{item.email}, #{item.emailVerified}, #{item.fullName}, #{item.nickName}, #{item.avatarUrl}, #{item.createType}, #{item.sharedSecret}, #{item.totpBind}, #{item.outSourceId}, #{item.expireDate}, #{item.lockExpiredTime}, #{item.lastAppId}, #{item.status}, #{item.loginCount}, #{item.currentLoginTime}, #{item.currentLoginIp}, #{item.authTotal}, #{item.lastAuthIp}, #{item.lastAuthTime}, #{item.resetKey}, #{item.resetPwd}, #{item.lastResetTime}, #{item.activation}, #{item.activationCode}, #{item.expandParam}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+                    )
+                </foreach>
+            </otherwise>
+        </choose>
+    </insert>
+
+    <!-- update object，更新对象信息 -->
+    <update id="update" parameterType="net.linlan.emis.user.entity.UserInfo">
+        UPDATE EMIS_USER_INFO
+        <set>
+            <if test="xzqhId != null">XZQH_ID = #{xzqhId}, </if>
+            <if test="idsourceId != null">IDSOURCE_ID = #{idsourceId}, </if>
+            <if test="foreignId != null">FOREIGN_ID = #{foreignId}, </if>
+            <if test="username != null">USERNAME = #{username}, </if>
+            <if test="password != null">PASSWORD = #{password}, </if>
+            <if test="salt != null">SALT = #{salt}, </if>
+            <if test="mobile != null">MOBILE = #{mobile}, </if>
+            <if test="mobileAreaCode != null">MOBILE_AREA_CODE = #{mobileAreaCode}, </if>
+            <if test="mobileVerified != null">MOBILE_VERIFIED = #{mobileVerified}, </if>
+            <if test="email != null">EMAIL = #{email}, </if>
+            <if test="emailVerified != null">EMAIL_VERIFIED = #{emailVerified}, </if>
+            <if test="fullName != null">FULL_NAME = #{fullName}, </if>
+            <if test="nickName != null">NICK_NAME = #{nickName}, </if>
+            <if test="avatarUrl != null">AVATAR_URL = #{avatarUrl}, </if>
+            <if test="createType != null">CREATE_TYPE = #{createType}, </if>
+            <if test="sharedSecret != null">SHARED_SECRET = #{sharedSecret}, </if>
+            <if test="totpBind != null">TOTP_BIND = #{totpBind}, </if>
+            <if test="outSourceId != null">OUT_SOURCE_ID = #{outSourceId}, </if>
+            <if test="expireDate != null">EXPIRE_DATE = #{expireDate}, </if>
+            <if test="lockExpiredTime != null">LOCK_EXPIRED_TIME = #{lockExpiredTime}, </if>
+            <if test="lastAppId != null">LAST_APP_ID = #{lastAppId}, </if>
+            <if test="status != null">STATUS = #{status}, </if>
+            <if test="loginCount != null">LOGIN_COUNT = #{loginCount}, </if>
+            <if test="currentLoginTime != null">CURRENT_LOGIN_TIME = #{currentLoginTime}, </if>
+            <if test="currentLoginIp != null">CURRENT_LOGIN_IP = #{currentLoginIp}, </if>
+            <if test="authTotal != null">AUTH_TOTAL = #{authTotal}, </if>
+            <if test="lastAuthIp != null">LAST_AUTH_IP = #{lastAuthIp}, </if>
+            <if test="lastAuthTime != null">LAST_AUTH_TIME = #{lastAuthTime}, </if>
+            <if test="resetKey != null">RESET_KEY = #{resetKey}, </if>
+            <if test="resetPwd != null">RESET_PWD = #{resetPwd}, </if>
+            <if test="lastResetTime != null">LAST_RESET_TIME = #{lastResetTime}, </if>
+            <if test="activation != null">ACTIVATION = #{activation}, </if>
+            <if test="activationCode != null">ACTIVATION_CODE = #{activationCode}, </if>
+            <if test="expandParam != null">EXPAND_PARAM = #{expandParam}, </if>
+            <if test="creatorId != null">CREATOR_ID = #{creatorId}, </if>
+            <if test="createTime != null">CREATE_TIME = #{createTime}, </if>
+            <if test="lastTime != null">LAST_TIME = #{lastTime}, </if>
+            <if test="delFlag != null">DEL_FLAG = #{delFlag}, </if>
+            <if test="description != null">DESCRIPTION = #{description}, </if>
+            <if test="spare1 != null">SPARE1 = #{spare1}, </if>
+            <if test="spare2 != null">SPARE2 = #{spare2}</if>
+        </set>
+        WHERE USER_ID = #{id}
+    </update>
+
+    <!-- delete by id，通过主键删除对象 -->
+    <delete id="deleteById">
+        DELETE FROM EMIS_USER_INFO
+        WHERE USER_ID = #{value}
+    </delete>
+
+    <!-- delete by ids，通过主键数组批量删除对象 -->
+    <delete id="deleteByIds">
+        DELETE FROM EMIS_USER_INFO
+        WHERE USER_ID IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- query total，通过输入的条件，查询返回结果的数量，返回值为int -->
+    <select id="getCount" resultType="int">
+        SELECT COUNT(1)
+        FROM EMIS_USER_INFO B
+        WHERE 1 = 1
+        <include refid="commonList"></include>
+    </select>
+
+    <!-- get list with dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
+    <resultMap type="net.linlan.emis.user.dto.UserInfoDto" extends="userInfoMap" id="userInfoDtoMap">
+
+    </resultMap>
+
+    <!-- get page with param input dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
+    <select id="getPageDto" resultMap="userInfoDtoMap">
+        SELECT
+B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE 1=1
+        <include refid="commonList"></include>
+        <include refid="getListOrderBy"></include>
+
+    </select>
+
+    <!-- get dto with input id，通过ID，查询dto对象 -->
+    <select id="getDtoById" resultMap="userInfoDtoMap">
+        SELECT
+B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE USER_ID = #{value}
+    </select>
+
+    <!-- 以下为新增特定的操作 -->
+    <select id="getByUsername" resultMap="userInfoDtoMap">
+        SELECT
+            B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE USERNAME = #{value}
+    </select>
+
+    <select id="getByMobile" resultMap="userInfoDtoMap">
+        SELECT
+            B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE MOBILE = #{value}
+    </select>
+
+    <select id="getByEmail" resultMap="userInfoDtoMap">
+        SELECT
+            B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE EMAIL = #{value}
+    </select>
+
+    <select id="getByForeignId" resultMap="userInfoDtoMap">
+        SELECT
+            B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE FOREIGN_ID = #{value}
+    </select>
+
+    <select id="getListByForeignIds" resultMap="userInfoDtoMap">
+        SELECT
+        B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE FOREIGN_ID IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="updatePassword" parameterType="net.linlan.emis.user.entity.UserInfo">
+        update EMIS_USER_INFO set PASSWORD = #{password} where USER_ID = #{id}
+    </update>
+
+    <select id="findExpireUser" resultMap="userInfoMap">
+        <![CDATA[
+        SELECT
+        B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE expireDate <= now() and status != 'expired_locked' ]]>
+    </select>
+
+    <select id="findAllByUsernamesIn" resultMap="userInfoMap">
+        SELECT
+        B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE USERNAME IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findAllByMobilesIn" resultMap="userInfoMap">
+        SELECT
+        B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE MOBILE IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findAllByEmailsIn" resultMap="userInfoMap">
+        SELECT
+        B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE EMAIL IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findAllByStatusIn" resultMap="userInfoMap">
+        SELECT
+        B.USER_ID, B.XZQH_ID, B.IDSOURCE_ID, B.FOREIGN_ID, B.USERNAME, B.PASSWORD, B.SALT, B.MOBILE, B.MOBILE_AREA_CODE, B.MOBILE_VERIFIED, B.EMAIL, B.EMAIL_VERIFIED, B.FULL_NAME, B.NICK_NAME, B.AVATAR_URL, B.CREATE_TYPE, B.SHARED_SECRET, B.TOTP_BIND, B.OUT_SOURCE_ID, B.EXPIRE_DATE, B.LOCK_EXPIRED_TIME, B.LAST_APP_ID, B.STATUS, B.LOGIN_COUNT, B.CURRENT_LOGIN_TIME, B.CURRENT_LOGIN_IP, B.AUTH_TOTAL, B.LAST_AUTH_IP, B.LAST_AUTH_TIME, B.RESET_KEY, B.RESET_PWD, B.LAST_RESET_TIME, B.ACTIVATION, B.ACTIVATION_CODE, B.EXPAND_PARAM, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_USER_INFO B
+        WHERE STATUS IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="updateLoginCount" parameterType="net.linlan.emis.user.entity.UserInfo">
+        UPDATE EMIS_USER_INFO
+        set LOGIN_COUNT = LOGIN_COUNT + 1, CURRENT_LOGIN_TIME = now(), CURRENT_LOGIN_IP = #{ip}
+        WHERE USER_ID = #{id}
+    </update>
+
+</mapper>

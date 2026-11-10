@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    emis-module-authn - authn认证模块
+    Copyright © 2020-2025 Linlan (open@linlan.net)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.linlan.emis</groupId>
+        <artifactId>emis-java-backend</artifactId>
+        <version>1.2.7</version>
+    </parent>
+    <artifactId>emis-module-authn</artifactId>
+    <version>1.2.7</version>
+    <packaging>jar</packaging>
+    <name>emis-module-authn</name>
+    <description>
+        authn认证模块
+    </description>
+    <properties>
+
+    </properties>
+    <url>https://gitee.com/linlannet/emis-java-backend.git</url>
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://gitee.com/linlannet/emis-java-backend/tree/master/emis-module-authn</url>
+        <connection>scm:git:git://gitee.com/linlannet/emis-java-backend.git</connection>
+    </scm>
+    <developers>
+        <developer>
+            <id>linlan</id>
+            <name>linlan info</name>
+            <email>linlannet@163.com</email>
+            <organization>Linlan Corporation</organization>
+            <roles>
+                <role>Member</role>
+            </roles>
+            <timezone>Asia/Beijing</timezone>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-user</artifactId>
+            <version>1.2.7</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

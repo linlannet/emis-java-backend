@@ -1,0 +1,88 @@
+/*
+ * emis-module-protocol - protocol协议配置
+ * Copyright © 2020-2025 Linlan (open@linlan.net)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package net.linlan.emis.protocol.param;
+
+import lombok.Data;
+
+import net.linlan.utils.param.BaseParam;
+
+/**
+ *
+ * ProtocolJwtConfig数据域:应用JWT配置查询参数实体类
+ * @author Linlan
+ *
+ * CreateTime 2025-09-06 19:12:33
+ *
+ */
+@Data
+public class ProtocolJwtConfigParam extends BaseParam {
+
+    /**
+     * 主键ID
+     */
+    private String  id;
+    /**
+     * 应用ID
+     */
+    private String  appId;
+    /**
+     * 外键ID
+     */
+    private String  foreignId;
+    /**
+     * 业务系统JWT SSO地址
+     */
+    private String  redirectUrl;
+    /**
+     * 业务系统中在JWT SSO成功后重定向的URL，一般用于跳转到二级菜单等，若设置了该URL，在JWT SSO时会以参数target_link_url优先传递该值，若未设置该值，此时若SSO中有请求参数target_link_url，则会按照请求参数传递该值。此项可选。
+     */
+    private String  targetLinkUrl;
+    /**
+     * 跳转方式
+     */
+    private String  bindingType;
+    /**
+     * ID_TOKEN SUBJECT 类型
+     */
+    private String  idTokenSubjectType;
+    /**
+     * ID_TOKEN 有效期（秒）
+     */
+    private Long    idTokenTimeToLive;
+    /**
+     * 创建人ID
+     */
+    private String  creatorId;
+    /**
+     * 删除标记，0未删除1已删除
+     */
+    private Integer delFlag;
+    /**
+     * 备注
+     */
+    private String  description;
+    /**
+     * 备用1
+     */
+    private String  spare1;
+    /**
+     * 备用2
+     */
+    private String  spare2;
+
+}

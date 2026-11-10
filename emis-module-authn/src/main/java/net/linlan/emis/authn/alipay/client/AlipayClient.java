@@ -1,0 +1,131 @@
+/*
+ * emis-module-authn - authn认证模块
+ * Copyright © 2020-2025 Linlan (open@linlan.net)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package net.linlan.emis.authn.alipay.client;
+
+import java.util.Map;
+
+import com.aliyun.tea.*;
+import static org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames.GRANT_TYPE;
+
+/**
+ *
+ * @author Linlan
+ */
+public class AlipayClient {
+
+    public com.alipay.easysdk.kernel.Client kernel;
+
+    public AlipayClient(com.alipay.easysdk.kernel.Client kernel) {
+        this.kernel = kernel;
+    }
+
+    /**
+     * 获取token
+     *
+     * @param code 代码编码
+     * @return {@link AlipaySystemOauthTokenResponse}
+     * @throws Exception Exception
+     */
+    public AlipaySystemOauthTokenResponse getOauthToken(String code) throws Exception {
+        Map<String, Object> runtime = getRuntime();
+        TeaRequest request = null;
+        long now = System.currentTimeMillis();
+        int retryTimes = 0;
+        while (Tea.allowRetry((Map<String, Object>) runtime.get("retry"), retryTimes, now)) {
+            if (retryTimes > 0) {
+                int backoffTime = Tea.getBackoffTime(runtime.get("backoff"), retryTimes);
+                if (backoffTime > 0) {
+                    Tea.sleep(backoffTime);
+                }
+            }
+            retryTimes = retryTimes + 1;
+            try {
+                //@formatter:off
+                Map<String, String> systemParams = TeaConverter.buildMap(
+                    new TeaPair("method", "alipay.system.oauth.token"),
+                    new TeaPair("app_id", kernel.getConfig("appId")),
+                    new TeaPair("timestamp", kernel.getTimestamp()),
+                    new TeaPair("format", "json"),
+                    new TeaPair("version", "1.0"),
+                    new TeaPair("charset", "UTF-8"),
+                    new TeaPair("sign_type", kernel.getConfig("signType")),
+                    new TeaPair("app_cert_sn", kernel.getMerchantCertSN()),
+                    new TeaPair("alipay_root_cert_sn", kernel.getAlipayRootCertSN()));
+                //@formatter:no
+                Map<String, Object> bizParams = new java.util.HashMap<>();
+                Map<String, String> textParams = TeaConverter.buildMap(
+                    new TeaPair(GRANT_TYPE, "authorization_code"), new TeaPair("code", code));
+                request = getRequest(systemParams, bizParams, textParams);
+                TeaResponse response = Tea.doAction(request, runtime);
+
+                Map<String, Object> respMap = kernel.readAsJson(response,
+                    "alipay.system.oauth.token");
+                if (kernel.isCertMode()) {
+                    if (kernel.verify(respMap,
+                        kernel.extractAlipayPublicKey(kernel.getAlipayCertSN(respMap)))) {
+                        return TeaModel.toModel(kernel.toRespModel(respMap),
+                            new AlipaySystemOauthTokenResponse());
+                    }
+
+                } else {
+                    if (kernel.verify(respMap, kernel.getConfig("alipayPublicKey"))) {
+                        return TeaModel.toModel(kernel.toRespModel(respMap),
+                            new AlipaySystemOauthTokenResponse());
+                    }
+
+                }
+
+                throw new TeaException(
+                    TeaConverter.buildMap(new TeaPair("message", "验签失败，请检查支付宝公钥设置是否正确。")));
+            } catch (Exception e) {
+                if (Tea.isRetryable(e)) {
+                    continue;
+                }
+                throw new RuntimeException(e);
+            }
+        }
+
+        throw new TeaUnretryableException(request);
+    }
+
+    private TeaRequest getRequest(Map<String, String> systemParams, Map<String, Object> bizParams,
+                                  Map<String, String> textParams) throws Exception {
+        TeaRequest request = new TeaRequest();
+
+        request.protocol = kernel.getConfig("protocol");
+        request.method = "POST";
+        request.pathname = "/gateway.do";
+        request.headers = TeaConverter.buildMap(
+            new TeaPair("host", kernel.getConfig("gatewayHost")),
+            new TeaPair("content-type", "application/x-www-form-urlencoded;charset=utf-8"));
+        request.query = kernel.sortMap(TeaConverter.merge(
+            String.class, TeaConverter.buildMap(new TeaPair("sign", kernel.sign(systemParams,
+                bizParams, textParams, kernel.getConfig("merchantPrivateKey")))),
+            systemParams, textParams));
+        request.body = Tea.toReadable(kernel.toUrlEncodedRequestBody(bizParams));
+        return request;
+    }
+
+    private Map<String, Object> getRuntime() throws Exception {
+        return TeaConverter.buildMap(new TeaPair("ignoreSSL", kernel.getConfig("ignoreSSL")),
+            new TeaPair("httpProxy", kernel.getConfig("httpProxy")),
+            new TeaPair("connectTimeout", 15000), new TeaPair("readTimeout", 15000),
+            new TeaPair("retry", TeaConverter.buildMap(new TeaPair("maxAttempts", 0))));
+    }
+
+}

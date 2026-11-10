@@ -1,0 +1,321 @@
+/*
+ * emis-support - support支撑模块
+ * Copyright © 2020-2025 Linlan (open@linlan.net)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.springdoc.core.fn;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpMethod;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+/**
+ * The type Router function data.
+ * @author bnasslahsen
+ */
+public class RouterFunctionData {
+
+    /**
+     * The Path.
+     */
+    private String              path;
+
+    /**
+     * The Consumes.
+     */
+    private List<String>        consumes    = new ArrayList<>();
+
+    /**
+     * The Produces.
+     */
+    private List<String>        produces    = new ArrayList<>();
+
+    /**
+     * The Headers.
+     */
+    private List<String>        headers     = new ArrayList<>();
+
+    /**
+     * The Params.
+     */
+    private List<String>        params      = new ArrayList<>();
+
+    /**
+     * The Query params.
+     */
+    private Map<String, String> queryParams = new LinkedHashMap<>();
+
+    /**
+     * The Methods.
+     */
+    private RequestMethod[]     methods;
+
+    /**
+     * The Attributes.
+     */
+    private Map<String, Object> attributes  = new LinkedHashMap<>();
+
+    /**
+     * Instantiates a new Router function data.
+     */
+    public RouterFunctionData() {
+    }
+
+    /**
+     * Instantiates a new Router function data.
+     *
+     * @param nestedOrPath the nested or path
+     * @param functionData the function data
+     */
+    public RouterFunctionData(String nestedOrPath, RouterFunctionData functionData) {
+        this.path = nestedOrPath + functionData.getPath();
+        this.consumes = Arrays.asList(functionData.getConsumes());
+        this.produces = Arrays.asList(functionData.getProduces());
+        this.headers = Arrays.asList(functionData.getHeaders());
+        this.params = Arrays.asList(functionData.getParams());
+        this.queryParams = functionData.getQueryParams();
+        this.methods = functionData.getMethods();
+        this.attributes = functionData.getAttributes();
+    }
+
+    /**
+     * Gets path.
+     *
+     * @return the path
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * Sets path.
+     *
+     * @param path the path
+     */
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    /**
+     * Gets query params.
+     *
+     * @return the query params
+     */
+    public Map<String, String> getQueryParams() {
+        return queryParams;
+    }
+
+    /**
+     * Add query params.
+     *
+     * @param name the name
+     * @param value the value
+     */
+    public void addQueryParams(String name, String value) {
+        this.queryParams.put(name, value);
+    }
+
+    /**
+     * Get headers string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getHeaders() {
+        return headers.toArray(new String[headers.size()]);
+    }
+
+    /**
+     * Add headers.
+     *
+     * @param headers the headers
+     */
+    public void addHeaders(String headers) {
+        if (StringUtils.isNotBlank(headers))
+            this.headers.add(headers);
+    }
+
+    /**
+     * Get methods request method [ ].
+     *
+     * @return the request method [ ]
+     */
+    public RequestMethod[] getMethods() {
+        return methods;
+    }
+
+    /**
+     * Sets methods.
+     *
+     * @param methods the methods
+     */
+    public void setMethods(Set<HttpMethod> methods) {
+        this.methods = getMethod(methods);
+    }
+
+    /**
+     * Get consumes string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getConsumes() {
+        return consumes.toArray(new String[consumes.size()]);
+    }
+
+    /**
+     * Get params string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getParams() {
+        return params.toArray(new String[params.size()]);
+    }
+
+    /**
+     * Add params.
+     *
+     * @param params the params
+     */
+    public void addParams(String params) {
+        if (StringUtils.isNotBlank(params))
+            this.params.add(params);
+    }
+
+    /**
+     * Add consumes.
+     *
+     * @param consumes the consumes
+     */
+    public void addConsumes(String consumes) {
+        if (StringUtils.isNotBlank(consumes))
+            this.consumes.add(consumes);
+    }
+
+    /**
+     * Add produces.
+     *
+     * @param produces the produces
+     */
+    public void addProduces(String produces) {
+        if (StringUtils.isNotBlank(produces))
+            this.produces.add(produces);
+    }
+
+    /**
+     * Add produces.
+     *
+     * @param produces the produces
+     */
+    public void addProduces(List<String> produces) {
+        this.produces.addAll(produces);
+    }
+
+    /**
+     * Add consumes.
+     *
+     * @param consumes the consumes
+     */
+    public void addConsumes(List<String> consumes) {
+        this.consumes.addAll(consumes);
+    }
+
+    /**
+     * Get method request method [ ].
+     *
+     * @param methods the methods
+     * @return the request method [ ]
+     */
+    private RequestMethod[] getMethod(Set<HttpMethod> methods) {
+        if (!CollectionUtils.isEmpty(methods)) {
+            return methods.stream().map(this::getRequestMethod).toArray(RequestMethod[]::new);
+        }
+        return ArrayUtils.toArray();
+    }
+
+    /**
+     * Get produces string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getProduces() {
+        return produces.toArray(new String[produces.size()]);
+    }
+
+    /**
+     * Gets request method.
+     *
+     * @param httpMethod the http method
+     * @return the request method
+     */
+    private RequestMethod getRequestMethod(HttpMethod httpMethod) {
+        RequestMethod requestMethod = null;
+        switch (httpMethod) {
+            case GET:
+                requestMethod = RequestMethod.GET;
+                break;
+            case POST:
+                requestMethod = RequestMethod.POST;
+                break;
+            case PUT:
+                requestMethod = RequestMethod.PUT;
+                break;
+            case DELETE:
+                requestMethod = RequestMethod.DELETE;
+                break;
+            case PATCH:
+                requestMethod = RequestMethod.PATCH;
+                break;
+            case HEAD:
+                requestMethod = RequestMethod.HEAD;
+                break;
+            case OPTIONS:
+                requestMethod = RequestMethod.OPTIONS;
+                break;
+            case TRACE:
+                requestMethod = RequestMethod.TRACE;
+                break;
+            default:
+                // Do nothing here
+                break;
+        }
+        return requestMethod;
+    }
+
+    /**
+     * Gets attributes.
+     *
+     * @return the attributes
+     */
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    /**
+     * Add attributes.
+     *
+     * @param attributes the attributes
+     */
+    public void addAttributes(Map<String, Object> attributes) {
+        this.attributes.putAll(attributes);
+    }
+}

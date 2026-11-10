@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    emis-module-app - app应用管理
+    Copyright © 2020-2025 Linlan (open@linlan.net)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.linlan.emis.app.dao.AppCertificationDao">
+
+    <!-- 采用别名使用类成员变量，可根据需求，确定是否启用 -->
+    <resultMap type="net.linlan.emis.app.entity.AppCertification" id="appCertifacationMap">
+        <id property="id" column="ID"/>
+        <result property="appId" column="APP_ID"/>
+        <result property="foreignId" column="FOREIGN_ID"/>
+        <result property="serial" column="SERIAL"/>
+        <result property="subject" column="SUBJECT"/>
+        <result property="issuer" column="ISSUER"/>
+        <result property="beginDate" column="BEGIN_DATE"/>
+        <result property="endDate" column="END_DATE"/>
+        <result property="validity" column="VALIDITY"/>
+        <result property="signAlgo" column="SIGN_ALGO"/>
+        <result property="keyLong" column="KEY_LONG"/>
+        <result property="privateKey" column="PRIVATE_KEY"/>
+        <result property="publicKey" column="PUBLIC_KEY"/>
+        <result property="certification" column="CERTIFICATION"/>
+        <result property="usingType" column="USING_TYPE"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="lastTime" column="LAST_TIME"/>
+        <result property="delFlag" column="DEL_FLAG"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="spare1" column="SPARE1"/>
+        <result property="spare2" column="SPARE2"/>
+    </resultMap>
+
+    <!-- find by id，通过主键获取对象 -->
+    <select id="findById" resultMap="appCertifacationMap">
+        SELECT
+ID, APP_ID, FOREIGN_ID, SERIAL, SUBJECT, ISSUER, BEGIN_DATE, END_DATE, VALIDITY, SIGN_ALGO, KEY_LONG, PRIVATE_KEY, PUBLIC_KEY, CERTIFICATION, USING_TYPE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+        FROM EMIS_APP_CERTIFACATION B
+        WHERE B.ID = #{value}
+    </select>
+
+    <!-- get list，通过输入的条件，获取返回的list列表对象，采用相应的分页规则进行分页处理 -->
+    <select id="getList" resultMap="appCertifacationMap">
+        SELECT
+B.ID, B.APP_ID, B.FOREIGN_ID, B.SERIAL, B.SUBJECT, B.ISSUER, B.BEGIN_DATE, B.END_DATE, B.VALIDITY, B.SIGN_ALGO, B.KEY_LONG, B.PRIVATE_KEY, B.PUBLIC_KEY, B.CERTIFICATION, B.USING_TYPE, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_APP_CERTIFACATION B
+        WHERE 1=1
+        <include refid="commonList"></include>
+        <include refid="getListOrderBy"></include>
+    </select>
+
+    <!-- 通用排序SQL，如果传入参数按照参数排序，如果未传入参数，按照主键排序 -->
+    <sql id="getListOrderBy">
+        <choose>
+            <when test='orderBy != null'>
+                <choose>
+                    <when test='orderBy == 0'>
+                        ORDER BY B.CREATE_TIME DESC
+                    </when>
+                    <when test='orderBy == 1'>
+                        ORDER BY B.CREATE_TIME ASC
+                    </when>
+                    <when test='orderBy == 2'>
+                        ORDER BY B.PRIORITY DESC
+                    </when>
+                    <when test='orderBy == 3'>
+                        ORDER BY B.PRIORITY ASC
+                    </when>
+                    <otherwise>
+                        ORDER BY B.ID ASC
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                ORDER BY B.ID DESC
+            </otherwise>
+        </choose>
+    </sql>
+
+    <!-- sql commonList 通过输入的条件，获取返回的list列表对象 -->
+    <sql id="commonList">
+        <!--  只允许默认的本表的字段查询，查询条件可通过Param定义，默认全部字段，后续根据Param内的定义，可删除不需要的查询字段 -->
+        <if test="id != null and id != ''">
+            and B.ID = #{id}
+        </if>
+        <if test="appId != null and appId != ''">
+            and B.APP_ID = #{appId}
+        </if>
+        <if test="foreignId != null and foreignId != ''">
+            and B.FOREIGN_ID = #{foreignId}
+        </if>
+        <if test="serial != null and serial != ''">
+            and B.SERIAL = #{serial}
+        </if>
+        <if test="subject != null and subject != ''">
+            and B.SUBJECT = #{subject}
+        </if>
+        <if test="issuer != null and issuer != ''">
+            and B.ISSUER = #{issuer}
+        </if>
+        <if test="beginDate != null and beginDate != ''">
+            and B.BEGIN_DATE = #{beginDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and B.END_DATE = #{endDate}
+        </if>
+        <if test="validity != null and validity != ''">
+            and B.VALIDITY = #{validity}
+        </if>
+        <if test="signAlgo != null and signAlgo != ''">
+            and B.SIGN_ALGO = #{signAlgo}
+        </if>
+        <if test="keyLong != null and keyLong != ''">
+            and B.KEY_LONG = #{keyLong}
+        </if>
+        <if test="privateKey != null and privateKey != ''">
+            and B.PRIVATE_KEY = #{privateKey}
+        </if>
+        <if test="publicKey != null and publicKey != ''">
+            and B.PUBLIC_KEY = #{publicKey}
+        </if>
+        <if test="certification != null and certification != ''">
+            and B.CERTIFICATION = #{certification}
+        </if>
+        <if test="usingType != null and usingType != ''">
+            and B.USING_TYPE = #{usingType}
+        </if>
+        <if test="creatorId != null and creatorId != ''">
+            and B.CREATOR_ID = #{creatorId}
+        </if>
+        <choose>
+            <when test="delFlag != null">
+                AND B.DEL_FLAG = #{delFlag}
+            </when>
+            <otherwise>
+                AND ( B.DEL_FLAG = 0 OR B.DEL_FLAG IS NULL)
+            </otherwise>
+        </choose>
+        <if test="description != null and description != ''">
+            and B.DESCRIPTION = #{description}
+        </if>
+        <if test="spare1 != null and spare1 != ''">
+            and B.SPARE1 = #{spare1}
+        </if>
+        <if test="spare2 != null and spare2 != ''">
+            and B.SPARE2 = #{spare2}
+        </if>
+
+        <!-- 各个数据库差异化的查询条件处理，如时间字段 -->
+        <choose>
+            <when test='_databaseId == "mysql"'>
+
+            </when>
+            <when test='_databaseId == "dm8"'>
+
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
+
+    </sql>
+
+    <!-- save object，保存对象信息 -->
+    <insert id="save" parameterType="net.linlan.emis.app.entity.AppCertification">
+        INSERT INTO EMIS_APP_CERTIFACATION
+        (
+ID, APP_ID, FOREIGN_ID, SERIAL, SUBJECT, ISSUER, BEGIN_DATE, END_DATE, VALIDITY, SIGN_ALGO, KEY_LONG, PRIVATE_KEY, PUBLIC_KEY, CERTIFICATION, USING_TYPE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+        )
+        VALUES
+        (
+#{id}, #{appId}, #{foreignId}, #{serial}, #{subject}, #{issuer}, #{beginDate}, #{endDate}, #{validity}, #{signAlgo}, #{keyLong}, #{privateKey}, #{publicKey}, #{certification}, #{usingType}, #{creatorId}, #{createTime}, #{lastTime}, #{delFlag}, #{description}, #{spare1}, #{spare2}
+        )
+    </insert>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        <choose>
+            <when test='_databaseId == "mysql"'>
+                INSERT INTO EMIS_APP_CERTIFACATION
+                (
+ID, APP_ID, FOREIGN_ID, SERIAL, SUBJECT, ISSUER, BEGIN_DATE, END_DATE, VALIDITY, SIGN_ALGO, KEY_LONG, PRIVATE_KEY, PUBLIC_KEY, CERTIFICATION, USING_TYPE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+                )
+                VALUES
+                <foreach collection="list" index="index" item="item" separator=",">
+                    (
+#{item.id}, #{item.appId}, #{item.foreignId}, #{item.serial}, #{item.subject}, #{item.issuer}, #{item.beginDate}, #{item.endDate}, #{item.validity}, #{item.signAlgo}, #{item.keyLong}, #{item.privateKey}, #{item.publicKey}, #{item.certification}, #{item.usingType}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+                    )
+                </foreach>
+            </when>
+            <otherwise>
+                <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+                    INSERT INTO EMIS_APP_CERTIFACATION
+                    (
+ID, APP_ID, FOREIGN_ID, SERIAL, SUBJECT, ISSUER, BEGIN_DATE, END_DATE, VALIDITY, SIGN_ALGO, KEY_LONG, PRIVATE_KEY, PUBLIC_KEY, CERTIFICATION, USING_TYPE, CREATOR_ID, CREATE_TIME, LAST_TIME, DEL_FLAG, DESCRIPTION, SPARE1, SPARE2
+                    )
+                    VALUES
+                    (
+#{item.id}, #{item.appId}, #{item.foreignId}, #{item.serial}, #{item.subject}, #{item.issuer}, #{item.beginDate}, #{item.endDate}, #{item.validity}, #{item.signAlgo}, #{item.keyLong}, #{item.privateKey}, #{item.publicKey}, #{item.certification}, #{item.usingType}, #{item.creatorId}, #{item.createTime}, #{item.lastTime}, #{item.delFlag}, #{item.description}, #{item.spare1}, #{item.spare2}
+                    )
+                </foreach>
+            </otherwise>
+        </choose>
+    </insert>
+
+    <!-- update object，更新对象信息 -->
+    <update id="update" parameterType="net.linlan.emis.app.entity.AppCertification">
+        UPDATE EMIS_APP_CERTIFACATION
+        <set>
+            <if test="appId != null">APP_ID = #{appId}, </if>
+            <if test="foreignId != null">FOREIGN_ID = #{foreignId}, </if>
+            <if test="serial != null">SERIAL = #{serial}, </if>
+            <if test="subject != null">SUBJECT = #{subject}, </if>
+            <if test="issuer != null">ISSUER = #{issuer}, </if>
+            <if test="beginDate != null">BEGIN_DATE = #{beginDate}, </if>
+            <if test="endDate != null">END_DATE = #{endDate}, </if>
+            <if test="validity != null">VALIDITY = #{validity}, </if>
+            <if test="signAlgo != null">SIGN_ALGO = #{signAlgo}, </if>
+            <if test="keyLong != null">KEY_LONG = #{keyLong}, </if>
+            <if test="privateKey != null">PRIVATE_KEY = #{privateKey}, </if>
+            <if test="publicKey != null">PUBLIC_KEY = #{publicKey}, </if>
+            <if test="certification != null">CERTIFICATION = #{certification}, </if>
+            <if test="usingType != null">USING_TYPE = #{usingType}, </if>
+            <if test="creatorId != null">CREATOR_ID = #{creatorId}, </if>
+            <if test="createTime != null">CREATE_TIME = #{createTime}, </if>
+            <if test="lastTime != null">LAST_TIME = #{lastTime}, </if>
+            <if test="delFlag != null">DEL_FLAG = #{delFlag}, </if>
+            <if test="description != null">DESCRIPTION = #{description}, </if>
+            <if test="spare1 != null">SPARE1 = #{spare1}, </if>
+            <if test="spare2 != null">SPARE2 = #{spare2}</if>
+        </set>
+        WHERE ID = #{id}
+    </update>
+
+    <!-- delete by id，通过主键删除对象 -->
+    <delete id="deleteById">
+        DELETE FROM EMIS_APP_CERTIFACATION
+        WHERE ID = #{value}
+    </delete>
+
+    <!-- delete by ids，通过主键数组批量删除对象 -->
+    <delete id="deleteByIds">
+        DELETE FROM EMIS_APP_CERTIFACATION
+        WHERE ID IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- query total，通过输入的条件，查询返回结果的数量，返回值为int -->
+    <select id="getCount" resultType="int">
+        SELECT COUNT(1)
+        FROM EMIS_APP_CERTIFACATION B
+        WHERE 1 = 1
+        <include refid="commonList"></include>
+    </select>
+
+    <!-- get list with dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
+    <resultMap type="net.linlan.emis.app.dto.AppCertificationDto" extends="appCertifacationMap" id="appCertifacationDtoMap">
+
+    </resultMap>
+
+    <!-- get page with param input dto result，通过输入的条件，返回查询结果信息，返回值为dto对象 -->
+    <select id="getPageDto" resultMap="appCertifacationDtoMap">
+        SELECT
+B.ID, B.APP_ID, B.FOREIGN_ID, B.SERIAL, B.SUBJECT, B.ISSUER, B.BEGIN_DATE, B.END_DATE, B.VALIDITY, B.SIGN_ALGO, B.KEY_LONG, B.PRIVATE_KEY, B.PUBLIC_KEY, B.CERTIFICATION, B.USING_TYPE, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_APP_CERTIFACATION B
+        WHERE 1=1
+        <include refid="commonList"></include>
+        <include refid="getListOrderBy"></include>
+
+    </select>
+
+    <!-- get dto with input id，通过ID，查询dto对象 -->
+    <select id="getDtoById" resultMap="appCertifacationDtoMap">
+        SELECT
+B.ID, B.APP_ID, B.FOREIGN_ID, B.SERIAL, B.SUBJECT, B.ISSUER, B.BEGIN_DATE, B.END_DATE, B.VALIDITY, B.SIGN_ALGO, B.KEY_LONG, B.PRIVATE_KEY, B.PUBLIC_KEY, B.CERTIFICATION, B.USING_TYPE, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM EMIS_APP_CERTIFACATION B
+        WHERE ID = #{value}
+    </select>
+
+    <!-- 以下为新增特定的操作 -->
+
+
+</mapper>
