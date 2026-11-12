@@ -263,6 +263,18 @@
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-module-provider</artifactId>
         </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-protocol</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-audit</artifactId>
+        </dependency>
 
     </dependencies>
 

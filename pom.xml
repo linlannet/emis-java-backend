@@ -691,6 +691,16 @@
             </dependency>
             <dependency>
                 <groupId>net.linlan.emis</groupId>
+                <artifactId>emis-module-authn</artifactId>
+                <version>${linlan.emis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.linlan.emis</groupId>
+                <artifactId>emis-module-link</artifactId>
+                <version>${linlan.emis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.linlan.emis</groupId>
                 <artifactId>emis-module-idsource</artifactId>
                 <version>${linlan.emis.version}</version>
             </dependency>

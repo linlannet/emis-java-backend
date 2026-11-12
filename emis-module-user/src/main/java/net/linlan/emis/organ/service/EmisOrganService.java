@@ -66,7 +66,13 @@ public class EmisOrganService {
      * @return {@link EmisOrganVo}
      */
     public EmisOrganVo getVoById(Long id) {
+        if (id == null) {
+            return null;
+        }
         AdminDeptDto dto = adminDeptService.getDtoById(id);
+        if (dto == null) {
+            return null;
+        }
         return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
     }
 
@@ -77,8 +83,13 @@ public class EmisOrganService {
      * @return {@link EmisOrganVo}
      */
     public EmisOrganVo getVoByOrganId(String organId) {
-        AdminDeptDto dto = adminDeptService.getByOrganId(organId);
-        return (EmisOrganVo) EmisOrganVo.DTO.apply(dto);
+        AdminDeptParam param = new AdminDeptParam();
+        param.setOrganId(organId);
+        List<AdminDeptDto> list = adminDeptService.getListByParam(param);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return (EmisOrganVo) EmisOrganVo.DTO.apply(list.get(0));
     }
 
     /**
@@ -88,8 +99,46 @@ public class EmisOrganService {
      * @param entity    {@link EmisOrganVo}
      * @return 机构Vo对象
      */
+    @Transactional(rollbackFor = Exception.class)
     public EmisOrganVo saveByVo(EmisOrganVo entity) {
-        return null;
+        if (entity == null) {
+            return null;
+        }
+        AdminDept dept = adminDeptService.findById(entity.getId());
+        boolean isNew = dept == null;
+        if (isNew) {
+            dept = new AdminDept();
+            dept.setId(entity.getId());
+        }
+        dept.setOrganId(entity.getOrganId());
+        dept.setParentId(entity.getParentId());
+        dept.setAppId(entity.getAppId());
+        dept.setForeignId(entity.getForeignId());
+        dept.setSpare1(entity.getIdentitySourceId());
+        if (StringUtils.isNotBlank(entity.getDataOrigin())
+            && org.apache.commons.lang3.StringUtils.isNumeric(entity.getDataOrigin())) {
+            dept.setCreateType(Integer.valueOf(entity.getDataOrigin()));
+        }
+        if (entity.getType() != null) {
+            dept.setType(entity.getType().getType());
+        }
+        dept.setName(entity.getDisplayPath());
+        dept.setSname(entity.getName());
+        dept.setIsLeaf(entity.getLeaf());
+        dept.setIsDisabled(!Boolean.TRUE.equals(entity.getEnabled()));
+        dept.setSearchCode(entity.getPath());
+        dept.setImagePath(entity.getImagePath());
+        dept.setPriority(entity.getPriority());
+        dept.setDescription(entity.getRemark());
+        if (isNew) {
+            dept.setCreatorId(entity.getCreatorId());
+            dept.setCreateTime(entity.getCreateTime());
+            adminDeptService.save(dept);
+        } else {
+            adminDeptService.update(dept);
+        }
+        entity.setId(dept.getId());
+        return entity;
     }
 
     /** batch save the entity with input list
@@ -298,7 +347,7 @@ public class EmisOrganService {
      * @return 机构Vo对象
      */
     public List<EmisOrganVo> getVosByDeptIds(String identitySourceId, String[] deptIds) {
-        return null;
+        return getVosByForeignIds(java.util.Arrays.asList(deptIds), identitySourceId);
     }
 
     /**
@@ -309,7 +358,17 @@ public class EmisOrganService {
      * @return 机构Vo对象
      */
     public List<EmisOrganVo> getVosByOrganIds(String identitySourceId, String[] organIds) {
-        return null;
+        AdminDeptParam param = new AdminDeptParam();
+        param.setSpare1(identitySourceId);
+        List<AdminDeptDto> list = adminDeptService.getListByParam(param);
+        if (CollectionUtils.isEmpty(list) || organIds == null) {
+            return Lists.newArrayList();
+        }
+        List<Long> ids = java.util.Arrays.stream(organIds).map(Long::valueOf)
+            .collect(java.util.stream.Collectors.toList());
+        return list.stream().filter(dto -> ids.contains(dto.getId()))
+            .map(dto -> (EmisOrganVo) EmisOrganVo.DTO.apply(dto))
+            .collect(java.util.stream.Collectors.toList());
     }
 
     /**
@@ -319,7 +378,13 @@ public class EmisOrganService {
      * @return 机构Vo对象
      */
     public EmisOrganVo findByForeignId(String deptId) {
-        return null;
+        AdminDeptParam param = new AdminDeptParam();
+        param.setForeignId(deptId);
+        List<AdminDeptDto> list = adminDeptService.getListByParam(param);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return (EmisOrganVo) EmisOrganVo.DTO.apply(list.get(0));
     }
 
     /**
@@ -330,7 +395,14 @@ public class EmisOrganService {
      * @return 机构Vo对象
      */
     public EmisOrganVo getVoByParams(String foreignId, String identitySourceId) {
-        return null;
+        AdminDeptParam param = new AdminDeptParam();
+        param.setForeignId(foreignId);
+        param.setSpare1(identitySourceId);
+        List<AdminDeptDto> list = adminDeptService.getListByParam(param);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return (EmisOrganVo) EmisOrganVo.DTO.apply(list.get(0));
     }
 
     /**
@@ -341,7 +413,18 @@ public class EmisOrganService {
      * @return    结果列表
      */
     public List<EmisOrganVo> getVosByForeignIds(List<String> foreignIds, String identitySourceId) {
-        return null;
+        if (CollectionUtils.isEmpty(foreignIds)) {
+            return Lists.newArrayList();
+        }
+        AdminDeptParam param = new AdminDeptParam();
+        param.setSpare1(identitySourceId);
+        List<AdminDeptDto> list = adminDeptService.getListByParam(param);
+        if (CollectionUtils.isEmpty(list)) {
+            return Lists.newArrayList();
+        }
+        return list.stream().filter(dto -> foreignIds.contains(dto.getForeignId()))
+            .map(dto -> (EmisOrganVo) EmisOrganVo.DTO.apply(dto))
+            .collect(java.util.stream.Collectors.toList());
     }
 
     /**
@@ -364,7 +447,14 @@ public class EmisOrganService {
      * @return  结果列表
      */
     public List<EmisOrganVo> getVosByIdentitySourceId(String identitySourceId) {
-        return null;
+        AdminDeptParam param = new AdminDeptParam();
+        param.setSpare1(identitySourceId);
+        List<AdminDeptDto> list = adminDeptService.getListByParam(param);
+        if (CollectionUtils.isEmpty(list)) {
+            return Lists.newArrayList();
+        }
+        return list.stream().map(dto -> (EmisOrganVo) EmisOrganVo.DTO.apply(dto))
+            .collect(java.util.stream.Collectors.toList());
     }
 
     /**
@@ -374,7 +464,17 @@ public class EmisOrganService {
      * @return    结果列表
      */
     public List<EmisOrganVo> getVosByParentIds(String[] parentIds) {
-        return null;
+        List<EmisOrganVo> list = Lists.newArrayList();
+        if (parentIds == null) {
+            return list;
+        }
+        for (String parentId : parentIds) {
+            List<EmisOrganVo> vos = getVosByParentId(Long.valueOf(parentId));
+            if (vos != null) {
+                list.addAll(vos);
+            }
+        }
+        return list;
     }
 
     /**
@@ -382,8 +482,13 @@ public class EmisOrganService {
      *
      * @param ids {@link Iterable}
      */
+    @Transactional(rollbackFor = Exception.class)
     public void deleteAllById(String[] ids) {
-
+        if (ids == null || ids.length == 0) {
+            return;
+        }
+        adminDeptService
+            .deleteByIds(java.util.Arrays.stream(ids).map(Long::valueOf).toArray(Long[]::new));
     }
 
     /**

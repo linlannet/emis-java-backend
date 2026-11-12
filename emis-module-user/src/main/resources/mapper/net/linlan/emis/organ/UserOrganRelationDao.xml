@@ -244,5 +244,30 @@ B.RECORD_ID, B.FOREIGN_ID, B.USER_ID, B.ORGAN_ID, B.DEPT_ID, B.CREATOR_ID, B.CRE
 
     <!-- 以下为新增特定的操作 -->
 
+    <!-- 根据用户ID查询组织关系 -->
+    <select id="getByUserId" resultMap="userOrganRelationDtoMap">
+        SELECT
+B.RECORD_ID, B.FOREIGN_ID, B.USER_ID, B.ORGAN_ID, B.DEPT_ID, B.CREATOR_ID, B.CREATE_TIME, B.LAST_TIME, B.DEL_FLAG, B.DESCRIPTION, B.SPARE1, B.SPARE2
+        FROM emis_user_organ_relation B
+        WHERE B.USER_ID = #{userId}
+          AND ( B.DEL_FLAG = 0 OR B.DEL_FLAG IS NULL)
+    </select>
+
+    <!-- 根据组织ID和用户ID删除组织关系 -->
+    <delete id="deleteByOrganIdAndUserId">
+        DELETE FROM emis_user_organ_relation
+        WHERE ORGAN_ID = #{organId}
+          AND USER_ID = #{userId}
+    </delete>
+
+    <!-- 根据用户ID数组批量删除组织关系 -->
+    <delete id="deleteByUserIds">
+        DELETE FROM emis_user_organ_relation
+        WHERE USER_ID IN
+        <foreach item="userId" collection="userIds" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
 
 </mapper>

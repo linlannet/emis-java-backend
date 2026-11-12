@@ -17,6 +17,8 @@
  */
 package net.linlan.emis.app.entity;
 
+import java.util.List;
+
 import lombok.Data;
 
 import net.linlan.commons.core.RandomUtils;
@@ -35,57 +37,62 @@ public class AppPermissionResource extends BaseEntity {
     /**
      * 主键ID
      */
-    private String  id;
+    private String                              id;
 
     /**
      * 所属应用
      */
-    private String  appId;
+    private String                              appId;
 
     /**
      * 外键ID
      */
-    private String  foreignId;
+    private String                              foreignId;
 
     /**
      * 资源名称
      */
-    private String  name;
+    private String                              name;
 
     /**
      * 资源编码
      */
-    private String  code;
+    private String                              code;
 
     /**
      * 资源描述
      */
-    private String  content;
+    private String                              content;
 
     /**
      * 是否启用
      */
-    private Boolean isEnabled;
+    private Boolean                             isEnabled;
 
     /**
      * 删除标记，0未删除1已删除
      */
-    private Integer delFlag;
+    private Integer                             delFlag;
 
     /**
      * 备注
      */
-    private String  description;
+    private String                              description;
 
     /**
      * 备用1
      */
-    private String  spare1;
+    private String                              spare1;
 
     /**
      * 备用2
      */
-    private String  spare2;
+    private String                              spare2;
+
+    /**
+     * 资源下的权限，非数据库字段
+     */
+    private transient List<AppPermissionAction> actions;
 
     /**
      * 初始化方法

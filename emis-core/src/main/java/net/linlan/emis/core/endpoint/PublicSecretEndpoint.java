@@ -51,6 +51,11 @@ import net.linlan.utils.http.HttpContextUtils;
 public class PublicSecretEndpoint {
 
     /**
+     * 公钥获取路径
+     */
+    public static final String PUBLIC_SECRET_PATH = "/api/V1/public/secret";
+
+    /**
      * 获取加密key
      * @param type 公钥类型
      * @return  当前进程的加密key

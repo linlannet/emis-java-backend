@@ -239,7 +239,7 @@ public class ProtocolSaml2Config extends BaseEntity {
     public void init() {
         //添加对数据库或实体对象的默认值处理
         if (getId() == null) {
-            setId(RandomUtils.randomSid());
+            setId(RandomUtils.UUID32());
         }
 
     }

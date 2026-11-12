@@ -200,14 +200,73 @@ public class EmisAdminVo {
     };
 
     /**
+     * 默认构造函数
+     */
+    public EmisAdminVo() {
+    }
+
+    /**
      * @param input 数据库查询出的entity对象，对VO对象进行赋值，默认的字段为全部字段，可结合实际调整
      */
     public EmisAdminVo(AdminUser input) {
-        this.adminId = input.getId().toString();
+        if (input == null) {
+            return;
+        }
+        this.adminId = input.getId() == null ? null : input.getId().toString();
+        this.userId = input.getUserId();
+        this.username = input.getUsername();
+        this.fullName = input.getName();
+        this.password = input.getPassword();
+        this.email = input.getEmail();
+        this.mobile = input.getMobile();
+        this.avatarUrl = input.getImagePath();
+        this.status = adminStatusConvert(input.getStatus());
+        this.authTotal = input.getLoginCount() == null ? null : input.getLoginCount().longValue();
+        this.lastAuthIp = input.getLastLoginIp();
+        this.lastAuthTime = toLocalDateTime(input.getLastLoginTime());
         this.creatorId = input.getCreatorId();
         this.createTime = input.getCreateTime();
         this.lastTime = input.getLastTime();
         this.remark = input.getSpare1();
+    }
+
+    /**
+     * 将整数状态转换为用户状态
+     *
+     * @param status {@link Integer}
+     * @return {@link UserStatus}
+     */
+    private static UserStatus adminStatusConvert(Integer status) {
+        if (status == null) {
+            return null;
+        }
+        switch (status) {
+            case 1:
+                return UserStatus.ENABLED;
+            case 2:
+                return UserStatus.DISABLED;
+            case 3:
+                return UserStatus.LOCKED;
+            case 4:
+                return UserStatus.EXPIRED_LOCKED;
+            case 5:
+                return UserStatus.PASSWORD_EXPIRED_LOCKED;
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Date转LocalDateTime
+     *
+     * @param date {@link Date}
+     * @return {@link LocalDateTime}
+     */
+    private static LocalDateTime toLocalDateTime(Date date) {
+        if (date == null) {
+            return null;
+        }
+        return LocalDateTime.ofInstant(date.toInstant(), java.time.ZoneId.systemDefault());
     }
 
 }

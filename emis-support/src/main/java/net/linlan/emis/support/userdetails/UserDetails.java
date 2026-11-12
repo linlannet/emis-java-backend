@@ -296,6 +296,15 @@ public class UserDetails extends User
         this.applications = null;
     }
 
+    /**
+     * 获取用户ID
+     *
+     * @return {@link String}
+     */
+    public String getId() {
+        return adminId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

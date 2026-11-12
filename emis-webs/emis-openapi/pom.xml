@@ -147,6 +147,15 @@
             <artifactId>spring-security-config</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-resource-server</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
@@ -257,7 +266,23 @@
         <!-- EMIS相关模块 -->
         <dependency>
             <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-audit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
             <artifactId>emis-module-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-user</artifactId>
         </dependency>
 
     </dependencies>
@@ -292,6 +317,20 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
             <plugin>

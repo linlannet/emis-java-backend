@@ -257,11 +257,52 @@
         <!-- EMIS相关模块 -->
         <dependency>
             <groupId>net.linlan.emis</groupId>
-            <artifactId>emis-module-app</artifactId>
+            <artifactId>emis-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-audit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-authn</artifactId>
         </dependency>
         <dependency>
             <groupId>net.linlan.emis</groupId>
             <artifactId>emis-module-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-protocol</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-idsource</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.linlan.emis</groupId>
+            <artifactId>emis-module-user</artifactId>
+        </dependency>
+
+        <!-- 接口文档 -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+        <!-- 对象映射 -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.3.Final</version>
         </dependency>
 
     </dependencies>
@@ -296,6 +337,13 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
@@ -394,6 +442,22 @@
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->
+
+            <!-- 模块独立构建时缺少 scripts/codestyle 配置，跳过 license 与格式化处理 -->
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
 
         </plugins>
 

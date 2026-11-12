@@ -194,7 +194,7 @@ public class UserOrganRelationService {
      * @param userIds 用户IDs|1
      */
     public void deleteByUserIds(String[] userIds) {
-        if (ObjectUtils.isNotEmpty(userIds)) {
+        if (ObjectUtils.isEmpty(userIds)) {
             return;
         }
         dao.deleteByUserIds(userIds);

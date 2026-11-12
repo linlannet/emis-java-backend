@@ -160,7 +160,8 @@ public class AppGroupAssociationService {
      * @param appId  应用ID
      */
     @Transactional(rollbackFor = Exception.class)
-    void deleteByGroupIdAndAppId(@Param("groupId") String groupId, @Param("appId") String appId) {
+    public void deleteByGroupIdAndAppId(@Param("groupId") String groupId,
+                                        @Param("appId") String appId) {
         dao.deleteByGroupIdAndAppId(groupId, appId);
     }
 
@@ -190,7 +191,7 @@ public class AppGroupAssociationService {
      * @param groupId 分组ID
      */
     @Transactional(rollbackFor = Exception.class)
-    void deleteAllByGroupId(@Param("groupId") String groupId) {
+    public void deleteAllByGroupId(@Param("groupId") String groupId) {
         dao.deleteByGroupId(groupId);
     }
 

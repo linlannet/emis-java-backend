@@ -170,7 +170,16 @@ public class FeishuUserResponse implements Serializable {
         private String avatarOrigin;
 
         public String getAvatar() {
-            return StringUtils.firstNonEmpty(avatar72, avatar240, avatar640, avatarOrigin);
+            if (StringUtils.isNotBlank(avatar72)) {
+                return avatar72;
+            }
+            if (StringUtils.isNotBlank(avatar240)) {
+                return avatar240;
+            }
+            if (StringUtils.isNotBlank(avatar640)) {
+                return avatar640;
+            }
+            return avatarOrigin;
         }
     }
 

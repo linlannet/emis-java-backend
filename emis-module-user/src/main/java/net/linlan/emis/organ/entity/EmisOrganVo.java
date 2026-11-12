@@ -162,7 +162,8 @@ public class EmisOrganVo {
         this.parentId = input.getParentId();
         this.foreignId = input.getForeignId();
         this.appId = input.getAppId();
-        this.identitySourceId = input.getForeignId();
+        this.identitySourceId = input.getSpare1() != null ? input.getSpare1()
+            : input.getForeignId();
         this.dataOrigin = input.getCreateType().toString();
         this.type = OrganizationType.fromString(input.getType());
         this.displayPath = input.getName();
@@ -199,7 +200,8 @@ public class EmisOrganVo {
         this.parentId = input.getParentId();
         this.foreignId = input.getForeignId();
         this.appId = input.getAppId();
-        this.identitySourceId = input.getForeignId();
+        this.identitySourceId = input.getSpare1() != null ? input.getSpare1()
+            : input.getForeignId();
         this.dataOrigin = input.getCreateType().toString();
         this.type = OrganizationType.fromString(input.getType());
         this.displayPath = input.getName();
