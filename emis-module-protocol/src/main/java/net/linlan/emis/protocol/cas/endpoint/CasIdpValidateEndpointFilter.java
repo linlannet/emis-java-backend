@@ -1,0 +1,118 @@
+/*
+ * emis-module-protocol - protocol协议配置
+ * Copyright © 2020-2025 Linlan (open@linlan.net)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package net.linlan.emis.protocol.cas.endpoint;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
+
+import org.springframework.boot.web.servlet.filter.OrderedFilter;
+import org.springframework.core.Ordered;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import net.linlan.emis.protocol.base.ApplicationServiceLoader;
+import net.linlan.emis.protocol.cas.auth.CentralAuthenticationService;
+import net.linlan.emis.protocol.cas.constant.CasProtocolConstants;
+import net.linlan.emis.protocol.cas.tickets.ServiceTicket;
+import net.linlan.emis.protocol.cas.xml.ResponseGenerator;
+import net.linlan.emis.protocol.cas.xml.ResponseGeneratorImpl;
+import net.linlan.emis.protocol.constant.ProtocolConstants;
+import net.linlan.emis.support.userdetails.UserDetails;
+
+/**
+ * @author Linlan
+ * Created on  2023/1/2 13:38
+ */
+public class CasIdpValidateEndpointFilter extends OncePerRequestFilter implements OrderedFilter {
+
+    private final ApplicationServiceLoader     applicationServiceLoader;
+
+    private final SessionRegistry              sessionRegistry;
+
+    private final CentralAuthenticationService centralAuthenticationService;
+
+    private static final OrRequestMatcher      orRequestMatcher;
+
+    static {
+        List<RequestMatcher> requestMatchers = new ArrayList<>();
+        requestMatchers.add(new AntPathRequestMatcher(
+            ProtocolConstants.CasEndpointConstants.CAS_VALIDATE_PATH, HttpMethod.GET.name()));
+        requestMatchers.add(new AntPathRequestMatcher(
+            ProtocolConstants.CasEndpointConstants.CAS_VALIDATE_V2_PATH, HttpMethod.GET.name()));
+        requestMatchers.add(new AntPathRequestMatcher(
+            ProtocolConstants.CasEndpointConstants.CAS_VALIDATE_V3_PATH, HttpMethod.GET.name()));
+        orRequestMatcher = new OrRequestMatcher(requestMatchers);
+    }
+
+    private final DocumentBuilder documentBuilder;
+
+    public CasIdpValidateEndpointFilter(ApplicationServiceLoader applicationServiceLoader,
+                                        SessionRegistry sessionRegistry,
+                                        CentralAuthenticationService centralAuthenticationService,
+                                        DocumentBuilder documentBuilder) {
+        this.applicationServiceLoader = applicationServiceLoader;
+        this.sessionRegistry = sessionRegistry;
+        this.centralAuthenticationService = centralAuthenticationService;
+        this.documentBuilder = documentBuilder;
+
+    }
+
+    @Override
+    public int getOrder() {
+        return Ordered.LOWEST_PRECEDENCE;
+    }
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        if (orRequestMatcher.matches(request)) {
+            ResponseGenerator generator = new ResponseGeneratorImpl(documentBuilder, response);
+            String ticketId = request.getParameter(CasProtocolConstants.TICKET);
+            String service = request.getParameter(CasProtocolConstants.SERVICE);
+            ServiceTicket serviceTicket = centralAuthenticationService
+                .validateServiceTicket(ticketId, service);
+            if (serviceTicket == null) {
+                generator.genFailedMessage(ticketId);
+            } else {
+                UserDetails userDetails = serviceTicket.getTicketGrantingTicket().getUserDetails();
+                // TODO: 2023/1/2 根据配置返回额外的属性配置
+                generator.genSucceedMessage(userDetails.getUsername(), new HashMap<>());
+            }
+            generator.sendMessage();
+        }
+        filterChain.doFilter(request, response);
+
+    }
+
+    public static RequestMatcher getRequestMatcher() {
+        return orRequestMatcher;
+    }
+
+}

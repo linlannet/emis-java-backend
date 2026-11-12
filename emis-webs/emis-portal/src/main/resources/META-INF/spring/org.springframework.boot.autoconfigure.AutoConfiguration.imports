@@ -1,0 +1,4 @@
+net.linlan.emis.portal.configuration.security.OidcProtocolSecurityConfiguration
+net.linlan.emis.portal.configuration.security.JwtProtocolSecurityConfiguration
+net.linlan.emis.portal.configuration.security.FormProtocolSecurityConfiguration
+net.linlan.emis.portal.configuration.security.PortalSecurityConfiguration

@@ -1,0 +1,461 @@
+/**
+ * emis-console - enterprise multiple identity system
+ * Copyright © 2020-2025 Linlan (open@linlan.net)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+import { filterParamConverter, sortParamConverter } from '@/utils/utils';
+import type { RequestData } from '@ant-design/pro-components';
+import type { SortOrder } from 'antd/es/table/interface';
+import qs from 'qs';
+import type { Key } from 'react';
+import { request } from '@umijs/max';
+import { ParamCheckType } from '@/constant';
+/**
+ * Get root organization
+ */
+export async function getRootOrganization(): Promise<API.ApiResult<AccountAPI.RootOrganization>> {
+  return request<API.ApiResult<AccountAPI.RootOrganization>>('/api/V1/organ/get_root');
+}
+
+/**
+ * Get child organization
+ */
+export async function getChildOrganization(
+  parentId: string | number,
+): Promise<API.ApiResult<AccountAPI.ChildOrganization[]>> {
+  return request<API.ApiResult<AccountAPI.ChildOrganization[]>>(`/api/V1/organ/get_child`, {
+    params: { parentId: parentId },
+  });
+}
+
+/**
+ * Get Search Organization Tree
+ */
+export async function getSearchOrganizationTree(
+  keyWord: string,
+): Promise<API.ApiResult<AccountAPI.SearchOrganizationTree[]>> {
+  return request<API.ApiResult<AccountAPI.SearchOrganizationTree[]>>(
+    `/api/V1/organ/search/tree`,
+    {
+      params: { keyWord: keyWord },
+    },
+  );
+}
+
+/**
+ * Get organization Details
+ */
+export async function getOrganization(id: Key): Promise<API.ApiResult<AccountAPI.GetOrganization>> {
+  return request<API.ApiResult<AccountAPI.GetOrganization>>(`/api/V1/organ/get/${id}`);
+}
+
+/**
+ * create organization
+ */
+export async function createOrganization(
+  params: Partial<AccountAPI.CreateOrganization> | AccountAPI.CreateOrganization,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>('/api/V1/organ/create', {
+    method: 'POST',
+    requestType: 'json',
+    data: params,
+  });
+}
+
+/**
+ * update organization
+ */
+export async function updateOrganization(
+  params: AccountAPI.UpdateOrganization,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/organ/update`, {
+    method: 'PUT',
+    requestType: 'json',
+    data: params,
+  });
+}
+
+/**
+ * remove organization
+ */
+export async function removeOrganization(id: string | number): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/organ/delete/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+/**
+ * move organization
+ */
+export async function moveOrganization(
+  id: string,
+  parentId: string,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/organ/move`, {
+    params: { id: id, parentId: parentId },
+    method: 'PUT',
+  });
+}
+
+/**
+ * Get User User
+ */
+export async function getUserList(
+  params: Record<string, any>,
+  sort?: Record<string, SortOrder>,
+  filter?: Record<string, (string | number)[] | null>,
+): Promise<RequestData<AccountAPI.ListUser>> {
+  return request<API.ApiResult<AccountAPI.ListUser>>('/api/V1/user/list', {
+    params: { ...params, ...sortParamConverter(sort), ...filterParamConverter(filter) },
+  }).then((result: API.ApiResult<AccountAPI.ListUser>) => {
+    const data: RequestData<AccountAPI.ListUser> = {
+      data: result?.data?.list ? result?.data?.list : [],
+      success: result?.success,
+      total: result?.data?.pagination ? result?.data?.pagination.total : 0,
+    };
+    return Promise.resolve(data);
+  });
+}
+
+/**
+ * Create User
+ */
+export async function createUser(
+  params: Partial<AccountAPI.CreateUser>,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>('/api/V1/user/create', {
+    method: 'POST',
+    requestType: 'json',
+    data: params,
+  });
+}
+
+/**
+ * Batch Get User Details
+ */
+export async function batchGetUser(ids: string[]): Promise<API.ApiResult<AccountAPI.BatchGetUser>> {
+  return request<API.ApiResult<AccountAPI.BatchGetUser>>(`/api/V1/user/batch_get`, {
+    params: { ids: ids.join(',') },
+  });
+}
+
+/**
+ * 获取登录审计列表
+ */
+export async function getLoginAuditList(
+  params: Record<string, any>,
+  sort: Record<string, SortOrder>,
+  filter: Record<string, (string | number)[] | null>,
+): Promise<RequestData<AccountAPI.UserLoginAuditList>> {
+  return request<API.ApiResult<AccountAPI.UserLoginAuditList>>('/api/V1/user/login_audit/list', {
+    method: 'GET',
+    params: { ...params, ...sortParamConverter(sort), ...filterParamConverter(filter) },
+  }).then((result: API.ApiResult<AccountAPI.UserLoginAuditList>) => {
+    const data: RequestData<AccountAPI.UserLoginAuditList> = {
+      data: result?.data?.list ? result?.data?.list : [],
+      success: result?.success,
+      total: result?.data?.pagination ? result?.data?.pagination.total : 0,
+    };
+    return Promise.resolve(data);
+  });
+}
+
+/**
+ * 获取用户身份提供商绑定
+ */
+export async function getUserIdpBind(
+  params: Record<string, any>,
+): Promise<RequestData<AccountAPI.UserIdpBind>> {
+  return request<API.ApiResult<AccountAPI.UserIdpBind>>('/api/V1/user/idp_bind', {
+    method: 'GET',
+    params: { ...params },
+  }).then((result: API.ApiResult<AccountAPI.UserIdpBind>) => {
+    const data: RequestData<AccountAPI.UserIdpBind> = {
+      data: result?.data ? result?.data : [],
+      success: result?.success,
+    };
+    return Promise.resolve(data);
+  });
+}
+
+/**
+ * 解绑身份提供商
+ */
+export async function unbindIdp(id: string | number): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user/unbind_idp`, {
+    method: 'DELETE',
+    params: { id },
+  });
+}
+
+/**
+ * User Reset Password
+ */
+export async function userResetPassword(
+  params: Record<string, any>,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user/reset_password`, {
+    method: 'PUT',
+    data: params,
+  });
+}
+
+/**
+ * Get User Detail
+ */
+export async function getUser(id: string): Promise<API.ApiResult<AccountAPI.GetUser>> {
+  return request<API.ApiResult<AccountAPI.GetUser>>(`/api/V1/user/get/${id}`, {
+    method: 'GET',
+  });
+}
+
+/**
+ * Update User
+ */
+export async function updateUser(
+  params: Partial<AccountAPI.UpdateUser> | Record<string, string>,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user/update`, {
+    method: 'PUT',
+    requestType: 'json',
+    data: params,
+  });
+}
+
+/**
+ * Remove User
+ */
+export async function removeUser(id: string): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user/delete/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+/**
+ * Remove  Batch User
+ */
+export async function removeBatchUser(
+  ids: (number | string | Key)[],
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user/batch_delete`, {
+    method: 'DELETE',
+    params: { ids: ids },
+    paramsSerializer: (params) => {
+      return qs.stringify(params, { indices: false });
+    },
+  });
+}
+
+/**
+ * 验证用户信息
+ *
+ * @param type
+ * @param value
+ * @param id
+ */
+export async function userParamCheck(
+  type: ParamCheckType,
+  value: string,
+  id?: string,
+): Promise<API.ApiResult<boolean>> {
+  return request(`/api/V1/user/param_check`, {
+    params: { id, type, value },
+    method: 'GET',
+  });
+}
+
+/**
+ * Enable User
+ */
+export async function enableUser(id: string): Promise<API.ApiResult<boolean>> {
+  return request(`/api/V1/user/enable/${id}`, {
+    method: 'PUT',
+  });
+}
+
+/**
+ * Disable User
+ */
+export async function disableUser(id: string): Promise<API.ApiResult<boolean>> {
+  return request(`/api/V1/user/disable/${id}`, {
+    method: 'PUT',
+  });
+}
+
+/**
+ * UnLock User
+ */
+export async function unlockUser(id: string): Promise<API.ApiResult<boolean>> {
+  return request(`/api/V1/user/unlock/${id}`, {
+    method: 'PUT',
+  });
+}
+
+/**
+ * Get user list not in group
+ */
+export async function getUserListNotInGroup(
+  params: Record<string, any>,
+  sort: Record<string, SortOrder>,
+  filter: Record<string, (string | number)[] | null>,
+): Promise<RequestData<AccountAPI.ListUser>> {
+  return request<API.ApiResult<AccountAPI.ListUser>>(`/api/V1/user/notin_group_list`, {
+    params: { ...params, ...sortParamConverter(sort), ...filterParamConverter(filter) },
+  }).then((result: API.ApiResult<AccountAPI.ListUser>) => {
+    const data: RequestData<AccountAPI.ListUser> = {
+      data: result?.data?.list ? result?.data?.list : [],
+      success: result?.success,
+      total: result?.data?.pagination ? result?.data?.pagination.total : 0,
+    };
+    return Promise.resolve(data);
+  });
+}
+
+/**
+ * Get user  group list
+ */
+export async function getUserGroupList(
+  params: Record<string, any>,
+  sort: Record<string, SortOrder>,
+  filter: Record<string, (string | number)[] | null>,
+): Promise<RequestData<AccountAPI.ListUserGroup>> {
+  return request<API.ApiResult<AccountAPI.ListUserGroup>>('/api/V1/user_group/list', {
+    params: { ...params, ...sortParamConverter(sort), ...filterParamConverter(filter) },
+  }).then((result: API.ApiResult<AccountAPI.ListUserGroup>) => {
+    const data: RequestData<AccountAPI.ListUserGroup> = {
+      data: result?.data?.list ? result?.data?.list : [],
+      success: result?.success,
+      total: result?.data?.pagination ? result?.data?.pagination.total : 0,
+    };
+    return Promise.resolve(data);
+  });
+}
+
+/**
+ * create user group
+ */
+export async function createUserGroup(
+  params: AccountAPI.CreateUserGroup,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>('/api/V1/user_group/create', {
+    method: 'POST',
+    requestType: 'json',
+    data: params,
+  });
+}
+
+/**
+ * get user group
+ */
+export async function getUserGroup(id: string): Promise<API.ApiResult<AccountAPI.GetUserGroup>> {
+  return request<API.ApiResult<AccountAPI.GetUserGroup>>(`/api/V1/user_group/get/${id}`, {
+    method: 'GET',
+  });
+}
+
+/**
+ * update user group
+ */
+export async function updateUserGroup(
+  params: AccountAPI.UpdateUserGroup | Record<string, string>,
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user_group/update`, {
+    method: 'PUT',
+    requestType: 'json',
+    data: params,
+  });
+}
+
+/**
+ * remove user group
+ */
+export async function removeUserGroup(id: string): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user_group/delete/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+/**
+ * remove user group member
+ */
+export async function removeUserGroupMember(
+  id: string,
+  userIds: (number | string | Key)[],
+): Promise<API.ApiResult<boolean>> {
+  return request<API.ApiResult<boolean>>(`/api/V1/user_group/remove_member/${id}`, {
+    method: 'DELETE',
+    params: { userIds: userIds },
+    paramsSerializer: (params) => {
+      return qs.stringify(params, { indices: false });
+    },
+  });
+}
+
+/**
+ * 查询用户组成员列表
+ */
+export async function getUserGroupMemberList(
+  params: Record<string, any>,
+  sort: Record<string, SortOrder>,
+  filter: Record<string, (string | number)[] | null>,
+): Promise<RequestData<AccountAPI.ListUser>> {
+  return request<API.ApiResult<AccountAPI.ListUser>>(
+    `/api/V1/user_group/${params.id}/member_list`,
+    {
+      params: { ...params, ...sortParamConverter(sort), ...filterParamConverter(filter) },
+    },
+  ).then((result: API.ApiResult<AccountAPI.ListUser>) => {
+    const data: RequestData<AccountAPI.ListUser> = {
+      data: result?.data?.list ? result?.data?.list : [],
+      success: result?.success,
+      total: result?.data?.pagination ? result?.data?.pagination.total : 0,
+    };
+    return Promise.resolve(data);
+  });
+}
+
+/**
+ * 添加成员到用户组
+ *
+ * @param id
+ * @param userIds
+ */
+export async function addMemberToUserGroup(
+  id: string,
+  userIds: Key[],
+): Promise<API.ApiResult<Record<string, any>>> {
+  return request(`/api/V1/user_group/add_member/${id}`, {
+    method: 'POST',
+    requestType: 'form',
+    params: { userIds: userIds },
+    paramsSerializer: (params) => {
+      return qs.stringify(params, { indices: false });
+    },
+  });
+}
+
+/**
+ * 密码生成
+ */
+export async function passwordGenerate(): Promise<API.ApiResult<boolean>> {
+  return request(`/api/V1/password/generate`, { method: 'GET' });
+}
+
+/**
+ * 删除身份源
+ */
+export async function deleteIdentitySource(id: string): Promise<API.ApiResult<boolean>> {
+  return request(`/api/V1/identity_source/delete/${id}`, { method: 'DELETE' });
+}

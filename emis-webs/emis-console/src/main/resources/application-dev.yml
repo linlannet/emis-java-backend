@@ -1,0 +1,71 @@
+#
+# emis-console - enterprise multiple identity system
+# Copyright © 2020-2025 Linlan (open@linlan.net)
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+# spring
+spring:
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/emis_db1.1?serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+        username: 'lldba'
+        password: 'DB_Lldba_2023!'
+        hikari:
+            auto-commit: true
+            connection-test-query: SELECT 1
+            connection-timeout: 30000
+            idle-timeout: 30000
+            max-lifetime: 1800000
+            maximum-pool-size: 15
+            minimum-idle: 5
+            pool-name: emis
+    #reids，连接服务器和连接本地，本地采用无密码
+    redis:
+        database: 1
+        host: 127.0.0.1
+        port: 6379
+        timeout: 6000ms  # 连接超时时长（毫秒）
+        lettuce:
+            pool:
+                max-active: 10  # 连接池最大连接数（使用负值表示没有限制）
+                max-wait: 0ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+                max-idle: 10      # 连接池中的最大空闲连接
+                min-idle: 5       # 连接池中的最小空闲连接
+            shutdown-timeout: 200ms
+
+#日志配置
+logging:
+    config: classpath:config/logback-spring.xml
+    level:
+        org.springframework.web: TRACE
+        org.mapstruct: TRACE
+
+# server
+server:
+    port: 1988
+    servlet:
+        context-path: /emis_console
+#Linlan local env
+linlan:
+    server:
+        console-public-base-url: https://linlan.net/emis/console
+        portal-public-base-url: https://linlan.net/emis/portal
+        openapi-public-base-url: https://linlan.net/emis_openapi
+        synchronizer-public-base-url: https://linlan.net/emis_synchronizer
+    cors:
+        allowCredentials: true
+        allowedOriginPatterns: 'http://localhost:1988,http://127.0.0.1:1988'

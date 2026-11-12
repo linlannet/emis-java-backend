@@ -1,0 +1,181 @@
+/*
+ * emis-module-protocol - protocol协议配置
+ * Copyright © 2020-2025 Linlan (open@linlan.net)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package net.linlan.emis.protocol.oidc.converter;
+
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Objects;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.text.StringSubstitutor;
+import org.mapstruct.Mapper;
+
+import net.linlan.emis.core.context.PropertiesContextHelper;
+import net.linlan.emis.protocol.constant.ProtocolConstants;
+import net.linlan.emis.protocol.dto.ProtocolOidcConfigDto;
+import net.linlan.emis.protocol.entity.ProtocolOidcConfig;
+import net.linlan.emis.protocol.oidc.pojo.AppOidcProtocolEndpoint;
+import net.linlan.emis.protocol.oidc.pojo.AppOidcStandardConfigGetResult;
+import net.linlan.emis.protocol.oidc.pojo.AppOidcStandardSaveConfigParam;
+import net.linlan.emis.support.utils.UrlUtils;
+import static net.linlan.emis.protocol.constant.ProtocolConstants.APP_CODE;
+import static net.linlan.emis.protocol.constant.ProtocolConstants.OidcEndpointConstants.OIDC_AUTHORIZE_PATH;
+import static net.linlan.emis.protocol.constant.ProtocolConstants.OidcEndpointConstants.WELL_KNOWN_OPENID_CONFIGURATION;
+
+/**
+ * 应用映射
+ *
+ * @author Linlan
+ * Created on 2020/8/14 22:45
+ */
+@Mapper(componentModel = "spring")
+public interface AppOidcStandardConfigConverter {
+    /**
+     * 实体转OIDC配置结果
+     *
+     * @param config {@link ProtocolOidcConfig}
+     * @return {@link AppOidcStandardConfigGetResult}
+     */
+    default AppOidcStandardConfigGetResult entityConverterToOidcConfigResult(ProtocolOidcConfigDto config) {
+        AppOidcStandardConfigGetResult result = new AppOidcStandardConfigGetResult();
+        if (Objects.isNull(config)) {
+            return result;
+        }
+        //协议端点域
+        result.setProtocolEndpoint(getProtocolEndpointDomain(config.getAppCode()));
+        //认证授权类型
+        result.setAuthGrantTypes(config.getAuthGrantTypes());
+        //登录重定向URI
+        result.setRedirectUris(config.getRedirectUris());
+        //登出重定向URI
+        result.setPostLogoutRedirectUris(config.getPostLogoutRedirectUris());
+        //授权范围
+        result.setGrantScopes(config.getGrantScopes());
+        //启用PKCE
+        result.setRequireProofKey(config.getRequireProofKey());
+        //访问令牌有效时间
+        result.setAccessTokenTimeToLive(String.valueOf(config.getAccessTokenTimeToLive() / 60));
+        //刷新令牌有效时间
+        result.setRefreshTokenTimeToLive(String.valueOf(config.getRefreshTokenTimeToLive() / 60));
+        //ID令牌有效时间
+        result.setIdTokenTimeToLive(String.valueOf(config.getIdTokenTimeToLive() / 60));
+        //设备授权码有效期
+        result.setDeviceCodeTimeToLive(String.valueOf(config.getDeviceCodeTimeToLive() / 60));
+        //access_token格式
+        result.setAccessTokenFormat(config.getAccessTokenFormat());
+        //授权码有效期
+        result.setAuthorizationCodeTimeToLive(
+            String.valueOf(config.getAuthorizationCodeTimeToLive() / 60));
+        //ID令牌有效时间
+        result.setReuseRefreshToken(config.getReuseRefreshToken());
+        //ID令牌有效时间
+        result.setIdTokenTimeToLive(String.valueOf(config.getIdTokenTimeToLive() / 60));
+        //ID令牌签名算法
+        result.setIdTokenSignatureAlgorithm(config.getIdTokenSignatureAlgorithm());
+        //登录发起地址
+        result.setInitLoginUrl(config.getInitLoginUrl());
+        //授权类型
+        result.setAuthorizationType(config.getAuthorizationType());
+        return result;
+    }
+
+    /**
+     * save 转 entity
+     *
+     * @param config {@link ProtocolOidcConfig}
+     * @return {@link ProtocolOidcConfig}
+     */
+    default ProtocolOidcConfig appOidcStandardSaveConfigParamToEntity(AppOidcStandardSaveConfigParam config) {
+        if (config == null) {
+            return null;
+        }
+        ProtocolOidcConfig entity = new ProtocolOidcConfig();
+        if (CollectionUtils.isNotEmpty(config.getClientAuthMethods())) {
+            entity.setClientAuthMethods(new LinkedHashSet<>(config.getClientAuthMethods()));
+        }
+        if (CollectionUtils.isNotEmpty(config.getAuthGrantTypes())) {
+            entity.setAuthGrantTypes(new LinkedHashSet<>(config.getAuthGrantTypes()));
+        }
+        if (CollectionUtils.isNotEmpty(config.getRedirectUris())) {
+            entity.setRedirectUris(new LinkedHashSet<>(config.getRedirectUris()));
+        }
+        if (CollectionUtils.isNotEmpty(config.getPostLogoutRedirectUris())) {
+            entity
+                .setPostLogoutRedirectUris(new LinkedHashSet<>(config.getPostLogoutRedirectUris()));
+        }
+        if (CollectionUtils.isNotEmpty(config.getGrantScopes())) {
+            entity.setGrantScopes(new LinkedHashSet<>(config.getGrantScopes()));
+        }
+        entity.setRequireAuthConsent(config.getRequireAuthConsent());
+        entity.setRequireProofKey(config.getRequireProofKey());
+        entity.setTokenEndpointAuthSigningAlgorithm(config.getTokenEndpointAuthSigningAlgorithm());
+        if (config.getRefreshTokenTimeToLive() != null) {
+            entity.setRefreshTokenTimeToLive(config.getRefreshTokenTimeToLive() * 60);
+        }
+        if (config.getAuthorizationCodeTimeToLive() != null) {
+            entity.setAuthorizationCodeTimeToLive(config.getAuthorizationCodeTimeToLive() * 60);
+        }
+        if (config.getDeviceCodeTimeToLive() != null) {
+            entity.setDeviceCodeTimeToLive(config.getDeviceCodeTimeToLive() * 60);
+        }
+        if (config.getIdTokenTimeToLive() != null) {
+            entity.setIdTokenTimeToLive(config.getIdTokenTimeToLive() * 60);
+        }
+        if (config.getAccessTokenTimeToLive() != null) {
+            entity.setAccessTokenTimeToLive(config.getAccessTokenTimeToLive() * 60);
+        }
+        entity.setIdTokenSignatureAlgorithm(config.getIdTokenSignatureAlgorithm());
+        entity.setAccessTokenFormat(config.getAccessTokenFormat());
+        entity.setReuseRefreshToken(config.getReuseRefreshToken());
+        return entity;
+    }
+
+    /**
+     * 获取协议端点
+     *
+     * @param appCode {@link String}
+     * @return {@link AppOidcProtocolEndpoint}
+     */
+    default AppOidcProtocolEndpoint getProtocolEndpointDomain(String appCode) {
+        //@formatter:off
+        AppOidcProtocolEndpoint domain = new AppOidcProtocolEndpoint();
+        //issues
+        Map<String,String> variables = new HashMap<>(16);
+        variables.put(APP_CODE,appCode);
+        StringSubstitutor sub = new StringSubstitutor(variables, "{", "}");
+        //Issuer
+        domain.setIssuer(sub.replace(PropertiesContextHelper.getPortalPublicBaseUrl() + OIDC_AUTHORIZE_PATH));
+        //发现端点
+        domain.setDiscoveryEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl() + sub.replace(WELL_KNOWN_OPENID_CONFIGURATION)));
+        //认证端点
+        domain.setAuthorizationEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl() +  sub.replace(ProtocolConstants.OidcEndpointConstants.AUTHORIZATION_ENDPOINT)));
+        //Token端点
+        domain.setTokenEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl() + sub.replace( ProtocolConstants.OidcEndpointConstants.TOKEN_ENDPOINT)));
+        //Jwks端点
+        domain.setJwksEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl() +  sub.replace(ProtocolConstants.OidcEndpointConstants.JWK_SET_ENDPOINT)));
+        //撤销端点
+        domain.setRevokeEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl()+  sub.replace(ProtocolConstants.OidcEndpointConstants.TOKEN_REVOCATION_ENDPOINT)));
+        //UserInfo端点
+        domain.setUserinfoEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl() +  sub.replace(ProtocolConstants.OidcEndpointConstants.OIDC_USER_INFO_ENDPOINT)));
+        //登出端点
+        domain.setEndSessionEndpoint(UrlUtils.format(PropertiesContextHelper.getPortalPublicBaseUrl() +  sub.replace(ProtocolConstants.OidcEndpointConstants.OIDC_LOGOUT_ENDPOINT)));
+        return domain;
+        //@formatter:on
+    }
+}
